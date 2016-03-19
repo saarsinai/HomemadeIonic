@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/saarsinai/HomemadeIonic.png?label=ready&title=Ready)](https://waffle.io/saarsinai/HomemadeIonic)
 # HomemadeIonic
 
 Tools and Frameworks: (client side only)
