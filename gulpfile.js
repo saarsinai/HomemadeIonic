@@ -6,6 +6,8 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var watchLess = require('gulp-watch-less');
+var less = require('gulp-less');
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -16,7 +18,6 @@ gulp.task('default', ['sass']);
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
-    .on('error', sass.logError)
     .pipe(gulp.dest('./www/css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0
@@ -24,6 +25,13 @@ gulp.task('sass', function(done) {
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('./www/css/'))
     .on('end', done);
+});
+
+gulp.task('default', function () {
+  return gulp.src('./www/css/style.less')
+      .pipe(watchLess('./www/css/style.less'))
+      .pipe(less())
+      .pipe(gulp.dest('./www/css/'));
 });
 
 gulp.task('watch', function() {
