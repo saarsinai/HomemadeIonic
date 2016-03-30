@@ -7581,13 +7581,13 @@ IonicModule
  *     collection-repeat="image in images"
  *     collection-item-width="'33%'"
  *     collection-item-height="'33%'">
- *     <img ng-src="{{image.src}}">
+ *     <assets ng-src="{{image.src}}">
  *   </div>
  * </ion-content>
  * ```
  * Percentage of total visible list dimensions. This example shows a 3 by 3 matrix that fits on the screen (3 rows and 3 colums). Note that dimensions are used in the creation of the element and therefore a measurement of the item cannnot be used as an input dimension.
  * ```css
- * .my-image-item img {
+ * .my-image-item assets {
  *   height: 33%;
  *   width: 33%;
  * }
@@ -9040,7 +9040,7 @@ function keyboardAttachGetClientHeight(element) {
 *   <ion-item ng-repeat="item in items"
 *             class="item-thumbnail-left">
 *
-*     {% raw %}<img ng-src="{{item.img}}">
+*     {% raw %}<assets ng-src="{{item.assets}}">
 *     <h2>{{item.title}}</h2>
 *     <p>{{item.description}}</p>{% endraw %}
 *     <ion-option-button class="button-positive"
@@ -9664,7 +9664,7 @@ IonicModule
  * <ion-nav-view>
  *   <ion-view>
  *     <ion-nav-title>
- *       <img src="logo.svg">
+ *       <assets src="logo.svg">
  *     </ion-nav-title>
  *     <ion-content>
  *       Some super content here!
@@ -10048,7 +10048,7 @@ IonicModule
  * <ion-radio ng-model="choice" ng-value="'B'">Choose B</ion-radio>
  * <ion-radio ng-model="choice" ng-value="'C'">Choose C</ion-radio>
  * ```
- * 
+ *
  * @param {string=} name The name of the radio input.
  * @param {expression=} value The value of the radio input.
  * @param {boolean=} disabled The state of the radio input.

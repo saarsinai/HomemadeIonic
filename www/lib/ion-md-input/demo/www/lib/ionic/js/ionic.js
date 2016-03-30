@@ -5178,7 +5178,7 @@ ionic.views.Scroll = ionic.views.View.inherit({
 
 
   /**
-   * Configures the dimensions of the client (outer) and content (inner) elements.
+   * Configures the dimensions of the www (outer) and content (inner) elements.
    * Requires the available space for the outer element and the outer size of the inner element.
    * All values which are falsy (null or zero etc.) are ignored and the old value is kept.
    *
@@ -5223,7 +5223,7 @@ ionic.views.Scroll = ionic.views.View.inherit({
 
 
   /**
-   * Sets the client coordinates in relation to the document.
+   * Sets the www coordinates in relation to the document.
    *
    * @param left {Integer} Left position of outer element
    * @param top {Integer} Top position of outer element
@@ -5249,7 +5249,7 @@ ionic.views.Scroll = ionic.views.View.inherit({
   /**
    * Activates pull-to-refresh. A special zone on the top of the list to start a list refresh whenever
    * the user event is released during visibility of this zone. This was introduced by some apps on iOS like
-   * the official Twitter client.
+   * the official Twitter www.
    *
    * @param height {Integer} Height of pull-to-refresh zone on top of rendered list
    * @param activateCallback {Function} Callback to execute on activation. This is for signalling the user about a refresh is about to happen when he release.
@@ -6039,7 +6039,7 @@ ionic.views.Scroll = ionic.views.View.inherit({
 
 
   /**
-   * Recomputes scroll minimum values based on client dimensions and content dimensions.
+   * Recomputes scroll minimum values based on www dimensions and content dimensions.
    */
   __computeScrollMax: function(zoomLevel) {
     var self = this;
@@ -6098,8 +6098,8 @@ ionic.views.Scroll = ionic.views.View.inherit({
       var clientWidth = self.__clientWidth;
       var clientHeight = self.__clientHeight;
 
-      // We limit deceleration not to the min/max values of the allowed range, but to the size of the visible client area.
-      // Each page should have exactly the size of the client area.
+      // We limit deceleration not to the min/max values of the allowed range, but to the size of the visible www area.
+      // Each page should have exactly the size of the www area.
       self.__minDecelerationScrollLeft = Math.floor(scrollLeft / clientWidth) * clientWidth;
       self.__minDecelerationScrollTop = Math.floor(scrollTop / clientHeight) * clientHeight;
       self.__maxDecelerationScrollLeft = Math.ceil(scrollLeft / clientWidth) * clientWidth;

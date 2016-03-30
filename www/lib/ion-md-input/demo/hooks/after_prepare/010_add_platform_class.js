@@ -77,9 +77,9 @@ if (rootdir) {
       var indexPath;
 
       if(platform == 'android') {
-        indexPath = path.join('platforms', platform, 'assets', 'www', 'index.html');
+        indexPath = path.join('platforms', platform, 'assets', 'client', 'index.html');
       } else {
-        indexPath = path.join('platforms', platform, 'www', 'index.html');
+        indexPath = path.join('platforms', platform, 'client', 'index.html');
       }
 
       if(fs.existsSync(indexPath)) {

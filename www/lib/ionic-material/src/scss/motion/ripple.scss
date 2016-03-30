@@ -54,13 +54,13 @@
 }
 /* Uncomment if you want images to fade in after the card
 
-  .animate-ripple .in .item-bg-image img:last-child,
-  .animate-ripple .in .item-bg-image img:last-child { 
+  .animate-ripple .in .item-bg-image assets:last-child,
+  .animate-ripple .in .item-bg-image assets:last-child {
     opacity: 0;
   }
 
-    .animate-ripple.done .item-bg-image img:last-child,
-    .animate-ripple.done .item-bg-image img:last-child {
+    .animate-ripple.done .item-bg-image assets:last-child,
+    .animate-ripple.done .item-bg-image assets:last-child {
     opacity: 1;
     -moz-transition: all 1s ease-in-out;
     -o-transition: all 1s ease-in-out;
@@ -68,21 +68,21 @@
     transition: all 1s ease-in-out;
     }
 
-    .animate-ripple .item-bg-image img:last-child,
-  .animate-ripple .item-bg-image img:last-child {
+    .animate-ripple .item-bg-image assets:last-child,
+  .animate-ripple .item-bg-image assets:last-child {
     box-shadow: none;
     -moz-transform: scale3d(1, 1, 1);
     -ms-transform: scale3d(1, 1, 1);
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
-  .animate-ripple .in .item-bg-image img:last-child,
-  .animate-ripple .in .item-bg-image img:last-child { 
+  .animate-ripple .in .item-bg-image assets:last-child,
+  .animate-ripple .in .item-bg-image assets:last-child {
     opacity: 0;
   }
 
-.animate-ripple.done .item-bg-image img:last-child,
-.animate-ripple.done .item-bg-image img:last-child {
+.animate-ripple.done .item-bg-image assets:last-child,
+.animate-ripple.done .item-bg-image assets:last-child {
   opacity: 1;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;

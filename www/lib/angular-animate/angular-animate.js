@@ -362,8 +362,8 @@
  * canvas.on('click', function(e) {
  *   $animate.addClass(element, 'on', {
  *     to: {
- *       left : e.client.x + 'px',
- *       top : e.client.y + 'px'
+ *       left : e.www.x + 'px',
+ *       top : e.www.y + 'px'
  *     }
  *   }):
  * });
@@ -383,8 +383,8 @@
  *        top: '0px'
  *     },
  *     to: {
- *       left : e.client.x + 'px',
- *       top : e.client.y + 'px'
+ *       left : e.www.x + 'px',
+ *       top : e.www.y + 'px'
  *     }
  *   }):
  * });

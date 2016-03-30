@@ -32,8 +32,8 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', function () {
-  return gulp.src('www/css/style.less')
-      .pipe(watchLess('www/css/style.less'))
+  return gulp.src('www/css/app.less')
+      .pipe(watchLess('www/css/app.less'))
       .pipe(less())
       .pipe(gulp.dest('dist'));
 });

@@ -83,7 +83,7 @@ Instructions:
 - `npm install`
 - `gulp build` (or `gulp style` for just the stylesheets)
 
-Look at `gulpfile.js` for how the process works.
+Look at `gulpfile.babel.js` for how the process works.
 
 ## Development 
 This project uses [Webpack](http://webpack.github.io/)

@@ -119,9 +119,9 @@ module.exports = function(angularApp) {
                     var childOffset = child.getBoundingClientRect();
                     var offset = childOffset.left * options.leftOffsetPercentage + childOffset.top;
                     var delay = parseFloat(offset / speed / options.finishDelayThrottle).toFixed(2);
-                    //child.querySelector('img').style.webkitTransitionDelay = delay + "s";
-                    //child.querySelector('img').style.transitionDelay = delay + "s";
-                    //child.querySelector('img').className += ' in';
+                    //child.querySelector('assets').style.webkitTransitionDelay = delay + "s";
+                    //child.querySelector('assets').style.transitionDelay = delay + "s";
+                    //child.querySelector('assets').className += ' in';
                     animateBlindsDom[i].className += ' done';
                 }
 
