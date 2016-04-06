@@ -37,3 +37,6 @@ _ReSharper*/
 node_modules/
 platforms/
 plugins/
+
+#Homemade folders
+www/.tmp
