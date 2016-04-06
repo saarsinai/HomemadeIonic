@@ -82,7 +82,7 @@ angular.module('homemade', ['ionic', 'homemade.controllers', 'ionic-material', '
         url: '/gallery',
         views: {
             'menuContent': {
-                templateUrl: 'app/item-wall/gallery.html',
+                templateUrl: 'app/item/item.html',
                 controller: 'GalleryCtrl'
             },
             'fabContent': {
