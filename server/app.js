@@ -1,11 +1,11 @@
-/**
- * Created by Kobi on 4/6/2016.
- */
-require('dotenv').config();
-var express = require('express')
-var mongoose = require('mongoose');
+import 'dotenv/config';
+import mongoose from 'mongoose';
+import mongooseConfig from './config/mongoose';
+import express from 'express';
+
 
 var app = express()
+mongooseConfig(mongoose);
 mongoose.connect(process.env.MONGO_URI);
 
 app.get('/', function (req, res) {
@@ -14,17 +14,107 @@ app.get('/', function (req, res) {
 
 app.listen(process.env.PORT)
 
-var Item = mongoose.model('Item', { name: String });
 
-var hamburger = new Item({ name: 'Hamburger' });
-//hamburger.save(function (err) {
-//  if (err) {
-//    console.log(err);
-//  } else {
-//    console.log('meow');
-//  }
-//});
-hamburger.save().then((doc, err) => {
-  console.log(doc);
-  console.log(err);
+
+/*
+/!**
+ * Created by Kobi on 4/6/2016.
+ *!/
+
+
+
+require('dotenv').config();
+var mongooseConfig = require('./config/mongoose');
+var express = require('express')
+var mongoose = require('mongoose');
+
+var app = express()
+mongooseConfig(mongoose);
+mongoose.connect(process.env.MONGO_URI);
+
+app.get('/', function (req, res) {
+  res.send('Homemade server is up!')
 })
+
+app.listen(process.env.PORT)
+
+
+
+/!**                    Seed - TODO: Separate this to each model seed.
+ *!/
+const addSeed = require('mongoose-plugin-seed').addSeed;
+const mongooseSeed = require('mongoose-plugin-seed').seed;
+const Schema = mongoose.Schema;
+// Define Schemas
+var UserSchema = new Schema({ name: String, password: String, roles: [String] });
+var RoleSchema = new Schema({name: String});
+var ItemSchema = new Schema({name: String, user: [Schema.Types.ObjectId], description: String});
+
+// Define Models
+var User = mongoose.model('User', UserSchema);
+var Role = mongoose.model('Role', RoleSchema);
+var Item = mongoose.model('Item', ItemSchema);
+
+// Define the seed with dependency to roles
+addSeed(User, {
+  dependencies: [Role],
+  seed: function (roles) {
+    return [{
+      username: "kobi",
+      password: "123456",
+      roles: roles[0]
+    }, {
+      username: "gal",
+      password: "123456",
+      roles: roles[0]
+    },
+      {
+        username: "saar",
+        password: "123456",
+        roles: roles[0]
+      },
+      {
+        username: "tamir",
+        password: "123456",
+        roles: roles[0]
+      }];
+  }
+});
+
+// Define roles seed
+addSeed(Role, {
+  seed: function () {
+    return [{
+      name: "admin"
+    }, {
+      name: "user"
+    }];
+  }
+});
+
+addSeed(Item, {
+  seed: function () {
+    return [{
+      name: "pizza",
+      description: "best pizza in the world"
+    },{
+      name: "burger",
+      description: "best burger in the world"
+    },{
+      name: "pasta",
+      description: "best pasta in the world"
+    },{
+      name: "boritto",
+      description: "best boritto in the world"
+    }];
+  }
+});
+
+// Seed!
+mongooseSeed(mongoose)
+  .then(function () {
+    console.log('Seed Success!');
+  });
+
+
+*/
