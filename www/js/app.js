@@ -33,7 +33,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
     $stateProvider.state('app', {
         url: '/app',
         abstract: true,
-        templateUrl: 'templates/menu.html',
+        templateUrl: 'app/templates/menu.html',
         controller: 'AppCtrl'
     })
 
@@ -41,7 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         url: '/activity',
         views: {
             'menuContent': {
-                templateUrl: 'templates/activity.html',
+                templateUrl: 'app/wall/activity.html',
                 controller: 'ActivityCtrl'
             },
             'fabContent': {
@@ -77,7 +77,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         url: '/gallery',
         views: {
             'menuContent': {
-                templateUrl: 'templates/gallery.html',
+                templateUrl: 'app/item-wall/gallery.html',
                 controller: 'GalleryCtrl'
             },
             'fabContent': {
@@ -95,7 +95,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         url: '/login',
         views: {
             'menuContent': {
-                templateUrl: 'templates/login.html',
+                templateUrl: 'app/login/login.html',
                 controller: 'LoginCtrl'
             },
             'fabContent': {
@@ -108,7 +108,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         url: '/profile',
         views: {
             'menuContent': {
-                templateUrl: 'templates/profile.html',
+                templateUrl: 'app/item/profile.html',
                 controller: 'ProfileCtrl'
             },
             'fabContent': {
