@@ -1,8 +1,3 @@
-/**
- * Created by Kobi on 4/6/2016.
- */
-'use strict';
-
 'use strict';
 
 import {seed} from 'mongoose-plugin-seed';
@@ -18,6 +13,8 @@ export default mongoose => {
       })
       .catch(err => {
         //logger.error({err}, 'Unable to populate database');
+        console.log('Unable to populate database: ' + JSON.stringify(err));
+
       });
   }
 };
@@ -33,12 +30,12 @@ var RoleSchema = new Schema({name: String});
 var ItemSchema = new Schema({name: String, user: [Schema.Types.ObjectId], description: String});
 
 // Define Models
-var User = mongoose.model('User', UserSchema);
+var Item = mongoose.model('Item', UserSchema);
 var Role = mongoose.model('Role', RoleSchema);
 var Item = mongoose.model('Item', ItemSchema);
 
 // Define the seed with dependency to roles
-addSeed(User, {
+addSeed(Item, {
   dependencies: [Role],
   seed: function (roles) {
     return [{

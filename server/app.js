@@ -2,9 +2,14 @@ import 'dotenv/config';
 import mongoose from 'mongoose';
 import mongooseConfig from './config/mongoose';
 import express from 'express';
+import expressConfig from './config/express';
+import routesConfig from './config/routes';
 
 
-var app = express()
+var app = express();
+
+expressConfig(app);
+routesConfig(app);``
 mongooseConfig(mongoose);
 mongoose.connect(process.env.MONGO_URI);
 
@@ -51,12 +56,12 @@ var RoleSchema = new Schema({name: String});
 var ItemSchema = new Schema({name: String, user: [Schema.Types.ObjectId], description: String});
 
 // Define Models
-var User = mongoose.model('User', UserSchema);
+var Item = mongoose.model('Item', UserSchema);
 var Role = mongoose.model('Role', RoleSchema);
 var Item = mongoose.model('Item', ItemSchema);
 
 // Define the seed with dependency to roles
-addSeed(User, {
+addSeed(Item, {
   dependencies: [Role],
   seed: function (roles) {
     return [{
