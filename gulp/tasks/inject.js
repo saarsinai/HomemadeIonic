@@ -42,6 +42,6 @@ export default gulp => {
         starttag: '<!-- injector:js -->',
         endtag: '<!-- endinjector -->'
       }))
-      .pipe(gulp.dest('client'));
+      .pipe(gulp.dest('www'));
   });
 };
