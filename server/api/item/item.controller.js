@@ -11,11 +11,11 @@ export function index () {
   return Item.find({});
 }
 //
-//// Get a single user
-//export function show (req) {
-//  return Item.findById(req.params.id)
-//    .then(errorIfEmpty);
-//}
+// Get a single user
+export function show (req) {
+  return Item.findById(req.params.id)
+    .then(errorIfEmpty);
+}
 //
 //// Creates a new user
 //export function create (req) {

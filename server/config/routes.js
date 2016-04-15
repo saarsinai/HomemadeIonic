@@ -4,6 +4,7 @@ import createError from 'http-errors';
 
 // inject:route-imports
 import itemRoute from '../api/item';
+import userRoute from '../api/user';
 //import managerRoute from '../api/manager';
 //import schoolRoute from '../api/school';
 
@@ -12,6 +13,7 @@ import itemRoute from '../api/item';
 export default app => {
   // inject:route-usage
   app.use('/api/item', itemRoute);
+  app.use('/api/user', userRoute);
   //app.use('/api/managers', managerRoute);
   //app.use('/api/schools', schoolRoute);
 

@@ -1,7 +1,10 @@
+import User from '../user/user.model.js'
+
 export default {
-  seed: () => [{
+  dependencies: [User],
+  seed: (users) => [{
     "name": "pizza peperoni",
-    "seller": "avi",
+    "seller": users[0].name,
     "distance": 0.7,
     "rating": 4,
     "pricePerItem": 9,
@@ -10,7 +13,7 @@ export default {
   },
   {
     "name": "potato soup",
-    "seller": "gal",
+    "seller": users[1].name,
     "distance": 1.1,
     "rating": 5,
     "pricePerItem": 13,
@@ -19,7 +22,7 @@ export default {
   },
   {
     "name": "mushroom soup",
-    "seller": "tamir",
+    "seller": users[2].name,
     "distance": 1.4,
     "rating": 3,
     "pricePerItem": 15,
