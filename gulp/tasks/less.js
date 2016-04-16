@@ -9,7 +9,8 @@ export default gulp => {
         paths: [
           'www/bower_components',
           'www/app',
-          'www/components'
+          'www/components',
+          'www/lib'
         ]
       }))
       .pipe(gulp.dest('www/.tmp'));

@@ -12,7 +12,7 @@ export default {
         '!www/app/app.js'
       ],
       css: [
-        'www/{app,components,.tmp}/**/*.css'
+        'www/{app,components,lib,.tmp}/**/*.css'
       ],
       html: [
         'www/{app,components}/**/*.html'
