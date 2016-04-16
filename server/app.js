@@ -9,15 +9,15 @@ import routesConfig from './config/routes';
 var app = express();
 
 expressConfig(app);
-routesConfig(app);``
+routesConfig(app);
 mongooseConfig(mongoose);
 mongoose.connect(process.env.MONGO_URI);
 
 app.get('/', function (req, res) {
   res.send('Homemade server is up!')
-})
+});
 
-app.listen(process.env.PORT)
+app.listen(process.env.PORT);
 
 
 
