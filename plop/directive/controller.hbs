@@ -1,0 +1,11 @@
+angular.module('starter')
+  .directive('hmd{{properCase name}}', function() {
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'app/directives/{{dashCase name}}/{{dashCase name}}.html',
+      scope: {
+        // your parameters here
+      }
+    };
+  });

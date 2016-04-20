@@ -27,5 +27,5 @@ export default plop => {
         templateFile: 'plop/api/seed.hbs'
       }
     ]
-  });
+  })
 };
