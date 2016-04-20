@@ -40,8 +40,11 @@
     "gulp-watch-less": "^1.0.1",
     "install": "^0.6.1",
     "open": "0.0.5",
+    "plop": "^1.5.0",
+    "plur": "^2.1.2",
     "run-sequence": "^1.1.5",
     "shelljs": "^0.3.0",
+    "uppercamelcase": "^1.1.0",
     "wiredep": "^4.0.0"
   },
   "cordovaPlugins": [],

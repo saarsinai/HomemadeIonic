@@ -2,13 +2,13 @@
 
 import restful from 'node-restful';
 import {createSeedModel} from 'mongoose-plugin-seed';
-import seed from './user.seed';
+import seed from './{{name}}.seed';
 
 const mongoose = restful.mongoose;
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const {{properCase name}}Schema = new Schema({
   name: String
 });
 
-export default createSeedModel('User', UserSchema, seed);
+export default createSeedModel('{{properCase name}}', {{properCase name}}Schema, seed);
