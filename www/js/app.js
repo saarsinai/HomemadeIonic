@@ -78,15 +78,12 @@ angular.module('homemade', ['ionic', 'homemade.controllers', 'ionic-material', '
         }
     })
 
-    .state('app.gallery', {
-        url: '/gallery',
+    .state('app.item', {
+        url: '/item/:itemId',
         views: {
             'menuContent': {
                 templateUrl: 'app/item/item.html',
-                controller: 'GalleryCtrl'
-            },
-            'fabContent': {
-                controller: function ($timeout) {}
+                controller: 'itemController'
             }
         }
     })

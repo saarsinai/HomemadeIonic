@@ -1,12 +1,14 @@
-<ion-view view-title="My Pizza">
+<ion-view view-title="{{item.name}}" ng-app="starter">
   <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
     <div class="main-item-image">
       <img src="../../assets/pizza.jpg">
-      <h2><span>My Pizza is the best</span></h2>
-    </div>
+      <h2><span>{{item.name}}</span></h2>
     <div class="item-background">
+      <h3>{{item.seller}}</h3>
+      <h3>{{item.address}}</h3>
       <div class="item-info">
-        bla bla bla
+        <h3>Dish info:</h3>
+        <h4>{{item.details}}</h4>
       </div>
     </div>
   </ion-content>
