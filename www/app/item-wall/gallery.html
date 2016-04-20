@@ -1,39 +1,7 @@
 <ion-view view-title="Hot Dishes">
     <ion-content ng-class="{expanded:isExpanded}">
-
-      <hmd-dish-list-item name="elad"></hmd-dish-list-item>
-
-      <!--
-               <div ui-sref="app.profile" class="card card-gallery item item-text-wrap">
-                   <div class="ink dark-bg">
-                       <h2>Shnitzel</h2>
-                       <img class="full-image" src="assets/sansa-snowcastle2.jpg">
-                   </div>
-                   <div class="item tabs tabs-secondary tabs-icon-left">
-                       <a class="tab-item stable-bg assertive">
-                           <i class="icon ion-heart"></i>
-                           22
-                       </a>
-                       <a class="tab-item stable-bg positive-900">
-                           <i class="icon ion-chatbubbles"></i>
-                           9
-                       </a>
-                   </div>
-               </div>
-               <div ui-sref="app.profile" class="card card-gallery item item-text-wrap">
-                   <div class="ink dark-bg">
-                       <h2>Pasta Boloniez</h2>
-                       <img class="full-image" src="assets/sansa-snowcastle4.jpg">
-                   </div>
-                   <div class="item tabs tabs-secondary tabs-icon-left">
-                       <a class="tab-item stable-bg assertive">
-                           <i class="icon ion-heart"></i>
-                           8
-                       </a>
-                       <a class="tab-item stable-bg positive-900">
-                           <i class="icon ion-chatbubbles"></i>
-                           0
-                       </a>
-                   </div>-->
+      <div ng-repeat="item in items">
+        <hmd-dish-list-item item="item"></hmd-dish-list-item>
+      </div>
     </ion-content>
 </ion-view>
