@@ -11,9 +11,9 @@ const app = express();
 
 babelRegister();
 expressConfig(app);
+routesConfig(app);
 mongooseConfig(mongoose);
 mongoose.connect(process.env.MONGO_URI);
-routesConfig(app);
 
 app.get('/', function (req, res) {
   res.send('Homemade server is up!')
