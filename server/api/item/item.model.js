@@ -1,11 +1,13 @@
 'use strict';
 
-import mongoose from 'mongoose';
+import restful from 'node-restful';
 import {createSeedModel} from 'mongoose-plugin-seed';
 import seed from './item.seed';
+
+const mongoose = restful.mongoose;
 const Schema = mongoose.Schema;
 
-const ItemSchema = new Schema({
+export const ItemSchema = new Schema({
   name: String,
   pricePerItem: {
     type: Number,

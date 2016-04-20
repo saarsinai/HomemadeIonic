@@ -1,20 +1,24 @@
 'use strict';
 
-//import morgan from 'morgan';
-//import compression from 'compression';
-import {urlencoded, json} from 'body-parser';
-//import methodOverride from 'method-override';
-//import cookieParser from 'cookie-parser';
 import errorHandler from 'api-error-handler';
-//import passport from 'passport';
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
+import methodOverride from 'method-override';
+
+const allowCrossDomain = (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+  next();
+};
 
 export default app => {
-  //app.use(compression());
-  app.use(urlencoded({extended: false}));
-  app.use(json());
-  //app.use(methodOverride());
-  //app.use(cookieParser());
-  //app.use(passport.initialize());
-  //app.use(morgan('dev'));
+  app.use(morgan('dev'));
+  app.use(bodyParser.urlencoded({'extended':'true'}));
+  app.use(bodyParser.json());
+  app.use(bodyParser.json({type:'application/vnd.api+json'}));
+  app.use(allowCrossDomain);
+  app.use(methodOverride());
   app.use(errorHandler());
 };

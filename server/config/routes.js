@@ -1,23 +1,13 @@
 'use strict';
 
 import createError from 'http-errors';
-
-// inject:route-imports
-import itemRoute from '../api/item';
-import userRoute from '../api/user';
-//import managerRoute from '../api/manager';
-//import schoolRoute from '../api/school';
-
-//import authRoute from '../../auth';
+import path from 'path';
+import fs from 'fs';
 
 export default app => {
-  // inject:route-usage
-  app.use('/api/item', itemRoute);
-  app.use('/api/user', userRoute);
-  //app.use('/api/managers', managerRoute);
-  //app.use('/api/schools', schoolRoute);
-
-  //app.use('/auth', authRoute);
+  fs.readdirSync(path.join(__dirname, '../api')).forEach(module => {
+    require('../api/' + module).default(app);
+  });
 
   // All undefined api routes should return a 404
   app.route('/:url(api)/*')

@@ -1,31 +1,23 @@
 angular.module('starter')
-.controller('GalleryCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
-  $scope.$parent.showHeader();
-  $scope.$parent.clearFabs();
-  $scope.isExpanded = true;
-  $scope.$parent.setExpanded(true);
-  $scope.$parent.setHeaderFab(false);
+  .controller('GalleryCtrl', function ($scope, $stateParams, Resource, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+    const Item = Resource.new("item");
 
-  $scope.items = [
-    {
-      name: "pasta",
-      chef: "kobi delicates",
-    },
-    {
-      name: "pasta",
-      chef: "kobi delicates",
-    }
-  ];
+    $scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = true;
+    $scope.$parent.setExpanded(true);
+    $scope.$parent.setHeaderFab(false);
 
+    $scope.items = Item.query();
 
-  // Activate ink for controller
-  ionicMaterialInk.displayEffect();
+    // Activate ink for controller
+    ionicMaterialInk.displayEffect();
 
-  ionicMaterialMotion.pushDown({
-    selector: '.push-down'
+    ionicMaterialMotion.pushDown({
+      selector: '.push-down'
+    });
+    ionicMaterialMotion.fadeSlideInRight({
+      selector: '.animate-fade-slide-in .item'
+    });
+
   });
-  ionicMaterialMotion.fadeSlideInRight({
-    selector: '.animate-fade-slide-in .item'
-  });
-
-});

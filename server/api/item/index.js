@@ -1,12 +1,12 @@
 'use strict';
 
-import {AsyncRouter} from 'express-async-router';
-import * as controller from './item.controller';
+import restful from 'node-restful';
+import {ItemSchema} from './item.model';
 
-const router = new AsyncRouter();
+const mongoose = restful.mongoose;
 
-router.get('/', controller.index);
-//router.post('/', controller.create);
-router.get('/:id', controller.show)
-
-export default router;
+export default app => {
+  restful.model('item', ItemSchema)
+    .methods(['get', 'post', 'put', 'delete'])
+    .register(app, '/api/item');
+};
