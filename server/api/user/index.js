@@ -1,10 +1,10 @@
 'use strict';
 
 import restful from 'node-restful';
-import User from './user.model';
+import UserModel from './user.model';
 
 export default app => {
-  const User = restful.model('user', User.schema)
+  const User = restful.model('user', UserModel.schema)
     .methods(['get', 'post', 'put', 'delete']);
 
   User.register(app, '/api/user');
