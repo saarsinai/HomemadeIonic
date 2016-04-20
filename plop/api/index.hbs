@@ -6,7 +6,8 @@ import {{name}} from './{{name}}.model';
 const mongoose = restful.mongoose;
 
 export default app => {
-  restful.model('{{name}}', {{name}}.schema)
-    .methods(['get', 'post', 'put', 'delete'])
-    .register(app, '/api/{{name}}');
+  const {{properCase name}} = restful.model('{{name}}', {{name}}.schema)
+    .methods(['get', 'post', 'put', 'delete']);
+
+  {{properCase name}}.register(app, '/api/{{name}}');
 };
