@@ -3,12 +3,16 @@
     <div class="main-item-image">
       <img src="../../assets/pizza.jpg">
       <h2><span>{{item.name}}</span></h2>
-    <div class="item-background">
-      <h3>{{item.seller}}</h3>
-      <h3>{{item.address}}</h3>
-      <div class="item-info">
-        <h3>Dish info:</h3>
-        <h4>{{item.details}}</h4>
+      <div class="item-background">
+        <h3>{{item.seller}}</h3>
+        <div>
+          <i class="icon ion-location"></i>
+          <h4 style='display:inline'>{{item.address}}</h4>
+        </div>
+        <div class="item-info">
+          <h3>Dish info:</h3>
+          <h4>{{item.details}}</h4>
+        </div>
       </div>
     </div>
   </ion-content>

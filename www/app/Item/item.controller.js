@@ -10,7 +10,7 @@ angular.module('starter')
         "distance": 0.7,
         "rating": 4,
         "pricePerItem": 9,
-        "details": "it's italian!! the best there is",
+        "details": "it's italian!! the best there is, it's italian!! the best there is, it's italian!! the best there is",
         "tags": ["pizza", "italian", "non-kosher"]
       }
 
