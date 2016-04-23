@@ -54,7 +54,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         }
     })
 
-    .state('app.friends', {
+    /*.state('app.friends', {
         url: '/friends',
         views: {
             'menuContent': {
@@ -70,7 +70,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
                 }
             }
         }
-    })
+    })*/
 
     .state('app.gallery', {
         url: '/gallery',

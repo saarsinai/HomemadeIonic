@@ -1,6 +1,11 @@
 angular.module('starter')
-  .controller('GalleryCtrl', function ($scope, $stateParams, Resource, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+  .controller('GalleryCtrl', function ($scope, $stateParams, Resource, item, $timeout, ionicMaterialInk, ionicMaterialMotion) {
     const Item = Resource.new("item");
+    var img = new Image();
+    img.src='../assets/me.jpg';
+
+    //var shit = image.new(img);
+    //console.log(shit);
 
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();

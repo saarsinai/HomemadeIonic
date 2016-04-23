@@ -1,6 +1,8 @@
 angular.module('starter')
   .factory('image', function () {
     return {
-        // your code here
+      'new': function (image) {
+        return "data:image/png;base64," + window.btoa(image);
+        }
       }
   });
