@@ -5,6 +5,7 @@
   "dependencies": {
     "api-error-handler": "^1.0.0",
     "babel-register": "^6.7.2",
+    "base64-img": "^1.0.3",
     "body-parser": "^1.15.0",
     "dotenv": "^2.0.0",
     "express": "^4.13.4",

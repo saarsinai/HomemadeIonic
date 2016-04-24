@@ -4,6 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+
 angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'ionMdInput', 'ngResource'])
 
 .run(function($ionicPlatform) {
@@ -46,9 +47,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
             },
             'fabContent': {
                 controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-activity').classList.toggle('on');
-                    }, 200);
                 }
             }
         }
@@ -81,9 +79,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
             },
             'fabContent': {
                 controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-gallery').classList.toggle('on');
-                    }, 600);
                 }
             }
         }

@@ -17,7 +17,8 @@ const ItemSchema = new Schema({
   seller: String,
   distance: Number,
   rating: Number,
-  details: String
+  details: String,
+  img: String
 });
 
 export default createSeedModel('Item', ItemSchema, seed);
