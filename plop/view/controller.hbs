@@ -1,0 +1,30 @@
+angular.module('starter')
+  .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    $stateProvider.state('app.{{camelCase name}}', {
+      url: '/{{camelCase name}}',
+      views: {
+        'menuContent': {
+          templateUrl: 'app/{{dashCase name}}/{{dashCase name}}.html',
+          controller: '{{properCase name}}Ctrl'
+        }
+      }
+    })
+  })
+  .controller('{{properCase name}}Ctrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+
+    $scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = true;
+    $scope.$parent.setExpanded(true);
+    $scope.$parent.setHeaderFab(false);
+
+    // Activate ink for controller
+    ionicMaterialInk.displayEffect();
+
+    ionicMaterialMotion.pushDown({
+    selector: '.push-down'
+    });
+    ionicMaterialMotion.fadeSlideInRight({
+    selector: '.animate-fade-slide-in .item'
+    });
+  });
