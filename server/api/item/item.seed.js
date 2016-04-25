@@ -6,7 +6,7 @@ export default {
   dependencies: [User],
   seed: (users) => [{
     "name": "pizza peperoni",
-    "seller": users[0].name,
+    "seller": users[0]._id,
     "distance": 0.7,
     "rating": 4,
     "pricePerItem": 9,
@@ -16,7 +16,7 @@ export default {
   },
   {
     "name": "potato soup",
-    "seller": users[1].name,
+    "seller": users[1]._id,
     "distance": 1.1,
     "rating": 5,
     "pricePerItem": 13,
@@ -26,7 +26,7 @@ export default {
   },
   {
     "name": "mushroom soup",
-    "seller": users[2].name,
+    "seller": users[1]._id,
     "distance": 1.4,
     "rating": 3,
     "pricePerItem": 15,

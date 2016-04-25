@@ -52,37 +52,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         }
     })
 
-    /*.state('app.friends', {
-        url: '/friends',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/friends.html',
-                controller: 'FriendsCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-friends" class="button button-fab button-fab-top-left expanded button-energized-900 spin"><i class="icon ion-chatbubbles"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-friends').classList.toggle('on');
-                    }, 900);
-                }
-            }
-        }
-    })*/
 
-    .state('app.gallery', {
-        url: '/gallery',
-        views: {
-            'menuContent': {
-                templateUrl: 'app/item-wall/gallery.html',
-                controller: 'GalleryCtrl'
-            },
-            'fabContent': {
-                controller: function ($timeout) {
-                }
-            }
-        }
-    })
 
     .state('app.login', {
         url: '/login',
@@ -111,6 +81,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
                         document.getElementById('fab-profile').classList.toggle('on');
                     }, 800);*/
                 }
+            }
+        }
+    })
+
+    .state('app.store', {
+        url: '/store',
+        views: {
+            'menuContent': {
+                templateUrl: 'app/store/store.html',
+                controller: 'StoreController'
+            },
+            'fabContent': {
+                template: ''
+            }
+        }
+    })
+
+    .state('app.gallery', {
+        url: '/gallery',
+        views: {
+            'menuContent': {
+                templateUrl: 'app/item-wall/gallery.html',
+                controller: 'GalleryCtrl'
+            },
+            'fabContent': {
+                controller: function ($timeout) {}
             }
         }
     })
