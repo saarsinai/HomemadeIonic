@@ -6,4 +6,8 @@ export default gulp => {
   gulp.task('open', () => {
     exec(`ionic serve --lab`);
   });
+
+  gulp.task('run', () => {
+    exec(`ionic run android`);
+  });
 };

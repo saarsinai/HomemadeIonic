@@ -1,7 +1,6 @@
 angular.module('starter')
   .controller('GalleryCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion) {
     const Item = Resource.new("item");
-
     //$scope.shit = image.getDataUri("../assets/pizza.jpg", function(success){
       //console.log(success);
     //});

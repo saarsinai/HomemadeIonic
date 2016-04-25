@@ -21,8 +21,6 @@
     <img ng-src="{{item.img | trusted}}">
   </div>
   <div class="item item-divider padded footer">
-    <button class="button button-flat">
-        <i class="icon ion-heart"></i>
-      </button>
+    <button class="button icon-left button-clear ion-heart" ng-click="like()">{{item.rating}}</button>
   </div>
 </div>

@@ -16,4 +16,30 @@ export default gulp => {
       'watch',
       cb);
   });
+
+  gulp.task('serve:server', cb => {
+    runSequence(
+      'clean:tmp',
+      'less',
+      'inject:css',
+      'inject:js',
+      'wiredep',
+      'livereload',
+      'nodemon',
+      'watch',
+      cb);
+  });
+
+  gulp.task('serve:client', cb => {
+    runSequence(
+      'clean:tmp',
+      'less',
+      'inject:css',
+      'inject:js',
+      'wiredep',
+      'livereload',
+      'run',
+      'watch',
+      cb);
+  });
 };
