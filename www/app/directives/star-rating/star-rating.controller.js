@@ -5,7 +5,8 @@ angular.module('starter')
       replace: true,
       templateUrl: 'app/directives/star-rating/star-rating.html',
       scope: {
-        rating: '='
+        rating: '=',
+        size: '@'
       }
     };
   });

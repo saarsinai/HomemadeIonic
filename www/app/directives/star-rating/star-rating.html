@@ -1,21 +1,23 @@
-<div class="row star-rating">
-  <i ng-class="{'ion-android-star': rating > 0.5,
-                'ion-android-star-half': rating === 0.5,
-                'ion-android-star-outline': rating < 0.5}" class="col star icon energized"></i>
+<div class="row" ng-class="{'stars-big': size === 'big' || !size,
+                            'stars-small': size === 'small'}">
 
-  <i ng-class="{'ion-android-star': rating > 1.5,
-                'ion-android-star-half': rating === 1.5,
-                'ion-android-star-outline': rating < 1.5}" class="col star icon energized"></i>
+  <i ng-class="{'ion-android-star': rating > 0.75,
+                'ion-android-star-half': rating < 0.75 && rating > 0.25,
+                'ion-android-star-outline': rating < 0.25}" class="flat-col col star icon energized"></i>
 
-  <i ng-class="{'ion-android-star': rating > 2.5,
-                'ion-android-star-half': rating === 2.5,
-                'ion-android-star-outline': rating < 2.5}" class="col star icon energized"></i>
+  <i ng-class="{'ion-android-star': rating > 1.75,
+                'ion-android-star-half': rating < 1.75 && rating > 1.25,
+                'ion-android-star-outline': rating < 1.25}" class="flat-col col star icon energized"></i>
 
-  <i ng-class="{'ion-android-star': rating > 3.5,
-                'ion-android-star-half': rating === 3.5,
-                'ion-android-star-outline': rating < 3.5}" class="col star icon energized"></i>
+  <i ng-class="{'ion-android-star': rating > 2.75,
+                'ion-android-star-half': rating < 2.75 && rating > 2.25,
+                'ion-android-star-outline': rating < 2.25}" class="flat-col col star icon energized"></i>
 
-  <i ng-class="{'ion-android-star': rating > 4.5,
-                'ion-android-star-half': rating === 4.5,
-                'ion-android-star-outline': rating < 4.5}" class="col star icon energized"></i>
+  <i ng-class="{'ion-android-star': rating > 3.75,
+                'ion-android-star-half': rating < 3.75 && rating > 3.25,
+                'ion-android-star-outline': rating < 3.25}" class="flat-col col star icon energized"></i>
+
+  <i ng-class="{'ion-android-star': rating > 4.75,
+                'ion-android-star-half': rating < 4.75 && rating > 4.25,
+                'ion-android-star-outline': rating < 4.25}" class="flat-col col star icon energized"></i>
 </div>
