@@ -2,14 +2,34 @@
 
 import restful from 'node-restful';
 import UserModel from './user.model';
-import {removeProperties} from '../../utils';
+import ItemModel from '../item/item.model';
+import {hash} from '../../utils';
+
 
 
 export default app => {
-  const User = restful.model('user', UserModel.schema)
-    .methods(['get', 'post', 'put', 'delete']);
+  
+  // This is registered to the schema because node-restful doesn't work with the seed-plugin
+  UserModel.schema.pre('save', hash('password'));
 
-  User.after('get', removeProperties('hashed_password'));
+  restful.model('user', UserModel.schema)
+    .methods(['get', 'post', 'put', 'delete'])
+    .route('items', {
+      handler:(req, res, next) => {
+        ItemModel.find({ seller: req.params.id }, function(err, list) {
+          if (err) {
+            next(err); // Error handling
+          }
+          //res.status is the status code
+          res.locals.status_code = 200;
 
-  User.register(app, '/api/user');
+          // res.bundle is what is returned
+          res.locals.bundle = list;
+          next();
+        });
+      },
+      detail: true,
+      methods: ['get']
+    })
+    .register(app, '/api/user');
 };

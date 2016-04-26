@@ -1,7 +1,25 @@
-<ion-view view-title="{{sellerUser.store.name}}">
+<ion-view>
+  <ion-nav-title>{{seller.store.name}}</ion-nav-title>
   <ion-content ng-class="{expanded:isExpanded}">
-    <div>
-      Hi!
+    <div class="card">
+      <div class="item item-divider">Location</div>
+      <div class="item item-icon-left">
+        <a class="button-icon icon ion-location assertive"></a>
+        {{seller.store.address}}
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-divider">Description</div>
+      <div class="item item-text-wrap">{{seller.store.description}}</div>
+    </div>
+    <div class="card">
+      <div class="item item-divider">Rating</div>
+      <hmd-star-rating rating="seller.store.rating"></hmd-star-rating>
+      <div class="item">Rating of other users soon...</div>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">My dishes</div>
+      <div class="item" ng-repeat="item in seller.store.items">{{item.name}}</div>
     </div>
   </ion-content>
 </ion-view>

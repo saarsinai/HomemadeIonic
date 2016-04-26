@@ -14,7 +14,7 @@ const ItemSchema = new Schema({
     min: 0
   },
   tags: [String],
-  seller: String,
+  seller: {type: Schema.Types.ObjectId, ref: 'User'},
   distance: Number,
   rating: Number,
   details: String,
