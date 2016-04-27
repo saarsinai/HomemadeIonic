@@ -13,7 +13,7 @@ const ReviewSchema = new Schema({
   time: Date,
   title: String,
   description: String,
-  rating: {type: Number, min: 1, max: 5}
+  rating: {type: Number, min: 0.5, max: 5}
 });
 
 export default createSeedModel('Review', ReviewSchema, seed);

@@ -1,0 +1,23 @@
+<ion-view id="add-review" view-title="Add Review">
+  <ion-content ng-class="{expanded:isExpanded}">
+    <div class="list">
+      <div class="item">
+        <hmd-star-rating rating="review.rating"></hmd-star-rating>
+      </div>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Title</span>
+        <input type="text" placeholder="Title" ng-model="review.title">
+      </label>
+
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Review</span>
+        <textarea class="review-description" hmd-hard-maxlength="474" placeholder="Review" ng-model="review.description"></textarea>
+      </label>
+    </div>
+    <div class="padding">
+      <button class="button button-block button-calm" ng-click="submitReview()">
+        Submit Review
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

@@ -14,13 +14,18 @@
     </div>
     <div class="card list">
       <div class="item item-divider">Rating</div>
-      <hmd-star-rating rating="seller.store.rating"></hmd-star-rating>
-      <a ui-sref="app.reviews({userId: seller._id})">
+      <hmd-star-rating rating="seller.store.rating" readonly="true"></hmd-star-rating>
+      <a ui-sref="app.reviews({sellerId: seller._id})">
         <hmd-review-header review="review" ng-repeat="review in reviews"></hmd-review-header>
         <div class="row">
-        <button class="col col-center button button-small button-clear button-calm">
-          ALL REVIEWS
-        </button>
+          <button class="col col-center button button-small button-clear button-calm">
+            ALL REVIEWS
+          </button>
+          <a ui-sref="app.addReview({sellerId: seller._id})">
+            <button class="col col-center button button-small button-clear button-calm">
+              ADD REVIEW
+            </button>
+          </a>
         </div>
       </a>
     </div>

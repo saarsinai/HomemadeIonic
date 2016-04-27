@@ -2,10 +2,10 @@
   <div class="row">
     <span class="col col-67 col-center">
       <h2>{{review.title}}</h2>
-      <div class="review-subtitle">By {{review.reviewer.name}} - {{review.time | date : 'shortDate'}}</div>
+      <div class="review-subtitle">By {{review.reviewer.name | emptyAsUnknown}} - {{review.time | date : 'shortDate'}}</div>
     </span>
     <span class="col col-33 col-center">
-      <hmd-star-rating rating="review.rating" size="small"></hmd-star-rating>
+      <hmd-star-rating rating="review.rating" size="small" readonly="true"></hmd-star-rating>
     </span>
   </div>
 </div>

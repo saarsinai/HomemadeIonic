@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('starter')
   .directive('hmdStarRating', function() {
     return {
@@ -6,7 +8,20 @@ angular.module('starter')
       templateUrl: 'app/directives/star-rating/star-rating.html',
       scope: {
         rating: '=',
-        size: '@'
+        size: '@',
+        readonly: '@'
+      },
+      controller: function ($scope) {
+        $scope.setRating = function(rating){
+          if (!$scope.readonly) {
+            if ($scope.rating === rating) {
+              // another tap is half a star
+              $scope.rating = rating - 0.5;
+            } else {
+              $scope.rating = rating;
+            }
+          }
+        }
       }
     };
   });

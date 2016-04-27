@@ -1,7 +1,7 @@
 angular.module('starter')
   .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $stateProvider.state('app.reviews', {
-      url: '/store/reviews/:userId',
+      url: '/store/reviews/:sellerId',
       views: {
         'menuContent': {
           templateUrl: 'app/store/reviews/reviews.html',
@@ -12,10 +12,10 @@ angular.module('starter')
   })
   .controller('ReviewsCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion) {
     const Review = Resource.new("review", {'ofSeller': {method: 'GET', params: {sort: 'time', populate: 'reviewer'}, isArray: true}});
-    Review.ofSeller({reviewed: $stateParams.userId}).$promise.then(function(reviews, err) {
+    Review.ofSeller({reviewed: $stateParams.sellerId}).$promise.then(function(reviews, err) {
       if (err)
       {
-        console.log(err);
+        console.error(JSON.stringify(err));
         return;
       }
       $scope.reviews = reviews;
