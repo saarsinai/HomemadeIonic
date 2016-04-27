@@ -28,13 +28,7 @@ const UserSchema = new Schema({
     description: String,
     tags: [String],
     createdAt: Date,
-    reviews: {type: [{
-      reviewer: String, // seed doesn't work with nested depedency, so compromise... {type: Schema.Types.ObjectId, ref: 'User'},
-      time: Date,
-      title: String,
-      review: String,
-      rating: {type: Number, min: 1, max: 5}
-    }], select: true},
+    rating: { type: Number, min: 1, max: 5},
     active: { type: Boolean, default: false }
   }
 }, schemaOptions);

@@ -1,6 +1,7 @@
 var app = angular.module("starter");
 app.controller("StoreController", function($scope, Resource, ionicMaterialInk, ionicMaterialMotion) {
-  const User = Resource.new("user", {'items': {method: 'GET', relativeUrl: 'items', isArray: true}});
+  const User = Resource.new("user", {'items': {method: 'GET', relativeUrl: 'items', detail: true, isArray: true}});
+  const Review = Resource.new("review", {'ofSeller': {method: 'GET', params: {limit: 3, sort: 'time', populate: 'reviewer'}, isArray: true}});
   $scope.$parent.showHeader();
   $scope.$parent.clearFabs();
   $scope.isExpanded = true;
@@ -11,18 +12,29 @@ app.controller("StoreController", function($scope, Resource, ionicMaterialInk, i
   User.query().$promise.then(function(sellers, err){
 
     $scope.seller = sellers[0];
-
-    User.items({id: $scope.seller._id}).$promise.then(function(items, err){
-      $scope.seller.store.items = items;
-      if (err)
-      {
-        console.log(err);
-      }
-    });
     if (err)
     {
       console.log(err);
+      return;
     }
+
+    User.items({id: $scope.seller._id}).$promise.then(function(items, err){
+      if (err)
+      {
+        console.log(err);
+        return;
+      }
+      $scope.items = items;
+    });
+
+    Review.ofSeller({reviewed: $scope.seller._id}).$promise.then(function(reviews, err){
+      if (err)
+      {
+        console.log(err);
+        return;
+      }
+      $scope.reviews = reviews;
+    });
   });
 
   // Activate ink for controller

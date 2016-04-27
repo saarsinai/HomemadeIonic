@@ -3,7 +3,7 @@
   <ion-content ng-class="{expanded:isExpanded}">
     <div class="card">
       <div class="item item-divider">Location</div>
-      <div class="item item-icon-left">
+      <div class="item item-icon-right">
         <a class="button-icon icon ion-location assertive"></a>
         {{seller.store.address}}
       </div>
@@ -12,24 +12,21 @@
       <div class="item item-divider">Description</div>
       <div class="item item-text-wrap">{{seller.store.description}}</div>
     </div>
-    <div class="card">
+    <div class="card list">
       <div class="item item-divider">Rating</div>
       <hmd-star-rating rating="seller.store.rating"></hmd-star-rating>
-      <div class="item" ng-repeat="review in seller.store.reviews">
+      <a ui-sref="app.reviews({userId: seller._id})">
+        <hmd-review-header review="review" ng-repeat="review in reviews"></hmd-review-header>
         <div class="row">
-          <h2 class="col col-center">{{review.reviewer}}</h2>
-          <span class="col-30 col-center">
-          <hmd-star-rating rating="review.rating" size="small"></hmd-star-rating>
-            </span>
+        <button class="col col-center button button-small button-clear button-calm">
+          ALL REVIEWS
+        </button>
         </div>
-        <div>
-          {{review.title}}
-        </div>
-      </div>
+      </a>
     </div>
     <div class="list card">
       <div class="item item-divider">My dishes</div>
-      <div class="item" ng-repeat="item in seller.store.items">{{item.name}}</div>
+      <div class="item" ng-repeat="item in items">{{item.name}}</div>
     </div>
   </ion-content>
 </ion-view>
