@@ -1,7 +1,7 @@
 var app = angular.module("starter");
 app.controller("StoreController", function($scope, Resource, ionicMaterialInk, ionicMaterialMotion) {
   const User = Resource.new("user", {'items': {method: 'GET', relativeUrl: 'items', detail: true, isArray: true}});
-  const Review = Resource.new("review", {'ofSeller': {method: 'GET', params: {limit: 3, sort: 'time', populate: 'reviewer'}, isArray: true}});
+  const Review = Resource.new("review", {'ofSeller': {method: 'GET', params: {limit: 3, sort: '-time', populate: 'reviewer'}, isArray: true}});
   $scope.$parent.showHeader();
   $scope.$parent.clearFabs();
   $scope.isExpanded = true;

@@ -11,7 +11,7 @@ angular.module('starter')
     })
   })
   .controller('ReviewsCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion) {
-    const Review = Resource.new("review", {'ofSeller': {method: 'GET', params: {sort: 'time', populate: 'reviewer'}, isArray: true}});
+    const Review = Resource.new("review", {'ofSeller': {method: 'GET', params: {sort: '-time', populate: 'reviewer'}, isArray: true}});
     Review.ofSeller({reviewed: $stateParams.sellerId}).$promise.then(function(reviews, err) {
       if (err) {
         console.error(JSON.stringify(err));
