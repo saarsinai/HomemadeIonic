@@ -10,7 +10,6 @@ app.controller("StoreController", function($scope, Resource, ionicMaterialInk, i
 
   // temporary - will be replaced when we will have the id of the store
   User.query().$promise.then(function(sellers, err){
-
     var aSeller = null;
     sellers.forEach(function (s) {
       if (s.store.active) {
@@ -18,15 +17,13 @@ app.controller("StoreController", function($scope, Resource, ionicMaterialInk, i
       }
     });
     $scope.seller = aSeller;
-    if (err)
-    {
+    if (err) {
       console.error(JSON.stringify(err));
       return;
     }
 
     User.items({id: $scope.seller._id}).$promise.then(function(items, err){
-      if (err)
-      {
+      if (err) {
         console.error(JSON.stringify(err));
         return;
       }
@@ -34,8 +31,7 @@ app.controller("StoreController", function($scope, Resource, ionicMaterialInk, i
     });
 
     Review.ofSeller({reviewed: $scope.seller._id}).$promise.then(function(reviews, err){
-      if (err)
-      {
+      if (err) {
         console.error(JSON.stringify(err));
         return;
       }

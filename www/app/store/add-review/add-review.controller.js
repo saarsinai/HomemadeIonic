@@ -38,11 +38,20 @@ angular.module('starter')
     };
     $scope.submitReview = function () {
       if (validateReview($scope.review)) {
+        $scope.status = 'saving';
         Review.save($scope.review).$promise.then(function (review, err) {
           if (err) {
+            $scope.status = 'error';
+            $ionicPopup.alert({
+              title: 'Cannot submit review',
+              template: 'An error occur while submitting the review'
+            });
             console.error(JSON.stringify(err));
           } else {
-            $ionicHistory.goBack();
+            $scope.status = 'success';
+            $timeout(function () {
+              $ionicHistory.goBack();
+            }, 800);
           }
         })
       }
