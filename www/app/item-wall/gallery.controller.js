@@ -11,7 +11,7 @@ angular.module('starter')
     $scope.$parent.setExpanded(true);
     $scope.$parent.setHeaderFab(false);
 
-    $scope.items = Item.query();
+    $scope.items = Item.query({populate: 'seller'});
 
     // Activate ink for controller
     ionicMaterialInk.displayEffect();
