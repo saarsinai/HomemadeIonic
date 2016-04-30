@@ -42,4 +42,18 @@ export default gulp => {
       'watch',
       cb);
   });
+
+  gulp.task('serve:phone', cb => {
+    runSequence(
+      'clean:tmp',
+      'less',
+      'inject:css',
+      'inject:js',
+      'wiredep',
+      'livereload',
+      'nodemon',
+      'run',
+      'watch',
+      cb);
+  });
 };

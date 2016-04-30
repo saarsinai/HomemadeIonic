@@ -4,7 +4,7 @@ import less from 'gulp-less';
 
 export default gulp => {
   gulp.task('less', ['inject:less'], () => {
-    return gulp.src('www/app/app.less')
+    return gulp.src('www/app/style.less')
       .pipe(less({
         paths: [
           'www/bower_components',
@@ -13,6 +13,6 @@ export default gulp => {
           'www/lib'
         ]
       }))
-      .pipe(gulp.dest('www/.tmp'));
+      .pipe(gulp.dest('www/css'));
   });
 };

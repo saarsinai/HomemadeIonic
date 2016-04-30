@@ -5,7 +5,7 @@ export default {
     client: {
       less: [
         'www/{app,components}/**/*.less',
-        '!www/app/app.less'
+        '!www/app/style.less'
       ],
       js: [
         'www/{app,components}/**/*.js',
