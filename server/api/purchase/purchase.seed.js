@@ -17,7 +17,6 @@ export default {
 
       if (batch.itemsLeft < 1) {
         var index = batches.indexOf(batch);
-        console.log(index);
         batches.splice(index, 1);
       }
 
