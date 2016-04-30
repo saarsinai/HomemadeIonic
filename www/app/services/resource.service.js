@@ -1,8 +1,8 @@
-angular.module('starter')
+angular.module('homemade')
   .factory('Resource', function ($resource) {
     return {
       'new': function (model, extraActions) {
-        var baseUrl = '//' + '10.0.0.4' + ':3000/api/' + model;
+        var baseUrl = '//' + 'localhost' + ':3000/api/' + model;
         var baseUrlDetail = baseUrl + '/:id';
         extraActions = extraActions || {};
 

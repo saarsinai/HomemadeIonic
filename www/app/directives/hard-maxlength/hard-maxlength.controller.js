@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('homemade')
   .directive('hmdHardMaxlength', ['$compile', '$log', function($compile, $log) {
     return {
       restrict: 'A',

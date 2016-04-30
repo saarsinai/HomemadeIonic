@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('starter')
+angular.module('homemade')
   .directive('hmdStarRating', function() {
     return {
       restrict: 'E',

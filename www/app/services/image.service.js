@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('homemade')
   .factory('image', function () {
     return {
       'getDataUri': function (url, onSuccess, onError) {

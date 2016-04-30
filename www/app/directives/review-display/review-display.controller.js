@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('homemade')
   .directive('hmdReviewDisplay', function() {
     return {
       restrict: 'E',

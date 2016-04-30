@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('homemade')
   .config(function($stateProvider) {
     $stateProvider.state('app.addItem', {
       url: '/addItem',
