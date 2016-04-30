@@ -14,7 +14,7 @@ const ItemSchema = new Schema({
   seller: {type: Schema.Types.ObjectId, ref: 'User'},
   likes: { type: Number, default: 0},
   details: String,
-  img: String
+  img: {type: Schema.Types.ObjectId, ref: 'Img'}
 });
 
 export default createSeedModel('Item', ItemSchema, seed);

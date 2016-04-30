@@ -11,7 +11,7 @@ angular.module('homemade')
     $scope.$parent.setExpanded(true);
     $scope.$parent.setHeaderFab(false);
 
-    $scope.items = Item.query({populate: 'seller'});
+    $scope.items = Item.query({populate: 'seller img'});
 
     // Activate ink for controller
     ionicMaterialInk.displayEffect();
