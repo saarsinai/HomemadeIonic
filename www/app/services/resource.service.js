@@ -2,7 +2,7 @@ angular.module('starter')
   .factory('Resource', function ($resource) {
     return {
       'new': function (model, extraActions) {
-        var baseUrl = '//' + location.hostname + ':3000/api/' + model;
+        var baseUrl = '//' + '10.0.0.4' + ':3000/api/' + model;
         var baseUrlDetail = baseUrl + '/:id';
         extraActions = extraActions || {};
 
