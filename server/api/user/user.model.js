@@ -24,6 +24,10 @@ const UserSchema = new Schema({
   password: {type: String, select: false},
   store: {
     address: String,
+    location: {
+      lat: Number,
+      lon: Number,
+    },
     name: String,
     description: String,
     tags: [String],

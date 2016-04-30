@@ -9,14 +9,10 @@ const Schema = mongoose.Schema;
 
 const ItemSchema = new Schema({
   name: String,
-  pricePerItem: {
-    type: Number,
-    min: 0
-  },
+  pricePerItem: { type: Number, min: 0},
   tags: [String],
   seller: {type: Schema.Types.ObjectId, ref: 'User'},
-  distance: Number,
-  rating: Number,
+  likes: { type: Number, default: 0},
   details: String,
   img: String
 });

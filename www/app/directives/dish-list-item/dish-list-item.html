@@ -11,6 +11,7 @@
     <span class="col col-25"></span>
     <span class="col">
       <i class="icon ion-location location-icon"></i>
+      <!-- to be replaced with real distance -->
       {{item.distance}} km away
     </span>
   </div>
@@ -21,6 +22,6 @@
     <img ng-src="{{item.img | trusted}}">
   </div>
   <div class="item item-divider padded footer">
-    <button class="button icon-left button-clear ion-heart" ng-click="like()">{{item.rating}}</button>
+    <button class="button icon-left button-clear ion-heart" ng-click="like()">{{item.likes}}</button>
   </div>
 </div>

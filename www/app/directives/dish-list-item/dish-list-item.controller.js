@@ -17,10 +17,10 @@ angular.module('starter')
 
         $scope.like = function () {
 
-          var newRating = $scope.item.rating + 1;
-          $scope.item.rating += 1;
+          var newRating = $scope.item.likes + 1;
+          $scope.item.likes += 1;
           $scope.item.$update().then(function(){
-            $scope.item.rating = newRating;
+            $scope.item.likes = newRating;
           });
         }
       }
