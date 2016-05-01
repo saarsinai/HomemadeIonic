@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('homemade')
   .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $stateProvider.state('app.userProfile', {
       url: '/userProfile',
