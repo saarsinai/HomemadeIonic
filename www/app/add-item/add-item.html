@@ -1,4 +1,6 @@
 <ion-view id="add-item" view-title="add item">
   <ion-content ng-class="{expanded:isExpanded}">
+    <img ng-show="imgURI !== undefined" ng-src="{{imgURI | trusted}}">
+    <button class="button button-clear " ng-click="takePicture()">take picture</button>
   </ion-content>
 </ion-view>
