@@ -1,5 +1,5 @@
 angular.module('homemade')
-  .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $stateProvider.state('app.userProfile', {
       url: '/userProfile',
       views: {
@@ -22,19 +22,31 @@ angular.module('homemade')
     ionicMaterialInk.displayEffect();
 
     ionicMaterialMotion.pushDown({
-    selector: '.push-down'
+      selector: '.push-down'
     });
     ionicMaterialMotion.fadeSlideInRight({
-    selector: '.animate-fade-slide-in .item'
+      selector: '.animate-fade-slide-in .item'
     });
 
     const User = Resource.new("user");
-
-    // TEMP USE: untill we can get session user (login screen)
-    User.query().$promise.then(function(users, err){
-      if (users != null){
-        $scope.profile = users[0];
+    const Purchase = Resource.new("purchase", {
+      'ofUser': {
+        method: 'GET',
+        isArray: true,
+        params: {sort: '-time', populate: 'item'}
       }
     });
 
+    // TEMP USE: untill we can get session user (login screen)
+    User.query().$promise.then(function (users, err) {
+      if (err) {
+        // do log error
+        return; // :(
+      }
+
+      $scope.profile = users[0];
+      return Purchase.ofUser({buyer: $scope.profile._id}).$promise;
+    }).then(function (purchases, err) {
+      $scope.purchases = purchases;
+    });
   });

@@ -1,4 +1,26 @@
 <ion-view id="user-profile" view-title="UserProfile">
   <ion-content ng-class="{expanded:isExpanded}">
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Full Name</span>
+        <input type="text" placeholder="{{profile.name  }}">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Email</span>
+        <input type="text" placeholder="{{profile.email}}">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Age</span>
+        <input type="text" placeholder="{{profile.age}}">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Gender</span>
+        <input type="text" placeholder="{{profile.gender}}">
+      </label>
+    </div>
+    <div ng-repeat="purchase in purchases">
+      <hmd-dish-list-item item="purchase.item"></hmd-dish-list-item>
+    </div>
+
   </ion-content>
 </ion-view>

@@ -18,7 +18,7 @@ export default app => {
       handler:(req, res, next) => {
         ItemModel.find({ seller: req.params.id }, function(err, list) {
           if (err) {
-            next(err); // Error handling
+            return next(err); // Error handling
           }
           //res.status is the status code
           res.locals.status_code = 200;
