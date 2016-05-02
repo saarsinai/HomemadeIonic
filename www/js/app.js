@@ -31,67 +31,8 @@ angular.module('homemade', ['ionic', 'homemade.controllers', 'ionic-material', '
         abstract: true,
         templateUrl: 'app/templates/menu.html',
         controller: 'AppCtrl'
-    })
-
-    .state('app.activity', {
-        url: '/activity',
-        views: {
-            'menuContent': {
-                templateUrl: 'app/wall/activity.html',
-                controller: 'ActivityCtrl'
-            },
-            'fabContent': {
-                controller: function ($timeout) {
-                }
-            }
-        }
-    })
-
-    .state('app.profile', {
-        url: '/profile',
-        views: {
-            'menuContent': {
-                templateUrl: 'app/item/profile.html',
-                controller: 'ProfileCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-plus"></i></button>',
-                controller: function ($timeout) {
-                    /*$timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);*/
-                }
-            }
-        }
-    })
-
-    .state('app.store', {
-        url: '/store',
-        views: {
-            'menuContent': {
-                templateUrl: 'app/store/store.html',
-                controller: 'StoreController'
-            },
-            'fabContent': {
-                template: ''
-            }
-        }
-    })
-
-    .state('app.gallery', {
-        url: '/gallery',
-        views: {
-            'menuContent': {
-                templateUrl: 'app/item-wall/gallery.html',
-                controller: 'GalleryCtrl'
-            },
-            'fabContent': {
-                controller: function ($timeout) {}
-            }
-        }
-    })
-    ;
+    });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/gallery');
+    $urlRouterProvider.otherwise('/app/itemWall');
 });
