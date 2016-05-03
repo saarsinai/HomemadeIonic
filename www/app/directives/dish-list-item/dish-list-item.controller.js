@@ -1,5 +1,5 @@
 angular.module('homemade')
-  .directive('hmdDishListItem', function() {
+  .directive('hmdDishListItem', function () {
     return {
       restrict: 'E',
       replace: true,
@@ -8,7 +8,7 @@ angular.module('homemade')
       scope: {
         item: '='
       },
-      controller: function($scope, ionicMaterialInk, ionicMaterialMotion){
+      controller: function ($scope, ionicMaterialInk, ionicMaterialMotion) {
         ionicMaterialInk.displayEffect();
 
         ionicMaterialMotion.pushDown({
@@ -19,7 +19,7 @@ angular.module('homemade')
 
           var newRating = $scope.item.likes + 1;
           $scope.item.likes += 1;
-          $scope.item.$update().then(function(){
+          $scope.item.$update().then(function () {
             $scope.item.likes = newRating;
           });
         }

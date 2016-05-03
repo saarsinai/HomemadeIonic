@@ -1,5 +1,5 @@
 angular.module('homemade')
-  .directive('hmdUserItemPurchase', function() {
+  .directive('hmdUserItemPurchase', function () {
     return {
       restrict: 'E',
       replace: true,
@@ -7,6 +7,19 @@ angular.module('homemade')
       link: link,
       scope: {
         item: '='
+      },
+      controller: function ($scope, ionicMaterialInk, ionicMaterialMotion) {
+        ionicMaterialInk.displayEffect();
+
+        ionicMaterialMotion.pushDown({
+          selector: '.push-down'
+        });
+
+
       }
     };
+
+    function link(scope, element, attrs) {
+
+    }
   });

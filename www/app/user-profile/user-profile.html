@@ -18,8 +18,35 @@
         <input type="text" placeholder="{{profile.gender}}">
       </label>
     </div>
-    <div ng-repeat="purchase in purchases">
-      <hmd-dish-list-item item="purchase.item"></hmd-dish-list-item>
+    <!--<div ng-repeat="purchase in purchases">-->
+    <!--<hmd-user-item-purchase item="purchase.item"></hmd-user-item-purchase>-->
+    <!--</div>-->
+
+    <div class="card list">
+
+      <div class="item item-divider">
+        Purchase History
+      </div>
+      <div ng-repeat="purchase in purchases"
+           class="row">
+
+        <div class="item item-thumbnail-left col-90">
+          <!--<img ng-src="{{ item.image }}">-->
+          <!--<img src="../assets/me.jpg">-->
+          <img ng-src="{{purchase.item.img.data | trusted}}">
+
+
+          <h2>{{ purchase.numOfItems }} x {{ purchase.item.name }}</h2>
+          <!--<h2>price: {{ purchase.price }}</h2>-->
+          <div class="purchase-subtitle">{{ purchase.time | date}}</div>
+          <!--<h4 class="item-note-left">price: {{purchase.price}}</h4>-->
+        </div>
+        <div class="col-10 col-center">
+          <h5>{{purchase.price}}$</h5>
+        </div>
+
+      </div>
+
     </div>
 
   </ion-content>

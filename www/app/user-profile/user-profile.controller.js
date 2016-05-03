@@ -47,6 +47,15 @@ angular.module('homemade')
       $scope.profile = users[0];
       return Purchase.ofUser({buyer: $scope.profile._id}).$promise;
     }).then(function (purchases, err) {
+      const Img = Resource.new("img");
+      angular.forEach(purchases, function (purchase, key) {
+        Img.get(purchase.item.img).$promise.then(function (image, err) {
+          if (err) {
+            console.log(JSON.stringify(err))
+          }
+          purchase.item.img = image;
+        })
+      })
       $scope.purchases = purchases;
     });
   });
