@@ -1,26 +1,37 @@
-angular.module('starter')
-  .controller('itemController', [ '$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
+angular.module('homemade')
+  .controller('itemController', [ '$scope', '$stateParams', 'Resource', function($scope, $stateParams, Resource) {
+
+    const Item = Resource.new("item");
+    const User = Resource.new("user");
 
     var getItemById = function() {
+      Item.get({id: $stateParams.itemId})
+        .$promise.then(function(item) {
+          $scope.item = item;
 
-      $scope.item = {
-        "name": "Pizza Peperoni",
-        "seller": "Gal Revach",
-        "address": "Metzada 7, Hod Hasharon",
-        "distance": 0.7,
-        "rating": 4,
-        "pricePerItem": 9,
-        "details": "it's italian!! the best there is, it's italian!! the best there is, it's italian!! the best there is",
-        "tags": ["pizza", "italian", "non-kosher"]
-      }
+          User.get({id: $scope.item.seller})
+            .$promise.then(function(user) {
+              $scope.user = user;
+            }
+            ,function(err) {
+              console.error('Response error', err);
+            });
+          }
+        ,function(err) {
+          console.error('Response error', err);
+        });
+    };
 
-      // $http.get('api/item/' + $stateParams.itemId)
-      //   .then(function(response) {
-      //     $scope.item = response.data;
-      //   })
-      //   .catch(function(err) {
-      //     console.error('Response error', err);
-      //   });
+    $scope.likeItem = function() {
+      $scope.item.likes += 1;
+      Item.update($scope.item)
+        .$promise.then(function ()
+        {
+          console.log("like added!");
+        },
+        function (err) {
+          console.log("error adding like");
+        });
     };
 
     getItemById();
