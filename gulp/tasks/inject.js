@@ -29,7 +29,7 @@ export default gulp => {
         starttag: '<!-- injector:css -->',
         endtag: '<!-- endinjector -->'
       }))
-      .pipe(gulp.dest('client'));
+      .pipe(gulp.dest('www'));
   });
 
   gulp.task('inject:js', () => {

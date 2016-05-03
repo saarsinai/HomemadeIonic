@@ -6,6 +6,6 @@ export default gulp => {
   gulp.task('wiredep', () => {
     gulp.src('www/index.html')
       .pipe(wiredep())
-      .pipe(gulp.dest('client'));
+      .pipe(gulp.dest('www'));
   });
 };
