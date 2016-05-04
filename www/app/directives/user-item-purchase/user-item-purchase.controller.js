@@ -6,7 +6,7 @@ angular.module('homemade')
       templateUrl: 'app/directives/user-item-purchase/user-item-purchase.html',
       link: link,
       scope: {
-        item: '='
+        purchase: '='
       },
       controller: function ($scope, ionicMaterialInk, ionicMaterialMotion) {
         ionicMaterialInk.displayEffect();
