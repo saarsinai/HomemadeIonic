@@ -10,7 +10,7 @@ angular.module('homemade')
       }
     })
   })
-  .controller('UserProfileCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+  .controller('UserProfileCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, Authorization) {
 
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
@@ -28,6 +28,7 @@ angular.module('homemade')
       selector: '.animate-fade-slide-in .item'
     });
 
+
     const User = Resource.new("user");
     const Purchase = Resource.new("purchase", {
       'ofUser': {
@@ -36,6 +37,8 @@ angular.module('homemade')
         params: {sort: '-time', populate: 'item'}
       }
     });
+
+    var user1 = Authorization.getUser();
 
     // TEMP USE: untill we can get session user (login screen)
     User.query().$promise.then(function (users, err) {
