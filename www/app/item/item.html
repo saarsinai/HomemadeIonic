@@ -1,8 +1,8 @@
 <ion-view id="item" class="view-container" view-title="{{item.name}}">
   <ion-content ng-class="{expanded:isExpanded}">
-    <div class="main-item-image">
-        <img src="../../assets/pizza.jpg">
-        <h2><span>{{item.name}} - {{item.pricePerItem}} nis</span></h2>
+    <div class="main-item-image row">
+        <img ng-src="{{itemImg.data | trusted}}">
+        <h3><span>{{item.name}} - {{item.pricePerItem}} nis</span></h3>
     </div>
     <div class="item-background row">
       <span class="col col-100">
