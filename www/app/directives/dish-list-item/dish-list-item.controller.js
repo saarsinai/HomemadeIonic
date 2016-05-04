@@ -8,15 +8,18 @@ angular.module('homemade')
       scope: {
         item: '='
       },
-      controller: function ($scope, ionicMaterialInk, ionicMaterialMotion) {
+      controller: function($scope, ionicMaterialInk, ionicMaterialMotion, Resource){
         ionicMaterialInk.displayEffect();
 
         ionicMaterialMotion.pushDown({
           selector: '.push-down'
         });
 
-        $scope.like = function () {
+        const Item = Resource.new("item");
 
+        $scope.item = new Item($scope.item);
+
+        $scope.like = function () {
           var newRating = $scope.item.likes + 1;
           $scope.item.likes += 1;
           $scope.item.$update().then(function () {

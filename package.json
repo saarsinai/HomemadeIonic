@@ -8,6 +8,7 @@
     "base64-img": "^1.0.3",
     "body-parser": "^1.15.0",
     "dotenv": "^2.0.0",
+    "elasticsearch": "^11.0.1",
     "express": "^4.13.4",
     "express-async-router": "^0.1.10",
     "gulp": "^3.5.6",

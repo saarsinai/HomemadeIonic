@@ -14,7 +14,8 @@ angular.module('homemade')
     });
   })
   .controller('itemWallCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion) {
-    const Item = Resource.new("item");
+    const Recommend = Resource.new("recommended", {'toUser': {method: 'GET', isArray: true}});
+    const User = Resource.new("user");
 
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
@@ -22,7 +23,13 @@ angular.module('homemade')
     $scope.$parent.setExpanded(true);
     $scope.$parent.setHeaderFab(false);
 
-    $scope.items = Item.query({populate: 'seller img'});
+    User.query().$promise.then(function (users) {
+      return Recommend.toUser({id: users[0]._id, lat: 31.9699, lon: 34.8014}).$promise;
+    }).then(function (items) {
+      $scope.items = items;
+    }).catch(function (err) {
+      console.log(JSON.stringify(err));
+    });
 
     // Activate ink for controller
     ionicMaterialInk.displayEffect();
