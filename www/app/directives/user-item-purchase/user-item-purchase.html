@@ -1,3 +1,12 @@
-<div class="user-item-purchase">
+<div class="user-item-purchase row">
+    <span class="item item-avatar-left col-90">
+      <img ng-src="{{purchase.item.img.data | trusted}}">
 
+
+      <h2>{{ purchase.numOfItems }} x {{ purchase.item.name }}</h2>
+      <div class="purchase-subtitle">{{ purchase.time | date}}</div>
+    </span>
+    <span class="col-10 col-center">
+      <h5>{{purchase.price}}$</h5>
+    </span>
 </div>

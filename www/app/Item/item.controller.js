@@ -1,4 +1,15 @@
 angular.module('homemade')
+  .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    $stateProvider.state('app.item', {
+      url: '/item/:itemId',
+      views: {
+        'menuContent': {
+          templateUrl: 'app/item/item.html',
+          controller: 'itemController'
+        }
+      }
+    })
+  })
   .controller('itemController', [ '$scope', '$stateParams', 'Resource', function($scope, $stateParams, Resource) {
 
     const Item = Resource.new("item");

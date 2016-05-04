@@ -1,5 +1,19 @@
-var app = angular.module("homemade");
-app.controller("StoreController", function($scope, Resource, ionicMaterialInk, ionicMaterialMotion) {
+var app = angular.module("homemade")
+  .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    $stateProvider.state('app.store', {
+      url: '/store',
+      views: {
+        'menuContent': {
+          templateUrl: 'app/store/store.html',
+          controller: 'StoreController'
+        },
+        'fabContent': {
+          template: ''
+        }
+      }
+    });
+  })
+  .controller("StoreController", function($scope, Resource, ionicMaterialInk, ionicMaterialMotion) {
   const User = Resource.new("user", {'items': {method: 'GET', relativeUrl: 'items', detail: true, isArray: true}});
   const Review = Resource.new("review", {'ofSeller': {method: 'GET', params: {limit: 3, sort: '-time', populate: 'reviewer'}, isArray: true}});
   $scope.$parent.showHeader();

@@ -1,9 +1,20 @@
 angular.module('homemade')
-  .controller('GalleryCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+  .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    $stateProvider.state('app.itemWall', {
+      url: '/itemWall',
+      views: {
+        'menuContent': {
+          templateUrl: 'app/item-wall/item-wall.html',
+          controller: 'itemWallCtrl'
+        },
+        'fabContent': {
+          controller: function ($timeout) {}
+        }
+      }
+    });
+  })
+  .controller('itemWallCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion) {
     const Item = Resource.new("item");
-    //$scope.shit = image.getDataUri("../assets/pizza.jpg", function(success){
-      //console.log(success);
-    //});
 
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();

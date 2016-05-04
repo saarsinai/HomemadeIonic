@@ -47,6 +47,19 @@ angular.module('homemade')
       $scope.profile = users[0];
       return Purchase.ofUser({buyer: $scope.profile._id}).$promise;
     }).then(function (purchases, err) {
+      const Img = Resource.new("img");
+
+      // TODO 1: fix this horrible query
+      // make beter query on the server side that populate purchase.item.img
+      // using one query and not many query per img
+      angular.forEach(purchases, function (purchase, key) {
+        Img.get({id: purchase.item.img}).$promise.then(function (image, err) {
+          if (err) {
+            console.log(JSON.stringify(err))
+          }
+          purchase.item.img = image;
+        })
+      })
       $scope.purchases = purchases;
     });
   });

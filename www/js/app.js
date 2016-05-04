@@ -31,46 +31,8 @@ angular.module('homemade', ['ionic', 'homemade.controllers', 'ionic-material', '
         abstract: true,
         templateUrl: 'app/templates/menu.html',
         controller: 'AppCtrl'
-    })
-
-    .state('app.activity', {
-        url: '/activity',
-        views: {
-            'menuContent': {
-                templateUrl: 'app/wall/activity.html',
-                controller: 'ActivityCtrl'
-            },
-            'fabContent': {
-                controller: function ($timeout) {
-                }
-            }
-        }
-    })
-
-    .state('app.store', {
-        url: '/store',
-        views: {
-            'menuContent': {
-                templateUrl: 'app/store/store.html',
-                controller: 'StoreController'
-            },
-            'fabContent': {
-                template: ''
-            }
-        }
-    })
-
-    .state('app.item', {
-        url: '/item/:itemId',
-        views: {
-            'menuContent': {
-                templateUrl: 'app/item/item.html',
-                controller: 'itemController'
-            }
-        }
-    })
-    ;
+    });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/activity');
+    $urlRouterProvider.otherwise('/app/itemWall');
 });
