@@ -1,41 +1,46 @@
 <ion-side-menus enable-menu-with-back-views="true">
-    <ion-side-menu-content>
-        <ion-nav-bar class="menu-blue" ng-class="{expanded: isExpanded, 'has-header-fab-left': hasHeaderFabLeft, 'has-header-fab-right': hasHeaderFabRight}" align-title="left">
-            <ion-nav-back-button class="no-text">
-            </ion-nav-back-button>
-            <ion-nav-buttons side="right">
-                <button class="button button-icon button-clear ion-android-more-vertical" menu-toggle="right">
-                </button>
-            </ion-nav-buttons>
-        </ion-nav-bar>
-        <ion-nav-view name="fabContent"></ion-nav-view>
-        <ion-nav-view name="menuContent" ng-class="{expanded: isExpanded}" ></ion-nav-view>
-    </ion-side-menu-content>
-    <ion-side-menu side="right">
-        <ion-header-bar class="dark-bg expanded">
-            <h2>Homemade.</h2>
-        </ion-header-bar>
-        <ion-content class="stable-bg has-expanded-header">
-            <ion-list>
-                <ion-item nav-clear menu-close ui-sref="app.login">
-                    Login
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.item({itemId: '572904e5371611247c687c01'})">
-                  Dish
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.store">
-                    Chefs
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.itemWall">
-                    Dishes
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.addItem">
-                  Add item
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.userProfile">
-                  User Profile
-                </ion-item>
-            </ion-list>
-        </ion-content>
-    </ion-side-menu>
+  <ion-side-menu-content>
+    <ion-nav-bar class="menu-blue"
+                 ng-class="{expanded: isExpanded, 'has-header-fab-left': hasHeaderFabLeft, 'has-header-fab-right': hasHeaderFabRight}"
+                 align-title="left">
+      <ion-nav-back-button class="no-text">
+      </ion-nav-back-button>
+      <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-android-more-vertical" menu-toggle="right">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="fabContent"></ion-nav-view>
+    <ion-nav-view name="menuContent" ng-class="{expanded: isExpanded}"></ion-nav-view>
+  </ion-side-menu-content>
+  <ion-side-menu side="right">
+    <ion-header-bar class="dark-bg expanded">
+      <h2>Homemade.</h2>
+    </ion-header-bar>
+    <ion-content class="stable-bg has-expanded-header">
+      <ion-list>
+        <ion-item nav-clear menu-close ui-sref="app.login">
+          Login
+        </ion-item>
+        <ion-item nav-clear menu-close ui-sref="app.item({itemId: '572904e5371611247c687c01'})">
+          Dish
+        </ion-item>
+        <ion-item nav-clear menu-close ui-sref="app.store">
+          Chefs
+        </ion-item>
+        <ion-item nav-clear menu-close ui-sref="app.storeEdit">
+          My Store
+        </ion-item>
+        <ion-item nav-clear menu-close ui-sref="app.itemWall">
+          Dishes
+        </ion-item>
+        <ion-item nav-clear menu-close ui-sref="app.addItem">
+          Add item
+        </ion-item>
+        <ion-item nav-clear menu-close ui-sref="app.userProfile">
+          User Profile
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
 </ion-side-menus>

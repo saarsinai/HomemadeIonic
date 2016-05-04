@@ -33,6 +33,5 @@ export default app => {
     return next();
   });
 
-
   ItemBatch.register(app, '/api/item-batch');
 };

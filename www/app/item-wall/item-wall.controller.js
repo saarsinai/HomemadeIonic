@@ -13,15 +13,11 @@ angular.module('homemade')
       }
     });
   })
-  .controller('itemWallCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+  .controller('itemWallCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView) {
+    initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
+
     const Recommend = Resource.new("recommended", {'toUser': {method: 'GET', isArray: true}});
     const User = Resource.new("user");
-
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
-    $scope.$parent.setHeaderFab(false);
 
     User.query().$promise.then(function (users) {
       return Recommend.toUser({id: users[0]._id, lat: 31.9699, lon: 34.8014}).$promise;
@@ -29,15 +25,5 @@ angular.module('homemade')
       $scope.items = items;
     }).catch(function (err) {
       console.log(JSON.stringify(err));
-    });
-
-    // Activate ink for controller
-    ionicMaterialInk.displayEffect();
-
-    ionicMaterialMotion.pushDown({
-      selector: '.push-down'
-    });
-    ionicMaterialMotion.fadeSlideInRight({
-      selector: '.animate-fade-slide-in .item'
     });
   });

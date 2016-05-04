@@ -1,0 +1,49 @@
+<ion-view id="store-edit">
+  <ion-nav-title>{{title}}</ion-nav-title>
+  <ion-content ng-class="{expanded:isExpanded}">
+    <div class="card">
+      <div class="item item-divider">Details</div>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Name</span>
+        <input type="text" placeholder="Title" ng-model="user.store.name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Address</span>
+        <input type="text" placeholder="Address" ng-model="user.store.address" ng-change="addressChanged()">
+      </label>
+      <label class="item item-input item-floating-label padding">
+        <span class="input-label">Description</span>
+        <textarea class="store-description" hmd-hard-maxlength="300" placeholder="Description"
+                  ng-model="user.store.description"></textarea>
+      </label>
+
+      <div class="padding">
+        <button class="button icon-left button-block button-calm" ng-click="saveStore()"
+                ng-class="{'ion-load-b': status === 'saving', 'ion-heart': status === 'success', 'ion-android-sad': status === 'error'}">
+          {{saveButtonText}}
+        </button>
+      </div>
+    </div>
+    <div class="list card" ng-hide="isNew">
+      <div class="item item-divider">My dishes</div>
+      <div class="item" ng-repeat="item in items">{{item.name}}</div>
+      <a ui-sref="app.addItem">
+        <button class="col col-center button button-small button-clear button-calm">
+          ADD NEW ITEM
+        </button>
+      </a>
+    </div>
+    <div class="card list" ng-hide="isNew">
+      <div class="item item-divider">Rating</div>
+      <hmd-star-rating rating="user.store.rating" readonly="true"></hmd-star-rating>
+      <a ui-sref="app.reviews({sellerId: user._id})">
+        <hmd-review-header review="review" ng-repeat="review in reviews"></hmd-review-header>
+        <div class="row">
+          <button class="col col-center button button-small button-clear button-calm">
+            ALL REVIEWS
+          </button>
+        </div>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

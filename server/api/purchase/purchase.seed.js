@@ -12,10 +12,10 @@ export default {
     while (batches.length !== 0) {
       var batch = batches[Math.floor(Math.random() * batches.length)];
       var user = users[Math.floor(Math.random() * users.length)];
-      var numToBuy = Math.floor(Math.random() * batch.itemsLeft) + 1;
-      batch.itemsLeft -= numToBuy;
+      var numToBuy = Math.floor(Math.random() * batch.itemsCount) + 1;
+      batch.itemsCount -= numToBuy;
 
-      if (batch.itemsLeft < 1) {
+      if (batch.itemsCount < batch.itemsLeft) {
         var index = batches.indexOf(batch);
         batches.splice(index, 1);
       }

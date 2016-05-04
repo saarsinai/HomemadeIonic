@@ -6,12 +6,12 @@ angular.module('homemade')
     return function (genderSign) {
       if (genderSign) {
         if (genderSign.toLowerCase() === "m") {
-          return "Male";
+          return "Man";
         } else if (genderSign.toLowerCase() === "f") {
-          return "Female";
+          return "Woman";
         }
       }
 
-      return str;
+      return genderSign;
     };
   });

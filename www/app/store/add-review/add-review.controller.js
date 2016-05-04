@@ -10,7 +10,8 @@ angular.module('homemade')
       }
     })
   })
-  .controller('AddReviewCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicPopup, $ionicHistory) {
+  .controller('AddReviewCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicPopup, $ionicHistory, initIonicView) {
+    initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
     const Review = Resource.new("review");
 
     $scope.review = {
@@ -56,21 +57,4 @@ angular.module('homemade')
         })
       }
     };
-
-
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
-    $scope.$parent.setHeaderFab(false);
-
-    // Activate ink for controller
-    ionicMaterialInk.displayEffect();
-
-    ionicMaterialMotion.pushDown({
-    selector: '.push-down'
-    });
-    ionicMaterialMotion.fadeSlideInRight({
-    selector: '.animate-fade-slide-in .item'
-    });
   });

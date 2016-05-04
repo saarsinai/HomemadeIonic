@@ -10,7 +10,8 @@ angular.module('homemade')
       }
     })
   })
-  .controller('ReviewsCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+  .controller('ReviewsCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView) {
+    initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
     const Review = Resource.new("review", {'ofSeller': {method: 'GET', params: {sort: '-time', populate: 'reviewer'}, isArray: true}});
     Review.ofSeller({reviewed: $stateParams.sellerId}).$promise.then(function(reviews, err) {
       if (err) {
@@ -18,21 +19,5 @@ angular.module('homemade')
         return;
       }
       $scope.reviews = reviews;
-    });
-
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
-    $scope.$parent.setHeaderFab(false);
-
-    // Activate ink for controller
-    ionicMaterialInk.displayEffect();
-
-    ionicMaterialMotion.pushDown({
-    selector: '.push-down'
-    });
-    ionicMaterialMotion.fadeSlideInRight({
-    selector: '.animate-fade-slide-in .item'
     });
   });
