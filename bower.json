@@ -12,5 +12,8 @@
     "angular-ui-router": "0.2.13",
     "angular": ">= 1.1.5",
     "ionic": "~1.0.0"
+  },
+  "dependencies": {
+    "angular-elastic": "^2.5.1"
   }
 }

@@ -10,7 +10,7 @@ angular.module('homemade')
       }
     })
   })
-  .controller('AddReviewCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicPopup, $ionicHistory, initIonicView, saveOverlay) {
+  .controller('AddReviewCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicPopup, $ionicHistory, initIonicView, saveOverlay, Authorization) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
     const Review = Resource.new("review");
 
@@ -40,6 +40,7 @@ angular.module('homemade')
     };
     $scope.submitReview = function () {
       if (validateReview($scope.review)) {
+        $scope.review.reviewer = Authorization.getUser()._id;
         saveOverlay.show($scope);
         Review.save($scope.review).$promise
           .then(function () {

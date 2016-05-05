@@ -10,6 +10,7 @@ angular.module('homemade')
         templateUrl: 'app/services/save-overlay/save-overlay.html',
         title: text,
         scope: $scope,
+        cssClass: 'save-overlay-popup'
       });
     };
 

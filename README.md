@@ -21,6 +21,20 @@ ionic serve --lab
 
 ionic run android
 
+## Directives
+
+### hmd-bottom-screen
+
+Enables you to stick stuff to the bottom of the screen (like the 'Submit Review' button)
+
+```html
+<hmd-bottom-screen>
+	<button class="button button-block button-calm" ng-click="submitReview()">
+		Submit Review
+	</button>
+</hmd-bottom-screen>
+```
+
 ## ElasticSearch installation
 
 ### Install ElasticSearch on your computer
