@@ -87,6 +87,7 @@ angular.module('homemade')
         }
         operation.$promise
           .then(function () {
+            $scope.isNew = false;
             return saveOverlay.success();
           }, function (err) {
             console.error(JSON.stringify(err));

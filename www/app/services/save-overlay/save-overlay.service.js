@@ -19,6 +19,7 @@ angular.module('homemade')
       return new Promise(function (resolve) {
         $timeout(function() {
           data.popup.close();
+          data.$scope.popupStatus = undefined;
           resolve();
         }, 2000);
       });

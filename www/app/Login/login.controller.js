@@ -18,7 +18,7 @@ angular.module('homemade')
     // TODO: remove this when login screen is up
     const User = Resource.new("user");
     User.query().$promise.then(function (users) {
-      Authorization.setUser(users[0]);
+      Authorization.setUser(users[1]);
     })
 
     $scope.$parent.clearFabs();
