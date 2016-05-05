@@ -1,5 +1,5 @@
 angular.module('homemade')
-  .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $stateProvider.state('app.addReview', {
       url: '/store/addReview?sellerId',
       views: {
@@ -10,14 +10,15 @@ angular.module('homemade')
       }
     })
   })
-  .controller('AddReviewCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicPopup, $ionicHistory, initIonicView) {
+  .controller('AddReviewCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicPopup, $ionicHistory, initIonicView, saveOverlay) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
     const Review = Resource.new("review");
 
     $scope.review = {
       reviewed: $stateParams.sellerId,
       rating: 0,
-      time: new Date()};
+      time: new Date()
+    };
 
     var validateReview = function (review) {
       if (review.rating < 0.5) {
@@ -39,22 +40,17 @@ angular.module('homemade')
     };
     $scope.submitReview = function () {
       if (validateReview($scope.review)) {
-        $scope.status = 'saving';
-        Review.save($scope.review).$promise.then(function (review, err) {
-          if (err) {
-            $scope.status = 'error';
-            $ionicPopup.alert({
-              title: 'Cannot submit review',
-              template: 'An error occur while submitting the review'
-            });
+        saveOverlay.show($scope);
+        Review.save($scope.review).$promise
+          .then(function () {
+            return saveOverlay.success();
+          }, function (err) {
             console.error(JSON.stringify(err));
-          } else {
-            $scope.status = 'success';
-            $timeout(function () {
-              $ionicHistory.goBack();
-            }, 800);
-          }
-        })
+            return saveOverlay.error();
+          })
+          .then(function () {
+            $ionicHistory.goBack();
+          });
       }
     };
   });

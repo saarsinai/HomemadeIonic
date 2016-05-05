@@ -1,13 +1,13 @@
 'use strict';
 
 import restful from 'node-restful';
-import {{camelCase name}}Model from './{{name}}.model';
+import {{properCase name}}Model from './{{dashCase name}}.model';
 
 const mongoose = restful.mongoose;
 
 export default app => {
-  const {{properCase name}} = restful.model('{{name}}', {{camelCase name}}Model.schema)
+  const {{properCase name}} = restful.model('{{properCase name}}', {{properCase name}}Model.schema)
     .methods(['get', 'post', 'put', 'delete']);
 
-  {{properCase name}}.register(app, '/api/{{name}}');
+  {{properCase name}}.register(app, '/api/{{camelCase name}}');
 };

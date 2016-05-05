@@ -10,7 +10,7 @@ angular.module('homemade')
       }
     })
   })
-  .controller('StoreEditCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView, $ionicPopup, Authorization) {
+  .controller('StoreEditCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView, $ionicPopup, Authorization, saveOverlay) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
 
     const User = Resource.new("user", {'items': {method: 'GET', relativeUrl: 'items', detail: true, isArray: true}});
@@ -78,7 +78,7 @@ angular.module('homemade')
 
     $scope.saveStore = function () {
       if (validateStore($scope.user.store)) {
-        $scope.status = 'saving';
+        saveOverlay.show($scope);
         var operation;
         if ($scope.isNew) {
           operation = User.save($scope.user);
@@ -87,17 +87,10 @@ angular.module('homemade')
         }
         operation.$promise
           .then(function () {
-            return 'success';
+            return saveOverlay.success();
           }, function (err) {
             console.error(JSON.stringify(err));
-            return 'error';
-          })
-          .then(function (status) {
-            $scope.status = status;
-            return $timeout(function() {}, 2000);
-          })
-          .finally(function () {
-            $scope.status = undefined;
+            return saveOverlay.error();
           });
       }
     };

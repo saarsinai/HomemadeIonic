@@ -16,7 +16,7 @@ export default plop => {
     actions:
     [{
       type: 'add',
-      path: 'www/app/services/{{name}}.service.js',
+      path: 'www/app/services/{{dashCase name}}.service.js',
       templateFile: 'plop/service/service.hbs'
     }]
   })
