@@ -79,13 +79,8 @@ angular.module('homemade')
     $scope.saveStore = function () {
       if (validateStore($scope.user.store)) {
         saveOverlay.show($scope);
-        var operation;
-        if ($scope.isNew) {
-          operation = User.save($scope.user);
-        } else {
-          operation = User.update($scope.user);
-        }
-        operation.$promise
+        $scope.user.store.active = true;
+        User.update($scope.user).$promise
           .then(function () {
             $scope.isNew = false;
             return saveOverlay.success();
