@@ -1,0 +1,25 @@
+<ion-view id="purchases" view-title="Purchases">
+  <ion-content ng-class="{expanded:isExpanded}">
+    <ion-tabs class="tabs-top">
+
+      <ion-tab title="Active">
+        <div ng-repeat="order in activeOrders">
+          order
+        </div>
+      </ion-tab>
+
+      <ion-tab title="Done">
+        <div ng-repeat="order in doneOrders">
+          order
+        </div>
+      </ion-tab>
+
+      <ion-tab title="All">
+        <div ng-repeat="order in allOrders">
+          order
+        </div>
+      </ion-tab>
+
+    </ion-tabs>
+  </ion-content>
+</ion-view>
