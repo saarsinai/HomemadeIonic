@@ -1,28 +1,40 @@
 .login-page {
-  background: #FFC107;
+  background: url("../assets/login-back.jpg") repeat;
+  background-size:  100% auto;
+
+  .input-texts {
+    .item-input {
+      width: auto;
+      .md-input {
+        background-color: rgba(255,255,255,0.5);;
+      }
+      .input-label {
+        color: black;
+      }
+    }
+
+  }
+
+  .login-title {
+    font-family: TypoGraphica;
+    text-shadow: none;
+    font-size: 4em;
+  }
+
+  .login-subtitle {
+    font-family: TypoGraphica;
+    text-shadow: none;
+    font-size: 1.5em;
+  }
+
+  .button-font {
+    background: red;
+    font-family: Alef-Regular;
+  }
+
+  .social-login {
+    position: fixed;
+    bottom: 0;
+  }
 }
-.login-page .input-texts .md-input{
-  background-color: transparent;
-}
-.login-title {
-  font-family: TypoGraphica;
-  text-shadow: none;
-  font-size: 4em;
-}
-.button-font {
-  background: red;
-  font-family: Alef-Regular;
-}
-.app-icon {
-  background-color: #fff;
-  background: url('../assets/homade-icon.png') center;
-  background-size: cover;
-  border-radius: 50%;
-  height: 125px;
-  margin: 0 auto;
-  width: 125px;
-}
-.social-login {
-  position: fixed;
-  bottom: 0;
-}
+
