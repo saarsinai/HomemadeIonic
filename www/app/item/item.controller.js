@@ -12,31 +12,18 @@ angular.module('homemade')
   })
   .controller('itemController', [ '$scope', '$stateParams', 'Resource', function($scope, $stateParams, Resource) {
 
-    const Item = Resource.new("item");
-    const User = Resource.new("user");
-    const Img = Resource.new("img");
+    const Item = Resource.new("item", {
+      'ofSeller': {
+        method: 'GET',
+        params: {populate: 'seller img'}
+      }
+    });
 
     var getItemById = function() {
-      Item.get({id: $stateParams.itemId})
+      Item.ofSeller({id: $stateParams.itemId})
         .$promise.then(function(item) {
 
           $scope.item = item;
-
-          User.get({id: $scope.item.seller})
-            .$promise.then(function (user) {
-              $scope.user = user;
-            }
-            , function (err) {
-              console.error('Response error', err);
-            });
-
-          Img.get({id: $scope.item.img})
-            .$promise.then(function (image) {
-              $scope.itemImg = image;
-            }
-            , function (err) {
-              console.error('Response error', err);
-            });
         }
         ,function(err) {
           console.error('Response error', err);

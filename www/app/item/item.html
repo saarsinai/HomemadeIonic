@@ -1,15 +1,15 @@
 <ion-view id="item" class="view-container" view-title="{{item.name}}">
   <ion-content ng-class="{expanded:isExpanded}">
     <div class="main-item-image row">
-        <img ng-src="{{itemImg.data | trusted}}">
+        <img ng-src="{{item.img.data | trusted}}">
         <h3><span>{{item.name}} - {{item.pricePerItem}}$</span></h3>
     </div>
     <div class="item-background row">
       <span class="col col-100">
-        <h4>{{user.name}} - {{user.store.name}}</h4>
+        <h4>{{item.seller.name}} - {{item.seller.store.name}}</h4>
         <div>
           <i class="icon ion-location"></i>
-          <h4 style='display:inline'>{{user.store.address}}</h4>
+          <h4 style='display:inline'>{{item.seller.store.address}}</h4>
         </div>
         </br>
       </span>
