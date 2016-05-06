@@ -1,6 +1,46 @@
-<ion-view id="add-item" view-title="add item">
+<ion-view id="add-item" view-title="Publish dish">
   <ion-content ng-class="{expanded:isExpanded}">
-    <img ng-show="imgURI !== undefined" ng-src="{{imgURI | trusted}}">
-    <button class="button button-clear " ng-click="takePicture()">take picture</button>
+    <ion-slide-box>
+      <ion-slide>
+        <div class="slide-form">
+          <div class="dish-avatar">
+            <img ng-show="imgURI !== undefined" ng-src="{{imgURI | trusted}}">
+
+            <div class="picture-button" ng-click="takePicture()">
+              <i class="icon ion-ios-camera">
+                <span></br>TAKE PICTURE</span>
+              </i>
+            </div>
+            <div class="dish-title">
+              <label class="item item-input">
+                <input type="text" placeholder="Enter your price" ng-model="item.name">
+              </label>
+            </div>
+        </div>
+          <div class="item item-text-wrap">
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Description</span>
+              <textarea class="review-description" hmd-hard-maxlength="450" placeholder="Add a description" ng-model="item.details"></textarea>
+            </label>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="box red">
+          <label class="item item-input">
+            <input type="text" placeholder="Enter dish name" ng-model="item.pricePerItem">
+          </label>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="box red">
+          <h2>Tags slide, for Tamir!</h2>
+        </div>
+        <button ng-click="saveItem()">save</button>
+      </ion-slide>
+    </ion-slide-box>
+
+    <button ng-click="previousSlide()">Previous slide!</button>
+    <button ng-click="nextSlide()">Next slide!</button>
   </ion-content>
 </ion-view>
