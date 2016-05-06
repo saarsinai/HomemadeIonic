@@ -23,6 +23,7 @@
     "mongoose-plugin-seed": "^0.4.0",
     "mongoose-type-email": "^1.0.2",
     "morgan": "^1.7.0",
+    "node-geocoder": "^3.9.1",
     "node-restful": "^0.2.5",
     "node-sass": "^3.4.2",
     "object-hash": "^1.1.2"

@@ -29,6 +29,7 @@ Enables you to stick stuff to the bottom of the screen (like the 'Submit Review'
 
 ```html
 <hmd-bottom-screen>
+	<!-- You put your stuff inside the directive -->
 	<button class="button button-block button-calm" ng-click="submitReview()">
 		Submit Review
 	</button>
@@ -58,3 +59,9 @@ lets just say you installed elasticsearch on folder X (and you start your elasti
 2. paste in to X\config (and replace the existing elasticsearch.yml file)
 3. restart the elasticsearch server
 
+## Location
+
+### Our google api key
+
+For GeoCoding - AIzaSyCTeACumPhF6_Pvfea5HlfclZMKwM3q-7s
+For GeoLocation - AIzaSyDiCceFFKku46mqoskN7ItYqWX5Rg9_SUI (probably not needed)

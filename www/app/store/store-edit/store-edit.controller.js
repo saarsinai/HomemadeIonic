@@ -10,10 +10,13 @@ angular.module('homemade')
       }
     })
   })
-  .controller('StoreEditCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView, $ionicPopup, Authorization, saveOverlay) {
+  .controller('StoreEditCtrl', function ($scope, Resource, ionicMaterialInk, ionicMaterialMotion, initIonicView, $ionicPopup, Authorization, saveOverlay) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
 
-    const User = Resource.new("user", {'items': {method: 'GET', relativeUrl: 'items', detail: true, isArray: true}});
+    const User = Resource.new("user", {
+      'items': {method: 'GET', relativeUrl: 'items', detail: true, isArray: true},
+      'locate': {method: 'GET', relativeUrl: 'locate', detail: false, isArray: false}
+    });
     const Review = Resource.new("review", {
       'ofSeller': {
         method: 'GET',
@@ -23,7 +26,8 @@ angular.module('homemade')
     });
 
     $scope.user = new User(angular.copy(Authorization.getUser()));
-
+    $scope.originUser = Authorization.getUser();
+    $scope.isAddressCool = true;
     $scope.isNew = !$scope.user.store.active;
     $scope.title = $scope.isNew ? 'Create Your Store' : 'Edit Your Store';
     $scope.saveButtonText = $scope.isNew ? 'Create Store' : 'Save Changes';
@@ -46,7 +50,26 @@ angular.module('homemade')
     }
 
     $scope.addressChanged = function () {
-      // address to location
+      var address = $scope.user.store.address;
+      if (!address || address.length === 0) return;
+      if (address === $scope.originUser.store.address) {
+        $scope.user.store.location = $scope.originUser.store.location;
+        return;
+      }
+
+      User.locate({address: address}).$promise
+        .then(function (location) {
+          $scope.user.store.location = location;
+          $scope.isAddressCool = true;
+        })
+        .catch(function (err) {
+          logError(err);
+          $scope.isAddressCool = false;
+          $ionicPopup.alert({
+            title: 'Address does not match',
+            template: 'We weren\'t able to find the exact location of address ' + address
+          });
+        });
     };
 
     var validateStore = function (store) {
@@ -55,6 +78,13 @@ angular.module('homemade')
         $ionicPopup.alert({
           title: 'Cannot save store',
           template: 'Please enter the address of the store'
+        });
+        return false;
+      }
+      if (!$scope.isAddressCool) {
+        $ionicPopup.alert({
+          title: 'Cannot save store',
+          template: 'Please enter a recognizable address (couldn\'t find location from address)'
         });
         return false;
       }
