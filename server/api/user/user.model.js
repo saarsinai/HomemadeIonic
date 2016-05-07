@@ -21,6 +21,7 @@ const UserSchema = new Schema({
   email: mongoose.SchemaTypes.Email,
   age: Number,
   gender: String,
+  username: String,
   password: {type: String, select: false},
   store: {
     address: String,

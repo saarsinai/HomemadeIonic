@@ -4,6 +4,7 @@ export default {
   seed: () => [{
     name: "Kobi Mizrahi",
     email: "kobi@mizrahi.ako",
+    username: 'kobim',
     password: "1234",
     age: 24,
     gender: "M",
@@ -24,6 +25,7 @@ export default {
   {
     name: "Gal Revach",
     email: "gal@space.go",
+    username: 'galr',
     password: "Aa12345678",
     age: 23,
     gender: "W",
@@ -46,6 +48,7 @@ export default {
     email: "me@resturant.yum",
     age: 12,
     gender: "M",
+    username: 'saars',
     password: 'nomNomNom'
   },
   {
@@ -53,6 +56,7 @@ export default {
     email: "fun@prisha.idf",
     age: 45,
     gender: "M",
+    username: 'ariky',
     password: ':)'
   },
   {
@@ -60,11 +64,13 @@ export default {
     email: "tired@work.home",
     age: 23,
     gender: "M",
+    username: 'tamirl',
     password: '@a12345678'
   },
   {
     name: "Omer Shemesh",
     email: "cheap@stomach.com",
+    username: 'omers',
     password: "Aa12345678",
     age: 53,
     gender: "W",

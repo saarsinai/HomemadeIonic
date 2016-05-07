@@ -8,24 +8,24 @@ angular.module('homemade')
           controller: 'itemWallCtrl'
         },
         'fabContent': {
-          controller: function ($timeout) {}
+          controller: function ($timeout) {
+          }
         }
       }
     });
   })
-  .controller('itemWallCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView) {
+  .controller('itemWallCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView, Authorization) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
-
     const Recommend = Resource.new("recommended", {'toUser': {method: 'GET', isArray: true}});
-    const User = Resource.new("user");
+
+    var user = Authorization.getUser();
 
     $scope.showSpinner = true;
     $scope.currentLocation = {};
 
     var onSuccess = function(position) {
-      User.query().$promise.then(function (users) {
-        return Recommend.toUser({id: users[0]._id, lat: position.coords.latitude, lon: position.coords.longitude}).$promise;
-      }).then(function (items) {
+      Recommend.toUser({id: user._id, lat: position.coords.latitude, lon: position.coords.longitude}).$promise
+      .then(function (items) {
         $scope.showSpinner=false;
         $scope.items = items;
       }).catch(function (err) {
@@ -36,10 +36,9 @@ angular.module('homemade')
     function onError(error) {
       alert('code: '    + error.code    + '\n' +
         'message: ' + error.message + '\n');
-    };
+    }
 
     var locationOptions = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true };
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError, locationOptions);
-
   });

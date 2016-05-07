@@ -21,6 +21,15 @@ ionic serve --lab
 
 ionic run android
 
+## Authentication
+
+Authentication is created using json token.
+It prevents users who are not logged in to access our api or navigate to unwanted screens.
+
+### what is i'm using Postman and want to send anonymous requests?
+
+In our .env file there is a key called ENFORCE_AUTHENTICATION, just change it to 'false' and everything will be back to normal
+
 ## Directives
 
 ### hmd-bottom-screen

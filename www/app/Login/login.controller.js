@@ -2,6 +2,7 @@ angular.module('homemade')
   .config(function ($stateProvider) {
     $stateProvider.state('app.login', {
       url: '/login',
+      isOpen: true,
       views: {
         'menuContent': {
           templateUrl: 'app/Login/login.html',
@@ -13,13 +14,48 @@ angular.module('homemade')
       }
     })
   })
-  .controller('LoginCtrl', function ($scope, $timeout, $stateParams, ionicMaterialInk, Resource, Authorization) {
+  .controller('LoginCtrl', function ($scope, $timeout, $stateParams, ionicMaterialInk, Resource,$state, Authorization) {
+    const User = Resource.new("user", {"authenticate": {method: 'POST', relativeUrl: 'authenticate', detail: false}, "signUp": {method: 'POST', relativeUrl: 'signUp', detail: false} });
 
-    // TODO: remove this when login screen is up
-    const User = Resource.new("user");
-    User.query().$promise.then(function (users) {
-      Authorization.setUser(users[1]);
-    })
+    $scope.user = {};
+
+    var loginError = function (res, status) {
+      // TODO: nice message of "bad username or password"
+      Authorization.logOffUser();
+    };
+
+    $scope.login = function () {
+      User.authenticate($scope.user).$promise
+        .then(function (res) {
+          if (res.authenticated) {
+            Authorization.setUser(res.user, res.token);
+            $state.go('app.itemWall');
+          } else {
+            loginError(res);
+          }
+        })
+        .catch(loginError);
+    };
+
+    $scope.signUp = function () {
+      var user = {
+        name: 'Moshe',
+        username: 'maxm',
+        password: 'anu',
+        gander: 'M',
+        age: 28,
+        email: 'moshe@secret.net'
+      };
+
+      User.signUp(user).$promise
+        .then(function (res) {
+          Authorization.setUser(res.user, res.token);
+          $state.go('app.itemWall');
+        })
+        .catch(function (err) {
+          console.error(JSON.stringify(err))
+        });
+    };
 
     $scope.$parent.clearFabs();
     $timeout(function () {
