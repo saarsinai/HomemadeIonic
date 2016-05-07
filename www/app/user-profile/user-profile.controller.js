@@ -13,7 +13,6 @@ angular.module('homemade')
   .controller('UserProfileCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, Authorization, initIonicView) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
 
-    const User = Resource.new("user");
     const Purchase = Resource.new("purchase", {
       'ofUser': {
         method: 'GET',

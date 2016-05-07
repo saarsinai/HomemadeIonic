@@ -111,8 +111,9 @@ angular.module('homemade')
         saveOverlay.show($scope);
         $scope.user.store.active = true;
         User.update($scope.user).$promise
-          .then(function () {
+          .then(function (res) {
             $scope.isNew = false;
+            Authorization.setUser($scope.user, res.token);
             return saveOverlay.success();
           }, function (err) {
             console.error(JSON.stringify(err));

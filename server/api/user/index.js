@@ -28,6 +28,10 @@ export default app => {
         .catch(next);
       return next();
     })
+    .after('put', (req, res, next) => {
+      res.locals.bundle = {token: jwt.sign(user, 'homemade-secret', {expiresIn: 60 * 60 * 5})};
+      next();
+    })
     .route('items', {
       detail: true,
       methods: ['get'],

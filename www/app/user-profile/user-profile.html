@@ -33,11 +33,9 @@
         Purchase History
       </div>
       <div ng-repeat="purchase in purchases">
-
         <hmd-user-item-purchase purchase="purchase"></hmd-user-item-purchase>
-
       </div>
-
+      <div class="item no-purchases" ng-show="purchases.length === 0">No Previous Purchases</div>
     </div>
 
   </ion-content>
