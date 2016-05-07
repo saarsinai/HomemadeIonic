@@ -6,7 +6,11 @@
     </div>
     <div class="item-background row">
       <span class="col col-100">
-        <h4>{{item.seller.name}} - {{item.seller.store.name}}</h4>
+        <h4>
+          <a ui-sref="app.store({sellerId: item.seller._id})">
+            {{item.seller.name}} - {{item.seller.store.name}}
+          </a>
+        </h4>
         <div>
           <i class="icon ion-location"></i>
           <h4 style='display:inline'>{{item.seller.store.address}}</h4>
