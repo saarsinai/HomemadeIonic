@@ -19,11 +19,27 @@ angular.module('homemade')
     const Recommend = Resource.new("recommended", {'toUser': {method: 'GET', isArray: true}});
     const User = Resource.new("user");
 
-    User.query().$promise.then(function (users) {
-      return Recommend.toUser({id: users[0]._id, lat: 31.9699, lon: 34.8014}).$promise;
-    }).then(function (items) {
-      $scope.items = items;
-    }).catch(function (err) {
-      console.log(JSON.stringify(err));
-    });
+    $scope.showSpinner = true;
+    $scope.currentLocation = {};
+
+    var onSuccess = function(position) {
+      User.query().$promise.then(function (users) {
+        return Recommend.toUser({id: users[0]._id, lat: position.coords.latitude, lon: position.coords.longitude}).$promise;
+      }).then(function (items) {
+        $scope.showSpinner=false;
+        $scope.items = items;
+      }).catch(function (err) {
+        console.log(JSON.stringify(err));
+      });
+    };
+
+    function onError(error) {
+      alert('code: '    + error.code    + '\n' +
+        'message: ' + error.message + '\n');
+    };
+
+    var locationOptions = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true };
+
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, locationOptions);
+
   });

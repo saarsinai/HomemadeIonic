@@ -1,5 +1,9 @@
 <ion-view view-title="Hot Dishes">
   <ion-content ng-class="{expanded:isExpanded}">
+    <div class="location-spinner" ng-show="showSpinner">
+      <ion-spinner class="center" icon="ripple"></ion-spinner>
+      <span class="center">Getting your location</span>
+    </div>
     <div ng-repeat="item in items">
         <hmd-dish-list-item item="item"></hmd-dish-list-item>
       </div>
