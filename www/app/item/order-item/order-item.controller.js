@@ -1,7 +1,7 @@
 angular.module('homemade')
-  .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $stateProvider.state('app.orderItem', {
-      url: '/item/orderItem?itemId',
+      url: '/item/orderItem?purchaseId',
       views: {
         'menuContent': {
           templateUrl: 'app/item/order-item/order-item.html',
@@ -12,4 +12,14 @@ angular.module('homemade')
   })
   .controller('OrderItemCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
+    const Purchase = Resource.new('purchase', {
+      'withPopulate': {
+        method: 'GET',
+        params: {populate: 'item buyer'}
+      }
+    });
+    Purchase.withPopulate({id: $stateParams.purchaseId}).$promise
+      .then(function (purchase) {
+        $scope.purchase = purchase;
+      });
   });

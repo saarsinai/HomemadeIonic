@@ -1,8 +1,9 @@
 <ion-view id="item" class="view-container" view-title="{{item.name}}">
   <ion-content ng-class="{expanded:isExpanded}">
     <div class="main-item-image row">
-        <img ng-src="{{item.img.data | trusted}}">
-        <h3><span>{{item.name}} - {{item.pricePerItem}}$</span></h3>
+      <img ng-src="{{item.img.data | trusted}}">
+
+      <h3><span>{{item.name}} - {{item.pricePerItem}}$</span></h3>
     </div>
     <div class="item-background row">
       <span class="col col-100">
@@ -19,23 +20,22 @@
       </span>
     </div>
     <div class="item-info row">
-        <div class="col col-10"></div>
+      <div class="col col-10"></div>
         <span class="col col-80">
           <h4>Dish info:</h4>
           <h4>{{item.details}}</h4>
         </span>
-        <div class="col col-10"></div>
+
+      <div class="col col-10"></div>
     </div>
     <div class="row">
       <h4>Likes: {{item.likes.length}}</h4>
       <button class="col col-center button button-small button-clear button-calm" ng-click="likeItem()">
         {{ LikeTitle }}
       </button>
-      <a ui-sref="app.orderItem({itemId: item._id})">
-        <button class="col col-center button button-small button-clear button-calm">
-          ORDER
-        </button>
-      </a>
+      <button class="col col-center button button-small button-clear button-calm" ng-click="showPopup()">
+        ORDER
+      </button>
     </div>
   </ion-content>
 </ion-view>
