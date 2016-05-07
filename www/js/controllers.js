@@ -3,7 +3,12 @@
 
 angular.module('homemade.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout) {
+.controller('AppCtrl', function($scope, $state, Authorization) {
+    $scope.logout = function () {
+      Authorization.logOffUser();
+      $state.go('app.login');
+    };
+
     // Form data for the login modal
     $scope.loginData = {};
     $scope.isExpanded = false;

@@ -19,9 +19,6 @@
     </ion-header-bar>
     <ion-content class="stable-bg has-expanded-header">
       <ion-list>
-        <ion-item nav-clear menu-close ui-sref="app.login">
-          Login
-        </ion-item>
         <ion-item nav-clear menu-close ui-sref="app.itemWall">
           Dishes
         </ion-item>
@@ -36,6 +33,9 @@
         </ion-item>
         <ion-item nav-clear menu-close ui-sref="app.userProfile">
           User Profile
+        </ion-item>
+        <ion-item nav-clear menu-close ng-click="logout()">
+          Logout
         </ion-item>
       </ion-list>
     </ion-content>

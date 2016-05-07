@@ -52,4 +52,4 @@ angular.module('homemade', ['ionic', 'homemade.controllers', 'ionic-material', '
         $state.go('app.login'); // go to login
       }
     });
-  });;
+  });
