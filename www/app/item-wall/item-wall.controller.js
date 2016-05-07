@@ -34,8 +34,7 @@ angular.module('homemade')
     };
 
     function onError(error) {
-      alert('code: '    + error.code    + '\n' +
-        'message: ' + error.message + '\n');
+      console.log('location error - code: ' + error.code + ', message: ' + error.message );
     }
 
     var locationOptions = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true };
