@@ -10,8 +10,8 @@ angular.module('homemade')
       }
     })
   })
-  .controller('itemController', ['$scope', '$stateParams', 'Resource', 'Authorization', '$ionicPopup', '$state',
-    function ($scope, $stateParams, Resource, Authorization, $ionicPopup, $state) {
+  .controller('itemController', ['$scope', '$stateParams', 'Resource', 'Authorization', '$ionicPopup', '$state', 'Authorization',
+    function ($scope, $stateParams, Resource, Authorization, $ionicPopup, $state, Authorization) {
 
       $scope.showPopup = function () {
         $scope.purchase = {}
@@ -48,7 +48,7 @@ angular.module('homemade')
                 var purchase = {
                   item: $scope.item._id,
                   batch: /*$scope.batch._id*/'572e5ca7a8070b345acf85ac',
-                  buyer: $scope.item.seller._id,
+                  buyer: Authorization.getUser()._id,
                   time: Date.now(),
                   numOfItems: Number(res),
                   price: res * $scope.item.pricePerItem
