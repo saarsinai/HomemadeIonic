@@ -5,7 +5,7 @@ import config from '../config';
 
 export default gulp => {
   gulp.task('inject:less', () => {
-    return gulp.src('www/app/app.less')
+    return gulp.src('www/app/style.less')
       .pipe(inject(gulp.src(config.paths.client.less, {read: false}), {
         transform: filePath => {
           filePath = filePath.replace('/www/app/', '');
