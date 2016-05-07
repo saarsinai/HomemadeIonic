@@ -25,7 +25,7 @@ angular.module('homemade')
       }
     });
 
-    $scope.user = new User(angular.copy(Authorization.getUser()));
+      $scope.user = new User(angular.copy(Authorization.getUser()));
     $scope.originUser = Authorization.getUser();
     $scope.isAddressCool = true;
     $scope.isNew = !$scope.user.store.active;

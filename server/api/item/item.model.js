@@ -12,7 +12,7 @@ const ItemSchema = new Schema({
   pricePerItem: { type: Number, min: 0},
   tags: [String],
   seller: {type: Schema.Types.ObjectId, ref: 'User'},
-  likes: { type: Number, default: 0},
+  likes: [String],
   details: String,
   img: {type: Schema.Types.ObjectId, ref: 'Img'}
 });

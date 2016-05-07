@@ -27,9 +27,9 @@
         <div class="col col-10"></div>
     </div>
     <div class="row">
-      <h4>Likes: {{item.likes}}</h4>
+      <h4>Likes: {{item.likes.length}}</h4>
       <button class="col col-center button button-small button-clear button-calm" ng-click="likeItem()">
-        LIKE
+        {{ LikeTitle }}
       </button>
       <a ui-sref="app.orderItem({itemId: item._id})">
         <button class="col col-center button button-small button-clear button-calm">

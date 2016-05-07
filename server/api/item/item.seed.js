@@ -9,7 +9,7 @@ export default {
   seed: (users, images) => [{
     "name": "pizza peperoni",
     "seller": users[0]._id,
-    "likes": 4,
+    "likes": [],
     "pricePerItem": 9,
     "details": "it's italian!! the best there is",
     "tags": ["pizza", "italian", "non-kosher"],
@@ -18,7 +18,7 @@ export default {
   {
     "name": "20 nis pizza box",
     "seller": users[5]._id,
-    "likes": 3,
+    "likes": [],
     "pricePerItem": 20,
     "details": "Clean pizza without toppings",
     "tags": ["pizza", "cheap", "cheese","kosher", "clean"],
@@ -27,7 +27,7 @@ export default {
   {
     "name": "20 nis pizza box + bulgarian cheese",
     "seller": users[5]._id,
-    "likes": 10,
+    "likes": [],
     "pricePerItem": 25,
     "details": "pizza with bulgarian topping",
     "tags": ["pizza", "cheap", "cheese", "bulgarian", "kosher", "clean"],
@@ -36,7 +36,7 @@ export default {
   {
     "name": "potato soup",
     "seller": users[1]._id,
-    "likes": 5,
+    "likes": [],
     "pricePerItem": 13,
     "details": "soup soup soup soup!! the only greek potato soup",
     "tags": ["potato", "soup", "boring", "greek"],
@@ -45,7 +45,7 @@ export default {
   {
     "name": "mushroom soup",
     "seller": users[1]._id,
-    "likes": 3,
+    "likes": [],
     "pricePerItem": 15,
     "details": "soup soup soup soup!! the price is worth it",
     "tags": ["mushroom", "soup", "creamy"],

@@ -10,7 +10,7 @@ angular.module('homemade')
       }
     })
   })
-  .controller('itemController', [ '$scope', '$stateParams', 'Resource', function($scope, $stateParams, Resource) {
+  .controller('itemController', ['$scope', '$stateParams', 'Resource', 'Authorization', function ($scope, $stateParams, Resource, Authorization) {
 
     const Item = Resource.new("item", {
       'ofSeller': {
@@ -18,29 +18,49 @@ angular.module('homemade')
         params: {populate: 'seller img'}
       }
     });
+    const userId = Authorization.getUser()._id;
 
-    var getItemById = function() {
+    var getItemById = function () {
       Item.ofSeller({id: $stateParams.itemId})
-        .$promise.then(function(item) {
+        .$promise.then(function (item) {
 
           $scope.item = item;
+          if ($scope.item.likes.filter(function (currUser) {
+              return currUser === userId;
+            }).length) {
+            $scope.LikeTitle = "Dislike";
+          } else {
+            $scope.LikeTitle = "like";
+          }
         }
-        ,function(err) {
+        , function (err) {
           console.error('Response error', err);
         });
     };
 
-    $scope.likeItem = function() {
-      $scope.item.likes += 1;
-      Item.update($scope.item)
-        .$promise.then(function ()
-        {
-          console.log("like added!");
-        },
-        function (err) {
-          console.log("error adding like");
+
+    $scope.likeItem = function () {
+
+      var UserLikedItem = $scope.item.likes.filter(function (currUser) {
+        return currUser === userId;
+      });
+
+      // checks if not liked this item before
+      if (UserLikedItem.length) {
+        $scope.item.likes = $scope.item.likes.filter(function (currUser) {
+          return currUser !== userId;
+        });
+        $scope.LikeTitle = "Like";
+      } else {
+        $scope.item.likes.push(userId);
+        $scope.LikeTitle = "Dislike";
+      }
+      Item.update($scope.item).$promise
+        .catch(function (err) {
+          console.error(JSON.stringify(err));
         });
     };
+
 
     getItemById();
 

@@ -8,7 +8,7 @@ angular.module('homemade')
       scope: {
         item: '='
       },
-      controller: function ($scope, ionicMaterialInk, ionicMaterialMotion, Resource) {
+      controller: function ($scope, $filter, Authorization, ionicMaterialInk, ionicMaterialMotion, Resource) {
         ionicMaterialInk.displayEffect();
 
         ionicMaterialMotion.pushDown({
@@ -19,17 +19,29 @@ angular.module('homemade')
 
         $scope.item = new Item($scope.item);
 
+
         $scope.like = function () {
-          var newRating = $scope.item.likes + 1;
-          $scope.item.likes += 1;
+          var userId = Authorization.getUser()._id;
+
+          var UserLikedItem = $scope.item.likes.filter(function (currUser) {
+            return currUser === userId;
+          });
+
+          // checks if not liked this item before
+          if (UserLikedItem.length) {
+            $scope.item.likes = $scope.item.likes.filter(function (currUser) {
+              return currUser !== userId;
+            });
+            $scope.LikeTitle = "Like";
+          } else {
+            $scope.item.likes.push(userId);
+            $scope.LikeTitle = "Dislike";
+          }
           Item.update($scope.item).$promise
-            .then(function () {
-              $scope.item.likes = newRating;
-            })
             .catch(function (err) {
               console.error(JSON.stringify(err));
             });
-        }
+        };
       }
     };
 
