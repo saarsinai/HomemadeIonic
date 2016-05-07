@@ -1,6 +1,5 @@
 <div class="card">
   <div class="item item-text-wrap title card-title row">
-      <span class="col col-25"></span>
       <div class="dish-title">
         <span class="orange">{{item.name}}</span>
         <span> by </span>
@@ -15,9 +14,9 @@
       {{item.distance | distance}} away
     </span>
   </div>
-  <div class="avatar">
+  <!--<div class="avatar">
     <img src="../assets/me.jpg">
-  </div>
+  </div>-->
   <div class="dish-picture">
     <a ui-sref="app.item({itemId: item._id})">
       <img ng-src="{{item.img.data | trusted}}">

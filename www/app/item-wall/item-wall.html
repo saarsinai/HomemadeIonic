@@ -4,8 +4,25 @@
       <ion-spinner class="center" icon="ripple"></ion-spinner>
       <span class="center">Getting your location</span>
     </div>
-    <div ng-repeat="item in items">
+
+
+
+    <div class="row dish-row" ng-repeat="item in items" ng-if="$index % 2 === 0">
+      <div class="col col-50" ng-if="$index < items.length">
         <hmd-dish-list-item item="item"></hmd-dish-list-item>
       </div>
+      <div class="col col-50" ng-if="$index < items.length">
+        <hmd-dish-list-item item="items[$index + 1]"></hmd-dish-list-item>
+      </div>
+    </div>
+
+<!--    <div class="row responsive-md">
+      <div class="col col-25" ng-repeat="item in items">
+        &lt;!&ndash;<hmd-dish-list-item item="item"></hmd-dish-list-item>&ndash;&gt;
+        <img ng-src="../assets/logo.png" width="25%" />
+      </div>
+    </div>-->
+
+
     </ion-content>
 </ion-view>
