@@ -2,11 +2,13 @@
 
 import User from '../user/user.model.js'
 import ItemBatch from '../item-batch/item-batch.model.js'
+import Item from '../item/item.model.js'
+import _ from 'lodash';
 import {removeDays} from '../../utils'
 
 export default {
-  dependencies: [User, ItemBatch],
-  seed: (users, batches) => {
+  dependencies: [User, ItemBatch, Item],
+  seed: (users, batches, items) => {
 
     var pArr = [];
     while (batches.length !== 0) {
@@ -24,6 +26,7 @@ export default {
           item: batch.item,
           batch: batch._id,
           buyer: user._id,
+          seller: _.find(items, {_id: batch.item}).seller,
           time: removeDays(Date.now(), Math.floor(Math.random() * 5)),
           numOfItems: numToBuy,
           price: Math.floor(Math.random() * 45) + 5,

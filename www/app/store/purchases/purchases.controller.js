@@ -20,14 +20,10 @@ angular.module('homemade')
     });
 
     $scope.getStorePurchases = function() {
-      Purchase.getWithItem().$promise
+      Purchase.getWithItem({seller: $stateParams.sellerId}).$promise
         .then(function(purchases) {
 
-          var allPurchases = purchases;
-
-          // Filter only the purchases of this seller
-          $scope.allSellerPurchases =
-            allPurchases.filter( function(purchase){return (purchase.item.seller == $stateParams.sellerId);} );
+          $scope.allSellerPurchases = purchases;
 
           // Filter only active purchases
           $scope.activePurchases =

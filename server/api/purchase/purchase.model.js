@@ -11,6 +11,7 @@ const PurchaseSchema = new Schema({
   item: {type: Schema.Types.ObjectId, ref: 'Item'},
   batch: {type: Schema.Types.ObjectId, ref: 'ItemBatch'},
   buyer: {type: Schema.Types.ObjectId, ref: 'User'},
+  seller: {type: Schema.Types.ObjectId, ref: 'User'},
   time: Date,
   numOfItems: {type: Number, min: 1},
   price: {type: Number, min: 0},
