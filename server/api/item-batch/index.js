@@ -23,7 +23,7 @@ export default app => {
       .catch(console.errorJson);
   });
 
-  const ItemBatch = restful.model('item-batch', ItemBatchModel.schema)
+  const ItemBatch = restful.model('itemBatch', ItemBatchModel.schema)
     .methods(['get', 'post', 'put', 'delete']);
 
   ItemBatch.before('put', (req, res, next) => {
@@ -33,5 +33,5 @@ export default app => {
     return next();
   });
 
-  ItemBatch.register(app, '/api/item-batch');
+  ItemBatch.register(app, '/api/itemBatch');
 };

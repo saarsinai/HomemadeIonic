@@ -41,13 +41,15 @@ angular.module('homemade')
           if (res && res > 0) {
 
             const Purchase = Resource.new('purchase');
-            const Batch = Resource.new('item-batch');
-            Batch.query(/*{item: $scope.item._id}*/).$promise
+            const Batch = Resource.new('itemBatch');
+            Batch.query({item: $scope.item._id}).$promise
               .then(function (batch) {
-                //$scpoe.batch = batch[0];
+                $scope.batch = batch.filter(function(x){
+                  return x.open;
+                })[0];
                 var purchase = {
                   item: $scope.item._id,
-                  batch: /*$scope.batch._id*/'572e5ca7a8070b345acf85ac',
+                  batch: $scope.batch._id,
                   buyer: Authorization.getUser()._id,
                   time: Date.now(),
                   numOfItems: Number(res),
