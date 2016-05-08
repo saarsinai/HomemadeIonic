@@ -63,7 +63,7 @@ export default app => {
       detail: false,
       methods: ['post'],
       handler: (req, res, next) => {
-        UserModel.findOne({username: req.body.username, password: hash(req.body.password)})
+        UserModel.findOne({email: req.body.email.toLowerCase(), password: hash(req.body.password)})
           .then(user => {
             if (!user) {
               setResponse(res, 400, {authenticated: false});
@@ -82,6 +82,7 @@ export default app => {
       methods: ['post'],
       handler: (req, res, next) => {
         var user = new UserModel(req.body);
+        user.email = user.email.toLowerCase();
         user.save()
           .then(function () {
             var token = jwt.sign(user, 'homemade-secret', {expiresIn: 60 * 60 * 5});

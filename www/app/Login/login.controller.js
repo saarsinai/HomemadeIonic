@@ -5,7 +5,7 @@ angular.module('homemade')
       isOpen: true,
       views: {
         'menuContent': {
-          templateUrl: 'app/Login/login.html',
+          templateUrl: 'app/login/login.html',
           controller: 'LoginCtrl'
         },
         'fabContent': {
@@ -14,13 +14,18 @@ angular.module('homemade')
       }
     })
   })
-  .controller('LoginCtrl', function ($scope, $timeout, $stateParams, ionicMaterialInk, Resource,$state, Authorization) {
+  .controller('LoginCtrl', function ($scope, $timeout, $stateParams, ionicMaterialInk, Resource,$state, Authorization, $ionicHistory) {
     const User = Resource.new("user", {"authenticate": {method: 'POST', relativeUrl: 'authenticate', detail: false}, "signUp": {method: 'POST', relativeUrl: 'signUp', detail: false} });
 
+    $ionicHistory.nextViewOptions({
+      disableBack: true
+    });
+
     $scope.user = {};
+    $scope.signUpMode = false;
 
     var loginError = function (res, status) {
-      // TODO: nice message of "bad username or password"
+      // TODO: nice message of "bad email or password"
       Authorization.logOffUser();
     };
 
@@ -38,16 +43,13 @@ angular.module('homemade')
     };
 
     $scope.signUp = function () {
-      var user = {
-        name: 'Moshe',
-        username: 'maxm',
-        password: 'anu',
-        gander: 'M',
-        age: 28,
-        email: 'moshe@secret.net'
-      };
+      if (!$scope.signUpMode) {
+        $scope.signUpMode = true;
+        return;
+      }
 
-      User.signUp(user).$promise
+      // TODO: validate user properties
+      User.signUp($scope.user).$promise
         .then(function (res) {
           Authorization.setUser(res.user, res.token);
           $state.go('app.itemWall');

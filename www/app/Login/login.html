@@ -7,17 +7,15 @@
             </div>
         </div>
         <div class="list input-texts">
-            <ion-md-input ng-model="user.username" placeholder="Username" highlight-color="calm" type="text"></ion-md-input>
+            <ion-md-input ng-model="user.email" placeholder="Email" highlight-color="calm" type="email"></ion-md-input>
             <ion-md-input ng-model="user.password" placeholder="Password" highlight-color="calm" type="password"></ion-md-input>
+          <div ng-show="signUpMode">
+            <ion-md-input ng-model="user.name" placeholder="Name" highlight-color="calm" type="text"></ion-md-input>
+            <ion-md-input ng-model="user.age" placeholder="Age" highlight-color="calm" type="number"></ion-md-input>
+          </div>
         </div>
         <div class="col">
 
-        </div>
-        <div class="padding">
-          <button ng-click="login()" class="button button-block button-calm">Log in</button>
-          <button ng-click="signUp()" class="button button-block button-royal">Sign up</button><!--ui-sref="app.signUp"-->
-          <!--<button ui-sref="app.itemWall" class="button button-block icon-right ion-social-facebook button-positive ink button-font">Facebook</button>-->
-            <!--<button ui-sref="app.itemWall" class="button button-block icon-right ion-social-googleplus-outline button-assertive ink">Google+</button>-->
         </div>
 <!--        <div class="button-bar social-login">
             <button class="button button-small button-border icon-left ion-social-google button-assertive-900">Google+</button>
@@ -25,4 +23,14 @@
             <button class="button button-small button-border icon-left ion-social-facebook button-positive-900">Facebook</button>
         </div>-->
     </ion-content>
+  <hmd-bottom-screen>
+    <div class="row">
+      <div class="col padding-right" ng-hide="signUpMode">
+        <button ng-click="login()" class="button button-block button-calm">Log in</button>
+      </div>
+      <div class="col">
+        <button ng-click="signUp()" class="col button button-block button-royal">Sign up</button>
+      </div>
+    </div>
+  </hmd-bottom-screen>
 </ion-view>
