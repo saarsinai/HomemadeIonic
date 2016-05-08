@@ -16,7 +16,7 @@ export function addItem(id, tags, likes, location){
       id: id.toString(),
       body: {
         tags: tags,
-        likes: likes,
+        likes: likes.length,
         location: location,
         active: false
       }
@@ -53,7 +53,7 @@ export function updateItemTagsAndLikes(id, tags, likes){
     body: {
       doc: {
         tags: tags,
-        likes: likes
+        likes: likes.length
       }
     }
   });
