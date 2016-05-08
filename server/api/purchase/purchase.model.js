@@ -14,6 +14,7 @@ const PurchaseSchema = new Schema({
   time: Date,
   numOfItems: {type: Number, min: 1},
   price: {type: Number, min: 0},
+  isActive: {type: Boolean}
 });
 
 export default createSeedModel('Purchase', PurchaseSchema, seed);
