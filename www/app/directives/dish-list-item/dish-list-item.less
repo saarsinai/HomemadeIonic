@@ -61,13 +61,56 @@
   .button {
       color: @orange;
     .icon-left { color: @orange; }
-    .like-count{
-      color: green;
+
+  }
+
+  .dish-details{
+    position: absolute;
+    bottom: 35%;
+
+    .dish-title{
+      color: @orange;
+      letter-spacing: 0.05em;
+      font-size: 0.8em;
+      font-weight: bold;
+      position: relative;
+      height: 26px;
     }
 
-    //border-right: 1px solid rgba(0,0,0,0.07);
+    .distance{
+      color: #56462d;
+      letter-spacing: 0.05em;
+      font-size: 0.6em;
+      font-weight: bold;
+      height: 26px;
+    }
+  }
 
+  .outer-ring{
+    position: absolute;
+    bottom: -35%;
+    right: -9%;
 
+    border-radius: 50%;
+    background-color: #f9f1e4;
+    width: 65px;
+    height: 65px;
+
+    .inner-ring{
+      border-radius: 50%;
+      background-color: white;
+      border: 3px solid #e4cfb0;
+      width: 48px;
+      height: 48px;
+
+      .like-count{
+        font-size: 0.65em;
+        font-weight: bold;
+        color: #b1956b;
+
+        span{ height: 22px; }
+      }
+    }
   }
 
   .item{

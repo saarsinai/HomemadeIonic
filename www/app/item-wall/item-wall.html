@@ -11,7 +11,7 @@
       <div class="col col-50" ng-if="$index < items.length">
         <hmd-dish-list-item item="item"></hmd-dish-list-item>
       </div>
-      <div class="col col-50" ng-if="$index < items.length">
+      <div class="col col-50" ng-if="$index + 1 < items.length">
         <hmd-dish-list-item item="items[$index + 1]"></hmd-dish-list-item>
       </div>
     </div>
