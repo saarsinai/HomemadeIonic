@@ -25,7 +25,7 @@ export default {
     "img": images[3]._id,
   },
   {
-    "name": "20 nis pizza box + bulgarian cheese",
+    "name": "20 nis pizza box",
     "seller": users[5]._id,
     "likes": [users[1]._id, users[3]._id, users[4]._id],
     "pricePerItem": 25,
