@@ -3,6 +3,7 @@
 import restful from 'node-restful';
 import ItemModel from './item.model';
 import UserModel from '../user/user.model';
+import ImgModel from '../img/img.model';
 import {addItem, removeItem, updateItemTagsAndLikes} from '../../recommendation/models/item.elastic-model.js';
 
 
@@ -25,6 +26,16 @@ export default app => {
 
   const Item = restful.model('item', ItemModel.schema)
     .methods(['get', 'post', 'put', 'delete'])
+    .before('post', function (req, res, next) {
+      let imageData = req.body.img;
+      console.log('body: ' + req.body);
+      console.log('imageData: ' + imageData);
+      let imgModel = new ImgModel({data: imageData});
+      imgModel.save(function(err){
+        console.log('err: ' + err);
+      });
+      next();
+    })
     .before('put', function (req, res, next) {
       let item = req.body;
       updateItemTagsAndLikes(item._id, item.tags, item.likes).catch(next);

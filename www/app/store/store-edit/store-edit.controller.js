@@ -20,33 +20,30 @@ angular.module('homemade')
     const Review = Resource.new("review", {
       'ofSeller': {
         method: 'GET',
-        params: {limit: 3, sort: '-time', populate: 'reviewer'},
+        params: { sort: '-time', populate: 'reviewer', limit: 4},
         isArray: true
       }
     });
 
-      $scope.user = new User(angular.copy(Authorization.getUser()));
+    $scope.user = new User(angular.copy(Authorization.getUser()));
     $scope.originUser = Authorization.getUser();
     $scope.isAddressCool = true;
     $scope.isNew = !$scope.user.store.active;
     $scope.title = $scope.isNew ? 'Create Your Store' : 'Edit Your Store';
     $scope.saveButtonText = $scope.isNew ? 'Create Store' : 'Save Changes';
-    var logError = function (err) {
-      console.error(JSON.stringify(err));
-    };
 
     if (!$scope.isNew) {
       User.items({id: $scope.user._id}).$promise
         .then(function (items) {
           $scope.items = items;
         })
-        .catch(logError);
+        .catch(console.errorJson);
 
       Review.ofSeller({reviewed: $scope.user._id}).$promise
         .then(function (reviews) {
           $scope.reviews = reviews;
         })
-        .catch(logError);
+        .catch(console.errorJson);
     }
 
     $scope.addressChanged = function () {

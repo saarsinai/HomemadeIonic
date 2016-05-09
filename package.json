@@ -55,8 +55,13 @@
     "uppercamelcase": "^1.1.0",
     "wiredep": "^4.0.0"
   },
-  "cordovaPlugins": [],
   "cordovaPlatforms": [
     "android"
   ]
+  "cordovaPlugins": [
+    {
+      "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
+      "id": "cordova-plugin-whitelist"
+    }
+  ],
 }

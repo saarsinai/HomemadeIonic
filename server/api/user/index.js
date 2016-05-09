@@ -67,6 +67,7 @@ export default app => {
           .then(user => {
             if (!user) {
               setResponse(res, 400, {authenticated: false});
+              console.log("")
               return next();
             }
 

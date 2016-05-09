@@ -15,10 +15,19 @@ const allowCrossDomain = (req, res, next) => {
   next();
 };
 
+const changeLimitToNumeric = (req, res, next) => {
+  if (req.query.limit) {
+    req.query.limit = Number(req.param('limit'));
+  }
+  next();
+};
+
 export default app => {
   var enforceAuth = JSON.parse(process.env.ENFORCE_AUTHENTICATION.toLowerCase());
 
   app.use(allowCrossDomain);
+
+  app.use(changeLimitToNumeric)
 
   app.use('/', expressJwt({
     secret: 'homemade-secret',
