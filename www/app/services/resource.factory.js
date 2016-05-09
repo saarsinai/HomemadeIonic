@@ -2,7 +2,7 @@ angular.module('homemade')
   .factory('Resource', function ($resource) {
     return {
       'new': function (model, extraActions) {
-        var baseUrl = '//' + 'localhost' + ':3000/api/' + model;
+        var baseUrl = 'http://' + 'localhost' + ':3000/api/' + model;
         var baseUrlDetail = baseUrl + '/:id';
         extraActions = extraActions || {};
 
