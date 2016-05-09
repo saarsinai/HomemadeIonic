@@ -10,7 +10,7 @@ angular.module('homemade')
       }
     })
   })
-  .controller('OrderItemCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView) {
+  .controller('OrderItemCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView, $ionicHistory) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
     const Purchase = Resource.new('purchase', {
       'withPopulate': {
@@ -18,8 +18,12 @@ angular.module('homemade')
         params: {populate: 'item buyer'}
       }
     });
+
     Purchase.withPopulate({id: $stateParams.purchaseId}).$promise
       .then(function (purchase) {
         $scope.purchase = purchase;
+        $timeout(function(){
+          $ionicHistory.goBack();
+        }, 3000)
       });
   });

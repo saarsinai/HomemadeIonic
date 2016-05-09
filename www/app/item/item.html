@@ -1,41 +1,36 @@
 <ion-view id="item" class="view-container" view-title="{{item.name}}">
   <ion-content ng-class="{expanded:isExpanded}">
-    <div class="main-item-image row">
+    <div class="main-item-image">
       <img ng-src="{{item.img.data | trusted}}">
-
-      <h3><span>{{item.name}} - {{item.pricePerItem}}$</span></h3>
     </div>
     <div class="item-background row">
       <span class="col col-100">
-        <h4>
-          <a ui-sref="app.store({sellerId: item.seller._id})">
-            {{item.seller.name}} - {{item.seller.store.name}}
-          </a>
-        </h4>
+          <div class="dish-header">
+            <span class="dish-title">{{item.name | uppercase}}</span>
+            <span> by </span>
+            <a ui-sref="app.store({sellerId: item.seller._id})">
+              {{item.seller.store.name}}
+            </a>
+          </div>
         <div>
-          <i class="icon ion-location"></i>
-          <h4 style='display:inline'>{{item.seller.store.address}}</h4>
+          <span class="distance"><i class="icon ion-location"></i>&nbsp;{{item.seller.store.address}}</span>
         </div>
-        </br>
       </span>
     </div>
-    <div class="item-info row">
-      <div class="col col-10"></div>
-        <span class="col col-80">
-          <h4>Dish info:</h4>
-          <h4>{{item.details}}</h4>
-        </span>
 
-      <div class="col col-10"></div>
+    <div class="likes row">
+      <span class="liked-number"> {{item.likes.length}} </span>
+      <span class="liked">&nbsp;people liked this dish!</span>
     </div>
-    <div class="row">
-      <h4>Likes: {{item.likes.length}}</h4>
-      <button class="col col-center button button-small button-clear button-calm" ng-click="likeItem()">
-        {{ LikeTitle }}
-      </button>
-      <button class="col col-center button button-small button-clear button-calm" ng-click="showPopup()">
-        ORDER
-      </button>
+
+    <div class="item-info row">
+      <span class="details col col-100">{{item.details}}</span>
     </div>
+    <button class="button button-small button-clear button-calm like-button center" ng-click="likeItem()">
+      {{ LikeTitle }}
+    </button>
+    <button class="button button-block button-calm order-button" ng-click="showPopup()">
+      ORDER
+    </button>
   </ion-content>
 </ion-view>

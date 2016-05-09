@@ -1,3 +1,7 @@
+#item{
+  background-color: @item-background;
+  background-image: none;
+
 .popup {
   width: 90% !important;
 }
@@ -8,58 +12,69 @@
   img {
     width: 100%;
     height: 40%;
+    border-bottom: 3px solid @border;
   }
 
-  h3 {
-    position: absolute;
-    top: 100px;
-    left: 0;
-    width: 100%;
-
     span {
-      color: white;
       letter-spacing: -1px;
       background: rgba(0, 0, 0, 0.3);
       padding: 2%;
     }
-  }
 }
 
 .item-background {
   width: 100%;
-  background-color: #FFC107;
 
-  h3 {
-    color: white;
+  .dish-header{
     font-style: italic;
-    width: 100%;
+    color: #bca788;
+    a { color: #bca788; font-weight: bold; opacity: 0.9; }
+
+    .dish-title{
+      color: @orange;
+      font-size: 1.3em;
+      font-weight: bold;
+    }
   }
 
-  h4 {
-    color: white;
-    font-style: italic;
-    width: 100%;
-  }
-
-  i {
-    color: white;
-    width: 100%;
-    font-size: 30px;
+  .distance{
+    color: #bca788;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
   }
 }
 
 .item-info {
-  background-color: #FFC107;
+  padding-top: 1%;
 
   span {
-    background-color: white;
-  }
-
-  h4 {
-    color: black;
-    padding-right: 10%;
+    color: #56462d;
+    text-wrap: normal;
     width: 100%;
   }
 }
+  .order-button{
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+  }
+  .likes{
+    padding-top: 3%;
 
+    .liked{
+      font-size: 0.95em;
+      color: #2196F3;
+    }
 
+    .liked-number{
+      font-weight: bold;
+      color: #2196F3;
+
+    }
+  }
+
+  .like-button{
+    position: absolute;
+    bottom: 10%;
+  }
+}
