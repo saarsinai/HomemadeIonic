@@ -4,7 +4,7 @@ angular.module('homemade')
       url: '/item/:itemId',
       views: {
         'menuContent': {
-          templateUrl: 'app/item/item.html',
+          templateUrl: 'app/item2/item.html',
           controller: 'itemController'
         }
       }
@@ -49,12 +49,13 @@ angular.module('homemade')
                 })[0];
                 var purchase = {
                   item: $scope.item._id,
+                  seller: $scope.item.seller,
                   batch: $scope.batch._id,
                   buyer: Authorization.getUser()._id,
                   time: Date.now(),
                   numOfItems: Number(res),
-                  price: res * $scope.item.pricePerItem
-
+                  price: res * $scope.item.pricePerItem,
+                  isActive: true
                 };
                 Purchase.save(purchase).$promise.then(function (res) {
                   $scope.purchase = res;

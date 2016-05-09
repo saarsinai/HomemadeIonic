@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:; default-src 'self' default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <allow-navigation href="*" />
     <title>Hememade.</title>
-    <link href='https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic' rel='stylesheet' type='text/css'>
+    <!--<link href='https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic' rel='stylesheet' type='text/css'>-->
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="lib/ion-md-input/css/ion-md-input.min.css" rel="stylesheet">
     <link href="lib/ionic-material/dist/ionic.material.min.css" rel="stylesheet">
@@ -33,9 +35,9 @@
     <script src="app/filters/propercase.filter.js"></script>
     <script src="app/filters/trusted.filter.js"></script>
     <script src="app/filters/uppercase.filter.js"></script>
-    <script src="app/item/item.controller.js"></script>
     <script src="app/item-wall/item-wall.controller.js"></script>
     <script src="app/Login/login.controller.js"></script>
+    <script src="app/item2/item.controller.js"></script>
     <script src="app/services/authorization.service.js"></script>
     <script src="app/services/image.factory.js"></script>
     <script src="app/services/init-ionic-view.factory.js"></script>
@@ -52,7 +54,7 @@
     <script src="app/directives/store-item/store-item.controller.js"></script>
     <script src="app/directives/star-rating/star-rating.controller.js"></script>
     <script src="app/directives/user-item-purchase/user-item-purchase.controller.js"></script>
-    <script src="app/item/order-item/order-item.controller.js"></script>
+    <script src="app/item2/order-item/order-item.controller.js"></script>
     <script src="app/services/save-overlay/save-overlay.service.js"></script>
     <script src="app/store/add-review/add-review.controller.js"></script>
     <script src="app/store/reviews/reviews.controller.js"></script>

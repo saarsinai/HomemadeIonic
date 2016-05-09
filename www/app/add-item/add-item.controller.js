@@ -10,14 +10,14 @@ angular.module('homemade')
       }
     })
   })
-  .controller('AddItemCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView, Authorization) {
+  .controller('AddItemCtrl', function ($scope, $stateParams, Resource, image, $timeout, $ionicHistory, ionicMaterialInk, ionicMaterialMotion, initIonicView, Authorization) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
 
     $scope.item = {
       "name": '',
       "seller": '',
       details: '',
-      "img": '',
+      "img": {data:''},
       "likes": [],
       "tags": [],
     };
@@ -27,7 +27,6 @@ angular.module('homemade')
     $scope.saveItem = function () {
       $scope.status = 'saving';
       $scope.item.seller = Authorization.getUser()._id;
-      $scope.item.img = $scope.imgURI;
 
       Item.save($scope.item).$promise.then(function (item, err) {
         if (err) {
@@ -80,8 +79,8 @@ angular.module('homemade')
       });
 
       function onSuccess(imageURI) {
-        $scope.imgURI = "data:image/jpeg;base64," + imageURI;
-        console.log($scope.imgURI);
+        $scope.item.img = { data:"data:image/jpeg;base64," + imageURI};
+        console.log($scope.item.img.data);
         $scope.nextSlide();
       }
 

@@ -29,9 +29,9 @@ export default app => {
 
   app.use(changeLimitToNumeric)
 
-  app.use('/', expressJwt({
+  app.use('/api', expressJwt({
     secret: 'homemade-secret',
-    credentialsRequired: enforceAuth
+    credentialsRequired: false
   }).unless({path: ['/api/user/authenticate', '/api/user/signUp']}));
 
   app.use(morgan('dev'));

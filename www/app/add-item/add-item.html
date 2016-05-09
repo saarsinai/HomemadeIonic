@@ -4,7 +4,7 @@
       <ion-slide>
         <div class="slide-form">
           <div class="dish-avatar">
-            <img ng-show="imgURI !== undefined" ng-src="{{imgURI | trusted}}">
+            <img ng-show="item.img.data !== undefined" ng-src="{{item.img.data | trusted}}">
 
             <div class="picture-button" ng-click="takePicture()">
               <i class="icon ion-ios-camera">
