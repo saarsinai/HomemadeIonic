@@ -14,11 +14,11 @@
         <textarea class="review-description" class="store-description" msd-elastic hmd-hard-maxlength="500"
                   placeholder="Review" ng-model="review.description"></textarea>
       </label>
+      <div class="item">
+        <button class="button button-block button-calm" ng-click="submitReview()">
+          Submit Review
+        </button>
+      </div>
     </div>
   </ion-content>
-  <hmd-bottom-screen>
-    <button class="button button-block button-calm" ng-click="submitReview()">
-      Submit Review
-    </button>
-  </hmd-bottom-screen>
 </ion-view>
