@@ -57,11 +57,11 @@
   },
   "cordovaPlatforms": [
     "android"
-  ]
+  ],
   "cordovaPlugins": [
     {
       "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
       "id": "cordova-plugin-whitelist"
     }
-  ],
+  ]
 }

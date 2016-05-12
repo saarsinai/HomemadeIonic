@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:; default-src 'self' default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
-    <allow-navigation href="*" />
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:35730; img-src 'self' data:; media-src *">
+    <allow-navigation href="*"/>
     <title>Hememade.</title>
     <!--<link href='https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic' rel='stylesheet' type='text/css'>-->
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -17,15 +18,15 @@
     <script src="lib/ion-md-input/js/ion-md-input.min.js"></script>
     <script src="lib/angular-sanitize/angular-sanitize.js"></script>
     <script src="lib/angular-elastic/elastic.js"></script>
-  <!-- cordova script (this will be a 404 during development) -->
+    <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="lib/ionic-wizard/dist/ion-wizard.js"></script>
     <script src="cordova.js"></script>
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
-</head>
-<body ng-app="homemade">
+  </head>
+  <body ng-app="homemade">
     <ion-nav-view></ion-nav-view>
 
     <!-- injector:js -->
@@ -37,30 +38,30 @@
     <script src="app/filters/uppercase.filter.js"></script>
     <script src="app/item-wall/item-wall.controller.js"></script>
     <script src="app/item2/item.controller.js"></script>
+    <script src="app/login-signup/login.controller.js"></script>
     <script src="app/services/authorization.service.js"></script>
     <script src="app/services/image.factory.js"></script>
     <script src="app/services/init-ionic-view.factory.js"></script>
     <script src="app/services/resource.factory.js"></script>
     <script src="app/store/store-controller.js"></script>
-    <script src="app/login-signup/login.controller.js"></script>
     <script src="app/user-profile/user-profile.controller.js"></script>
-    <script src="app/directives/dish-list-item/dish-list-item.controller.js"></script>
     <script src="app/directives/bottom-screen/bottom-screen.controller.js"></script>
-    <script src="app/directives/camera-wizard/camera-wizard.controller.js"></script>
+    <script src="app/directives/dish-list-item/dish-list-item.controller.js"></script>
     <script src="app/directives/hard-maxlength/hard-maxlength.controller.js"></script>
-    <script src="app/directives/review-display/review-display.controller.js"></script>
     <script src="app/directives/review-header/review-header.controller.js"></script>
     <script src="app/directives/seller-item-purchase/seller-item-purchase.controller.js"></script>
-    <script src="app/directives/store-item/store-item.controller.js"></script>
+    <script src="app/directives/review-display/review-display.controller.js"></script>
     <script src="app/directives/star-rating/star-rating.controller.js"></script>
     <script src="app/directives/user-item-purchase/user-item-purchase.controller.js"></script>
+    <script src="app/directives/store-item/store-item.controller.js"></script>
+    <script src="app/directives/camera-wizard/camera-wizard.controller.js"></script>
     <script src="app/item2/order-item/order-item.controller.js"></script>
     <script src="app/services/save-overlay/save-overlay.service.js"></script>
     <script src="app/store/add-review/add-review.controller.js"></script>
+    <script src="app/store/purchases/purchases.controller.js"></script>
     <script src="app/store/reviews/reviews.controller.js"></script>
     <script src="app/store/store-edit/store-edit.controller.js"></script>
-    <script src="app/store/purchases/purchases.controller.js"></script>
     <!-- endinjector -->
-
-</body>
+    
+  </body>
 </html>
