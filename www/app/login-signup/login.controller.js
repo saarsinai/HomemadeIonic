@@ -1,17 +1,10 @@
 angular.module('homemade')
   .config(function ($stateProvider) {
-    $stateProvider.state('app.login', {
+    $stateProvider.state('login', {
       url: '/login',
       isOpen: true,
-      views: {
-        'menuContent': {
-          templateUrl: 'app/login/login.html',
-          controller: 'LoginCtrl'
-        },
-        'fabContent': {
-          template: ''
-        }
-      }
+      templateUrl: 'app/login-signup/login.html',
+      controller: 'LoginCtrl'
     })
   })
   .controller('LoginCtrl', function ($scope, $timeout, $stateParams, ionicMaterialInk, Resource,$state, Authorization, $ionicHistory) {
@@ -59,10 +52,10 @@ angular.module('homemade')
         });
     };
 
-    $scope.$parent.clearFabs();
-    $timeout(function () {
-      $scope.$parent.hideHeader();
-    }, 0);
+    //$scope.$parent.clearFabs();
+    //$timeout(function () {
+    //  $scope.$parent.hideHeader();
+    //}, 0);
     ionicMaterialInk.displayEffect();
   })
   .run(function($rootScope, $location, $state, Authorization) {
@@ -75,7 +68,7 @@ angular.module('homemade')
 
       if(!Authorization.isAuthorized()) {
         e.preventDefault(); // stop current execution
-        $state.go('app.login'); // go to login
+        $state.go('login'); // go to login
       }
     });
   });

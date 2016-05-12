@@ -6,7 +6,7 @@ angular.module('homemade.controllers', [])
 .controller('AppCtrl', function($scope, $state, Authorization) {
     $scope.logout = function () {
       Authorization.logOffUser();
-      $state.go('app.login');
+      $state.go('login');
     };
 
     // Form data for the login modal

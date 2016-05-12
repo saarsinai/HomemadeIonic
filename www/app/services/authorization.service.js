@@ -42,7 +42,7 @@ angular.module('homemade')
     function checkAuthorized(response) {
       if (response.status === 401) {
         var stateService = $injector.get('$state');
-        stateService.go('app.login');
+        stateService.go('login');
       }
 
       return response || $q.when(response);

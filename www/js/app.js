@@ -28,7 +28,6 @@ angular.module('homemade', ['ionic', 'homemade.controllers', 'ionic-material', '
 
     $stateProvider.state('app', {
         url: '/app',
-        abstract: true,
         templateUrl: 'app/templates/menu.html',
         controller: 'AppCtrl'
     });
