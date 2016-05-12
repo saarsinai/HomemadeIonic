@@ -44,7 +44,7 @@ angular.module('homemade')
             const Batch = Resource.new('itemBatch');
             Batch.query({item: $scope.item._id}).$promise
               .then(function (batch) {
-                $scope.batch = batch.filter(function(x){
+                $scope.batch = batch.filter(function (x) {
                   return x.open;
                 })[0];
                 var purchase = {
@@ -77,21 +77,22 @@ angular.module('homemade')
       });
       const userId = Authorization.getUser()._id;
 
-      var getItemById = function () {
+      $scope.loadData = function () {
         Item.ofSeller({id: $stateParams.itemId})
           .$promise.then(function (item) {
-
             $scope.item = item;
             if ($scope.item.likes.filter(function (currUser) {
                 return currUser === userId;
               }).length) {
-              $scope.LikeTitle = "Dislike";
+              $scope.LikeTitle = "dislike";
             } else {
               $scope.LikeTitle = "like";
             }
-          }
-          , function (err) {
+          }, function (err) {
             console.error('Response error', err);
+          })
+          .finally(function () {
+            $scope.$broadcast('scroll.refreshComplete');
           });
       };
 
@@ -119,6 +120,6 @@ angular.module('homemade')
       };
 
 
-      getItemById();
+      $scope.loadData();
 
     }]);

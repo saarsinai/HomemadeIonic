@@ -1,5 +1,9 @@
 <ion-view id="reviews" view-title="Reviews">
   <ion-content ng-class="{expanded:isExpanded}">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="loadData()">
+    </ion-refresher>
     <div ng-repeat="review in reviews">
       <hmd-review-display review="review"></hmd-review-display>
     </div>

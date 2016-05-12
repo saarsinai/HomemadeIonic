@@ -29,20 +29,25 @@ var app = angular.module("homemade")
       console.error(JSON.stringify(err));
     };
 
-    User.get({id: $stateParams.sellerId}).$promise
-    .then(function(seller){
-        $scope.seller = seller;
-      }).catch(logError);
+    $scope.loadData = function () {
 
-    User.items({id: $stateParams.sellerId}).$promise
-      .then(function (items) {
-        $scope.items = items;
-      })
-      .catch(logError);
+      User.get({id: $stateParams.sellerId}).$promise
+        .then(function (seller) {
+          $scope.seller = seller;
+          return User.items({id: $stateParams.sellerId}).$promise;
+        })
+        .then(function (items) {
+          $scope.items = items;
+          return Review.ofSeller({reviewed: $stateParams.sellerId}).$promise;
+        })
+        .then(function (reviews) {
+          $scope.reviews = reviews;
+        })
+        .catch(logError)
+        .finally(function () {
+          $scope.$broadcast('scroll.refreshComplete');
+        });
+    };
 
-    Review.ofSeller({reviewed: $stateParams.sellerId}).$promise
-      .then(function (reviews) {
-        $scope.reviews = reviews;
-      })
-      .catch(logError);
+    $scope.loadData();
   });

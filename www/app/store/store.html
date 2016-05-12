@@ -1,6 +1,10 @@
 <ion-view>
   <ion-nav-title>{{seller.store.name}}</ion-nav-title>
   <ion-content ng-class="{expanded:isExpanded}">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="loadData()">
+    </ion-refresher>
     <div class="card">
       <div class="item item-divider">Location</div>
       <div class="item item-icon-right">

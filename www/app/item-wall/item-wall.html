@@ -1,11 +1,14 @@
 <ion-view view-title="Hot Dishes">
   <ion-content ng-class="{expanded:isExpanded}">
-    <div class="location-spinner" ng-show="showSpinner">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="loadData()">
+    </ion-refresher>
+
+    <div class="location-spinner" ng-show="showLocationSpinner">
       <ion-spinner class="center" icon="ripple"></ion-spinner>
       <span class="center">Getting your location</span>
     </div>
-
-
 
     <div class="row dish-row" ng-repeat="item in items" ng-if="$index % 2 === 0">
       <div class="col col-50" ng-if="$index < items.length">
