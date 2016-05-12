@@ -4,6 +4,10 @@
 angular.module('homemade')
   .filter('uppercase',  function () {
     return function(str) {
-      return str.toUpperCase();
+      if (str) {
+        return str.toUpperCase();
+      } else {
+        return "";
+      }
     };
   });
