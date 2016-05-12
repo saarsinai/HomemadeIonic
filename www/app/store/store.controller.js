@@ -13,7 +13,7 @@ var app = angular.module("homemade")
       }
     });
   })
-  .controller("StoreController", function ($scope, $stateParams , Resource, ionicMaterialInk, ionicMaterialMotion, initIonicView) {
+  .controller("StoreController", function ($scope, $stateParams, $q, Resource, ionicMaterialInk, ionicMaterialMotion, initIonicView) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
 
     const User = Resource.new("user", {'items': {method: 'GET', relativeUrl: 'items', detail: true, isArray: true}});
@@ -34,14 +34,14 @@ var app = angular.module("homemade")
       User.get({id: $stateParams.sellerId}).$promise
         .then(function (seller) {
           $scope.seller = seller;
-          return User.items({id: $stateParams.sellerId}).$promise;
+          return $q.all([
+            User.items({id: $stateParams.sellerId}).$promise,
+            Review.ofSeller({reviewed: $stateParams.sellerId}).$promise
+          ]);
         })
-        .then(function (items) {
-          $scope.items = items;
-          return Review.ofSeller({reviewed: $stateParams.sellerId}).$promise;
-        })
-        .then(function (reviews) {
-          $scope.reviews = reviews;
+        .then(function (values) {
+          $scope.items = values[0];
+          $scope.reviews = values[1];
         })
         .catch(logError)
         .finally(function () {
