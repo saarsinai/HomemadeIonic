@@ -3,37 +3,37 @@ angular.module('homemade')
 
     function isAuthorized() {
       // TODO: change if you want to get better authorization or compartmentalization system.
-      if ($window.sessionStorage.currentUser){
+      if ($window.localStorage.currentUser){
         return true;
       }
       return false;
     }
 
     function setUser(user, token) {
-      $window.sessionStorage.token = token;
-      $window.sessionStorage.currentUser = JSON.stringify(user);
+      $window.localStorage.token = token;
+      $window.localStorage.currentUser = JSON.stringify(user);
     }
 
     function getUser() {
       if (isAuthorized()) {
-        return JSON.parse($window.sessionStorage.currentUser);
+        return JSON.parse($window.localStorage.currentUser);
       }
     }
 
     function getToken() {
-      return $window.sessionStorage.token;
+      return $window.localStorage.token;
     }
 
     function logOffUser() {
       if (isAuthorized()) {
-        delete $window.sessionStorage.currentUser;
-        delete $window.sessionStorage.token;
+        delete $window.localStorage.currentUser;
+        delete $window.localStorage.token;
       }
     }
 
     function putTokenOnRequest(config) {
       config.headers = config.headers || {};
-      if ($window.sessionStorage.token) {
+      if ($window.localStorage.token) {
         config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
       }
       return config;
