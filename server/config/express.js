@@ -31,7 +31,7 @@ export default app => {
 
   app.use('/api', expressJwt({
     secret: 'homemade-secret',
-    credentialsRequired: false
+    credentialsRequired: enforceAuth
   }).unless({path: ['/api/user/authenticate', '/api/user/signUp']}));
 
   app.use(morgan('dev'));
