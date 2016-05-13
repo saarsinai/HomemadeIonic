@@ -19,7 +19,7 @@ angular.module('homemade', ['ionic', 'homemade.controllers', 'ionic-material', '
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     // Turn off caching for demo simplicity's sake
-    $ionicConfigProvider.views.maxCache(1);
+    $ionicConfigProvider.views.maxCache(0);
 
     /*
     // Turn off back button text

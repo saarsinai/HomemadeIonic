@@ -1,0 +1,12 @@
+<ion-view id="purchases" view-title="Purchases">
+  <ion-content>
+    <div class="card list">
+      <div ng-repeat="purchase in purchases">
+        <hmd-seller-item-purchase
+          purchase="purchase"
+          done="finishPurchase(purchaseToUpdate)">
+        </hmd-seller-item-purchase>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
