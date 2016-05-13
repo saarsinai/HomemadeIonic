@@ -19,25 +19,17 @@ angular.module('homemade')
     const Recommend = Resource.new("recommended", {'toUser': {method: 'GET', isArray: true}});
 
     var user = Authorization.getUser();
+    var position;
 
-    $scope.loadData = function () {
+    $scope.loadInitialData = function () {
       $scope.showLocationSpinner = true;
       $scope.items = [];
+      $scope.reachedEnd = false;
+      position = {};
 
-      var onSuccess = function (position) {
-        Recommend.toUser({id: user._id, lat: position.coords.latitude, lon: position.coords.longitude}).$promise
-          .then(function (items) {
-            $scope.showLocationSpinner = false;
-            $scope.items = items;
-          })
-          .catch(function (err) {
-            // TODO: show error message
-            $scope.showLocationSpinner = false;
-            console.log(JSON.stringify(err));
-          })
-          .finally(function () {
-            $scope.$broadcast('scroll.refreshComplete');
-          });
+      var onSuccess = function (pos) {
+        position = pos;
+        $scope.loadMoreData();
       };
 
       var onError = function(error) {
@@ -46,9 +38,29 @@ angular.module('homemade')
       };
 
       var locationOptions = {maximumAge: 3000, timeout: 5000, enableHighAccuracy: true};
-
       navigator.geolocation.getCurrentPosition(onSuccess, onError, locationOptions);
     };
 
-    $scope.loadData();
+    $scope.refreshData = function () {
+      $scope.loadInitialData();
+    };
+
+    $scope.loadMoreData = function () {
+      Recommend.toUser({id: user._id, lat: position.coords.latitude, lon: position.coords.longitude, from: $scope.items.length}).$promise
+        .then(function (items) {
+          $scope.reachedEnd = items.length < 10;
+          Array.prototype.push.apply($scope.items, items);
+        })
+        .catch(function (err) {
+          // TODO: show error message
+          console.log(JSON.stringify(err));
+        })
+        .finally(function () {
+          $scope.showLocationSpinner = false;
+          $scope.$broadcast('scroll.refreshComplete');
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+        });
+    };
+
+    $scope.loadInitialData();
   });

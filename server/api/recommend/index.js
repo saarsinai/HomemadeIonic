@@ -14,6 +14,7 @@ var logAndReturn = err => {
 
 var recommend = function(req, res){
 
+  var from = req.param('from');
   var userId = req.params.userId;
   var location = {
     lat: Number(req.param('lat')),
@@ -26,7 +27,7 @@ var recommend = function(req, res){
       location: location,
       tags: [].concat.apply([], purchases.map(p => p.item.tags))
     };
-    return recommendation.recommend(userInfo);
+    return recommendation.recommend(userInfo, from);
   }).then(recommendations => {
     ItemModel.find({'_id': { $in: recommendations.map(r => r._id)}}).populate('seller').populate('img').then(items => {
       var itemsWithDistance = recommendations.map(recommendation => {

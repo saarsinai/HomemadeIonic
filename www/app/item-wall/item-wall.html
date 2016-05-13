@@ -1,8 +1,9 @@
-<ion-view view-title="Hot Dishes">
+<ion-view id="item-wall" view-title="Hot Dishes">
   <ion-content ng-class="{expanded:isExpanded}">
+
     <ion-refresher
       pulling-text="Pull to refresh..."
-      on-refresh="loadData()">
+      on-refresh="refreshData()">
     </ion-refresher>
 
     <div class="location-spinner" ng-show="showLocationSpinner">
@@ -19,13 +20,11 @@
       </div>
     </div>
 
-<!--    <div class="row responsive-md">
-      <div class="col col-25" ng-repeat="item in items">
-        &lt;!&ndash;<hmd-dish-list-item item="item"></hmd-dish-list-item>&ndash;&gt;
-        <img ng-src="../assets/logo.png" width="25%" />
-      </div>
-    </div>-->
-
-
-    </ion-content>
+    <ion-infinite-scroll
+      ng-if="!reachedEnd"
+      on-infinite="loadMoreData()"
+      immediate-check="false"
+      distance="20%">
+    </ion-infinite-scroll>
+  </ion-content>
 </ion-view>

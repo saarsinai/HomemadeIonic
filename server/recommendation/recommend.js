@@ -1,9 +1,9 @@
 import elastic from 'elasticSearch';
 import fs from 'fs';
 
-export default function recommend(userInfo) {
+export default function recommend(userInfo, from) {
   return new Promise(function (resolve, reject) {
-    buildQuery(userInfo).then((query) => {
+    buildQuery(userInfo, from).then((query) => {
       var client = new elastic.Client({
         host: process.env.ELASTIC_URI,
         //log: 'trace'
@@ -23,7 +23,7 @@ export default function recommend(userInfo) {
   });
 };
 
-var buildQuery = (userInfo) => {
+var buildQuery = (userInfo, from) => {
   return new Promise(function (resolve, reject) {
     var functions = [];
 
@@ -36,6 +36,7 @@ var buildQuery = (userInfo) => {
         .forEach(filename => functions.concat(require(__dirname + '/query-functions/' + filename).default(userInfo)));
 
       var query = {
+        "from" : from, "size" : 10,
         "query": {
           "function_score": {
             "functions": functions,

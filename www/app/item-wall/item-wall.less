@@ -1,24 +1,29 @@
-.location-spinner{
-  padding-top: 40%;
+#item-wall {
+  .location-spinner {
+    padding-top: 40%;
 
-  .spinner svg {
-    width: 8rem;
-    height: 8rem;
-    stroke: @orange;
-    fill: @orange;
+    .spinner svg {
+      width: 8rem;
+      height: 8rem;
+      stroke: @orange;
+      fill: @orange;
+    }
+
+    span {
+      opacity: 0.65;
+      color: @orange;
+    }
   }
 
-  span{
-    opacity: 0.65;
-    color: @orange;
+  .dish-row {
+    .card {
+      margin: 0;
+      box-shadow: rgba(0, 0, 0, 0.258824) 0px 1px 5px 0px;
+      border-radius: 3px;
+    }
   }
+
+  //ion-infinite-scroll {
+  //  height: 0;
+  //}
 }
-
-.dish-row{
-  .card{
-    margin: 0;
-    box-shadow: rgba(0, 0, 0, 0.258824) 0px 1px 5px 0px;
-    border-radius: 3px;
-  }
-}
-
