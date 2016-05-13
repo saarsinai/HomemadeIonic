@@ -1,0 +1,13 @@
+
+
+<ion-modal-view id="store-location">
+  <ion-header-bar class="bar bar-header bar-calm">
+    <button  class="button icon-right ion-close button-clear button-dark" ng-click="mapModal.hide()"></button>
+  </ion-header-bar>
+  <ion-content>
+    <ng-map class="map" zoom="14" center="[{{seller.store.location.lat}}, {{seller.store.location.lon}}]" >
+      <!--<marker position="seller.store.location"></marker>-->
+      <marker position="[{{seller.store.location.lat}}, {{seller.store.location.lon}}]"></marker>
+    </ng-map>
+  </ion-content>
+</ion-modal-view>

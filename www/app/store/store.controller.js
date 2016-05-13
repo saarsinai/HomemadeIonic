@@ -13,7 +13,7 @@ var app = angular.module("homemade")
       }
     });
   })
-  .controller("StoreController", function ($scope, $stateParams, $q, Resource, ionicMaterialInk, ionicMaterialMotion, initIonicView) {
+  .controller("StoreController", function ($scope, $stateParams, $q, Resource, ionicMaterialInk, ionicMaterialMotion, initIonicView, $ionicModal, NgMap) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
 
     const User = Resource.new("user", {'items': {method: 'GET', relativeUrl: 'items', detail: true, isArray: true}});
@@ -50,4 +50,29 @@ var app = angular.module("homemade")
     };
 
     $scope.loadData();
+
+    $ionicModal.fromTemplateUrl('app/store/store-location/store-location.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+      $scope.mapModal = modal;
+    });
+
+    $scope.openMapModal = function () {
+      $scope.mapModal.show()
+        .then(function () {
+          return NgMap.getMap();
+        })
+        .then(function (map) {
+          map.panTo(map.markers[0].getPosition());
+        });
+    };
+
+    $scope.closeMapModal = function () {
+      $scope.mapModal.hide();
+    };
+    // Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function () {
+      $scope.mapModal.remove();
+    });
   });

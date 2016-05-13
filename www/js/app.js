@@ -1,6 +1,6 @@
 // 'starter.controllers' is found in controllers.js
 
-angular.module('homemade', ['ionic', 'homemade.controllers', 'ionic-material', 'ionMdInput', 'ngResource', 'monospaced.elastic'])
+angular.module('homemade', ['ionic', 'homemade.controllers', 'ionic-material', 'ionMdInput', 'ngResource', 'monospaced.elastic', 'ngMap'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
