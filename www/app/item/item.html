@@ -8,7 +8,7 @@
       <img ng-src="{{item.img.data | trusted}}">
     </div>
     <div class="item-background row">
-      <span class="col col-100">
+      <span class="col col-80">
           <div class="dish-header">
             <span class="dish-title">{{item.name | uppercase}}</span>
             <span> by </span>
@@ -18,6 +18,11 @@
           </div>
         <div>
           <span class="distance"><i class="icon ion-location"></i>&nbsp;{{item.seller.store.address}}</span>
+        </div>
+      </span>
+      <span class="col col-20">
+        <div class="dish-header">
+          <span class="dish-title">{{item.pricePerItem}}$</span>
         </div>
       </span>
     </div>
