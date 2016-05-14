@@ -16,7 +16,6 @@ export default {
       description: "Like mushrooms? like rice? like frying thing?, then Arancini is the stuff for you! *does not contain mushrooms/rice",
       tags: ["Italian", "Oriental", "Hituv"],
       createdAt: Date.now(),
-      rating: 4.5,
       active: true,
     }
   },
@@ -35,7 +34,6 @@ export default {
       description: "Over the years I've became a master of salads, I can make you a salad from just about anything.",
       tags: ["Salad", "Healthy", "Perfect"],
       createdAt: Date.now(),
-      rating: 2,
       active: true,
     }
   },
@@ -72,7 +70,6 @@ export default {
       description: "Cheap pizzas for everyone! except lactose intolerance people",
       tags: ["Pizza", "Cheap", "Plastic", "Kosher"],
       createdAt: Date.now(),
-      rating: 3.5,
       active: true
     }
   }]

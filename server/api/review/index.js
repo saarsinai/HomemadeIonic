@@ -11,24 +11,30 @@ export default app => {
   let Review = restful.model('review', reviewModel.schema)
     .methods(['get', 'post', 'put', 'delete']);
 
-  let calcAvgRating = function(req, res, next) {
-    let review = req.body;
-    Review.find({reviewed: review.reviewed}, 'rating', (err, reviews) => {
-      if (!reviews || _.isEmpty(reviews)) return next(restful.objectNotFound());
+  let calcAvgRating = (review, next) => {
+    Review.aggregate(
+      { $match: {reviewed: review.reviewed}},
+      { $group: {_id: null, storeScore: { $avg: "$rating" }}
+    }, (err, avg) => { // aggregate does not have a promise
+      if (!avg || _.isEmpty(avg)) return next(restful.objectNotFound());
       if (err) return next(err);
-
-      let mean = _.meanBy(reviews, r => r.rating);
-
-      UserModel.update({_id: review.reviewed}, {$set: {'store.rating': mean}}, (err) => {
-        if (err) return next(err);
-        return next();
-      });
+      UserModel.update({_id: review.reviewed}, {$set: {'store.rating': avg[0].storeScore}}).then(() => next(), next);
     });
   };
 
-  Review.after('post', calcAvgRating);
-  Review.after('put', calcAvgRating);
-  Review.after('delete', calcAvgRating);
+  let calcAvgRatingSchema = function (next) {
+    calcAvgRating(this, next);
+  };
+
+  let calcAvgRatingReq = (req, res, next) => {
+    calcAvgRating(req.body, next);
+  };
+
+  Review.schema.post('save', calcAvgRatingSchema);
+
+  Review.after('put', calcAvgRatingReq);
+//Review.after('delete', calcAvgRatingReq);
 
   Review.register(app, '/api/review');
-};
+}
+;
