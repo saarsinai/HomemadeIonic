@@ -28,13 +28,10 @@ export default app => {
     .methods(['get', 'post', 'put', 'delete'])
     .before('post', function (req, res, next) {
       let imageData = req.body.img;
-      console.log('body: ' + req.body);
-      console.log('imageData: ' + imageData);
       let imgModel = new ImgModel(imageData);
       imgModel.save()
         .then(function (img) {
           req.body.img = img._id;
-          console.logJson(img._id);
           next();
         }, function (err) {
           console.log('err: ' + err);

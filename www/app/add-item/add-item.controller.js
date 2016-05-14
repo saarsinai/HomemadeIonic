@@ -80,7 +80,6 @@ angular.module('homemade')
 
       function onSuccess(imageURI) {
         $scope.item.img = { data:"data:image/jpeg;base64," + imageURI};
-        console.log($scope.item.img.data);
         $scope.nextSlide();
       }
 

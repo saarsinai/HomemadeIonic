@@ -42,14 +42,12 @@ angular.module('homemade')
 
             const Purchase = Resource.new('purchase');
             const Batch = Resource.new('itemBatch');
-            Batch.query({item: $scope.item._id}).$promise
+            Batch.query({item: $scope.item._id, open: true}).$promise
               .then(function (batch) {
-                $scope.batch = batch.filter(function (x) {
-                  return x.open;
-                })[0];
+                $scope.batch = batch[0];
                 var purchase = {
                   item: $scope.item._id,
-                  seller: $scope.item.seller,
+                  seller: $scope.item.seller._id,
                   batch: $scope.batch._id,
                   buyer: Authorization.getUser()._id,
                   time: Date.now(),
@@ -57,11 +55,11 @@ angular.module('homemade')
                   price: res * $scope.item.pricePerItem,
                   isActive: true
                 };
-                Purchase.save(purchase).$promise.then(function (res) {
-                  $scope.purchase = res;
-
-                  $state.go('app.orderItem', {purchaseId: $scope.purchase._id});
-                });
+                return Purchase.save(purchase).$promise
+              })
+              .then(function (res) {
+                $scope.purchase = res;
+                $state.go('app.orderItem', {purchaseId: $scope.purchase._id});
               });
 
           }

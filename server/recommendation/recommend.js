@@ -36,18 +36,26 @@ var buildQuery = (userInfo, from) => {
         .forEach(filename => functions.concat(require(__dirname + '/query-functions/' + filename).default(userInfo)));
 
       var query = {
-        "from" : from, "size" : 10,
+        "from": from, "size": 10,
         "query": {
-          "function_score": {
-            "functions": functions,
-            "boost_mode": "sum"
-          }
+          "bool": {
+            "filter": [
+              {"term": {"active": true}}
+            ],
+            "must": [{
+              "function_score": {
+                "functions": functions,
+                "boost_mode": "sum"
+              }
+            }
+            ]
+          },
         },
-        "script_fields" : {
-          "distance" : {
-            "script" : {
+        "script_fields": {
+          "distance": {
+            "script": {
               "inline": "doc['location'].distanceInKm(lat,lon)",
-              "params" : userInfo.location
+              "params": userInfo.location
             }
           }
         }

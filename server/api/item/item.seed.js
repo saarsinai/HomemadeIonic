@@ -8,7 +8,7 @@ export default {
   dependencies: [User, Img],
   seed: (users, images) => {
     var items = [];
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 4; i++) {
       var newItems = [{
         "name": "pizza peperoni " + i,
         "seller": users[0]._id,

@@ -52,7 +52,6 @@ export default app => {
 
         geocoder.geocode(address)
           .then(function (location) {
-            console.logJson(location);
             setResponse(res, 200, {lat: location[0].latitude, lon: location[0].longitude});
             return next();
           })
@@ -67,7 +66,6 @@ export default app => {
           .then(user => {
             if (!user) {
               setResponse(res, 400, {authenticated: false});
-              console.log("")
               return next();
             }
 

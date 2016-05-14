@@ -12,24 +12,25 @@ export default {
 
     var pArr = [];
     while (batches.length !== 0) {
-      var batch = batches[Math.floor(Math.random() * batches.length)];
-      var user = users[Math.floor(Math.random() * users.length)];
+      var batch = _.sample(batches);
+      var user = _.sample(users);
       var numToBuy = Math.floor(Math.random() * batch.itemsCount) + 1;
       batch.itemsCount -= numToBuy;
 
-      if (batch.itemsCount < batch.itemsLeft) {
+      if (batch.itemsCount <= batch.itemsLeft) {
         var index = batches.indexOf(batch);
         batches.splice(index, 1);
       }
 
+      var item = _.find(items, {_id: batch.item});
       pArr.push({
           item: batch.item,
           batch: batch._id,
           buyer: user._id,
-          seller: _.find(items, {_id: batch.item}).seller,
+          seller: item.seller,
           time: removeDays(Date.now(), Math.floor(Math.random() * 5)),
           numOfItems: numToBuy,
-          price: Math.floor(Math.random() * 45) + 5,
+          price: numToBuy * item.pricePerItem,
           isActive: true
       });
     }
