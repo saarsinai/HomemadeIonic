@@ -4,7 +4,7 @@ angular.module('homemade')
       url: '/item/orderItem?purchaseId',
       views: {
         'menuContent': {
-          templateUrl: 'app/item2/order-item/order-item.html',
+          templateUrl: 'app/item/order-item/order-item.html',
           controller: 'OrderItemCtrl'
         }
       }

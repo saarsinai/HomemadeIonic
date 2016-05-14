@@ -1,0 +1,70 @@
+<ion-view id="item-edit" class="view-container" view-title="{{item.name}}">
+  <ion-content ng-class="{expanded:isExpanded}">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="loadData()">
+    </ion-refresher>
+    <div class="main-item-image">
+      <img ng-src="{{item.img.data | trusted}}">
+    </div>
+
+    <div class="card">
+      <div class="item item-divider">Item Details</div>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Name</span>
+        <input type="text" placeholder="Title" ng-model="item.name">
+      </label>
+
+      <label class="item item-input item-floating-label padding">
+        <span class="input-label">Price</span>
+        <input type="text" placeholder="Price" ng-model="item.pricePerItem">
+      </label>
+
+      <label class="item item-input item-floating-label padding">
+        <span class="input-label">Details</span>
+        <textarea class="item-description" msd-elastic hmd-hard-maxlength="500" placeholder="Description"
+                  ng-model="item.details"></textarea>
+      </label>
+
+      <div class="padding">
+        <button class="button button-block button-calm" ng-click="saveItem()">
+          SAVE CHANGES
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item item-divider" ng-hide="!batchOpen"> Current Batch</div>
+      <div ng-hide="!batchOpen">
+        <div class="item-background row">
+          <span class="col col-100">
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Begin Date</span>
+                <div class="indent-right-5">{{ batch.beginTime | date}}</div>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Full Amount</span>
+                <div class="indent-right-5">{{ batch.itemsCount }}</div>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Amount Left</span>
+                <div class="indent-right-5">{{ batch.itemsLeft }}</div>
+            </label>
+          </span>
+        </div>
+
+        <button class="col col-center button button-small button-clear button-calm" ng-click="closeBatch()">
+          CLOSE BATCH
+        </button>
+      </div>
+
+      <div class="item item-divider" ng-hide="batchOpen">New Batch</div>
+      <div ng-hide="batchOpen">
+        <button class="col col-center button button-small button-clear button-calm" ng-click="createNewBatch()">
+          CREATE NEW BATCH
+        </button>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

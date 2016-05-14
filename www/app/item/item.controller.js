@@ -4,14 +4,14 @@ angular.module('homemade')
       url: '/item/:itemId',
       views: {
         'menuContent': {
-          templateUrl: 'app/item2/item.html',
+          templateUrl: 'app/item/item.html',
           controller: 'itemController'
         }
       }
     })
   })
   .controller('itemController', ['$scope', '$stateParams', 'Resource', 'Authorization', '$ionicPopup', '$state', 'Authorization',
-    function ($scope, $stateParams, Resource, Authorization, $ionicPopup, $state, Authorization) {
+    function ($scope, $stateParams, Resource, Authorization, $ionicPopup, $state) {
 
       $scope.showPopup = function () {
         $scope.purchase = {}
