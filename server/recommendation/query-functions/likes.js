@@ -5,7 +5,13 @@ export default (userInfo) => {
   return {
     "field_value_factor": {
       "field": "likes",
-      "modifier": "log1p"
+      "modifier": "ln1p",
+      "missing": 1
     },
-    "weight": 0.6
-}};
+    "weight": 0.3
+  };
+
+
+
+  return [];
+};

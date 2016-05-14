@@ -6,11 +6,13 @@ export default (userInfo) => {
     "gauss": {
       "location": {
         "origin": userInfo.location,
-        "offset": "30km",
-        "scale":  "10km"
+        "offset": "1.5km",
+        "scale":  "1km"
       }
     },
     "weight": 1
   };
+
+  return [];
 }
 

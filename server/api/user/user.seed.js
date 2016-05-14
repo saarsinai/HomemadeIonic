@@ -2,6 +2,7 @@
 
 export default {
   seed: () => [{
+    "_id": "5737418c411a61783c5ebf04",
     name: "Kobi Mizrahi",
     email: "kobi@mizrahi.ako",
     password: "1234",
@@ -20,6 +21,7 @@ export default {
     }
   },
   {
+    "_id": "5737418c411a61783c5ebf05",
     name: "Gal Revach",
     email: "gal@space.go",
     password: "Aa12345678",
@@ -38,24 +40,28 @@ export default {
     }
   },
   {
+    "_id": "5737418c411a61783c5ebf06",
     name: "Saar The Hungry",
     email: "me@resturant.yum",
     age: 12,
     password: 'nomNomNom'
   },
   {
+    "_id": "5737418c411a61783c5ebf07",
     name: "Arik Yakuel",
     email: "fun@prisha.idf",
     age: 45,
     password: ':)'
   },
   {
+    "_id": "5737418c411a61783c5ebf08",
     name: "Tamir Lavi",
     email: "tired@work.home",
     age: 23,
     password: '@a12345678'
   },
   {
+    "_id": "5737418c411a61783c5ebf09",
     name: "Omer Shemesh",
     email: "cheap@stomach.com",
     password: "Aa12345678",

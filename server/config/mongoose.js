@@ -5,7 +5,10 @@ import recommendation from '../recommendation'
 export default mongoose => {
   mongoose.Promise = Promise;
 
-  if (process.env.SEED_DB) {
+
+  var shouldSeed = JSON.parse(process.env.SEED_DB.toLowerCase());
+
+  if (shouldSeed) {
     recommendation.initElastic()
       .then(() => seed(mongoose))
       .then(() => {

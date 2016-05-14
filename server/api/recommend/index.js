@@ -25,7 +25,7 @@ var recommend = function(req, res){
     var userInfo = {
       id: userId,
       location: location,
-      tags: [].concat.apply([], purchases.map(p => p.item.tags))
+      tags: _.flatten(purchases.map(p => p.item.tags))
     };
     return recommendation.recommend(userInfo, from);
   }).then(recommendations => {

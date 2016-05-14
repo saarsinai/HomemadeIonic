@@ -8,7 +8,7 @@ export default {
   dependencies: [User, Img],
   seed: (users, images) => {
     var items = [];
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 3; i++) {
       var newItems = [{
         "name": "pizza peperoni " + i,
         "seller": users[0]._id,
@@ -48,7 +48,7 @@ export default {
         {
           "name": "mushroom soup " + i,
           "seller": users[1]._id,
-          "likes": [users[2]._id],
+          "likes": [users[0]._id, users[2]._id, users[4]._id],
           "pricePerItem": 15,
           "details": "soup soup soup soup!! the price is worth it",
           "tags": ["mushroom", "soup", "creamy"],

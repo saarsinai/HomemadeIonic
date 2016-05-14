@@ -1,5 +1,6 @@
 import elastic from 'elasticSearch';
 import fs from 'fs';
+import _ from 'lodash'
 
 export default function recommend(userInfo, from) {
   return new Promise(function (resolve, reject) {
@@ -25,15 +26,16 @@ export default function recommend(userInfo, from) {
 
 var buildQuery = (userInfo, from) => {
   return new Promise(function (resolve, reject) {
-    var functions = [];
+
 
     fs.readdir(__dirname + '/query-functions', (err, files) => {
       if (err) {
         return reject(err);
       }
 
-      files.filter(filename => filename.match(/\.js$/i))
-        .forEach(filename => functions.concat(require(__dirname + '/query-functions/' + filename).default(userInfo)));
+      var functions = _.flatten(
+        files.filter(filename => filename.match(/\.js$/i))
+          .map(filename => require(__dirname + '/query-functions/' + filename).default(userInfo)));
 
       var query = {
         "from": from, "size": 10,
@@ -45,7 +47,7 @@ var buildQuery = (userInfo, from) => {
             "must": [{
               "function_score": {
                 "functions": functions,
-                "boost_mode": "sum"
+                "boost_mode": "replace"
               }
             }
             ]

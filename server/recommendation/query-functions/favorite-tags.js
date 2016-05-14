@@ -8,7 +8,9 @@ export default (userInfo) => {
   return userInfo.tags.map(tag => {
     return {
       "filter": { "term": { "tags": tag }},
-      "weight": 1
+      "weight": 1.01
     }
   });
+
+  return [];
 }

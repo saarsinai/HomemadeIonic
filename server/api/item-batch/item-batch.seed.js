@@ -12,14 +12,14 @@ export default {
         {
           beginTime: removeDays(Date.now(), 20),
           item: item._id,
-          itemsCount: 10,
+          itemsCount: 2,
           itemsLeft: 0,
           open: false
         },
         {
           beginTime: removeDays(Date.now(), 4),
           item: item._id,
-          itemsCount: 10,
+          itemsCount: 2,
           itemsLeft: 2,
           open: true
         }
@@ -28,22 +28,22 @@ export default {
         {
           beginTime: removeDays(Date.now(), 50),
           item: item._id,
-          itemsCount: 30,
+          itemsCount: 3,
           itemsLeft: 0,
           open: false
         },
         {
           beginTime: removeDays(Date.now(), 25),
           item: item._id,
-          itemsCount: 35,
+          itemsCount: 4,
           itemsLeft: 0,
           open: false
         },
         {
           beginTime: removeDays(Date.now(), 6),
           item: item._id,
-          itemsCount: 30,
-          itemsLeft: 15,
+          itemsCount: 3,
+          itemsLeft: 1,
           open: true
         }
       ],
@@ -51,22 +51,22 @@ export default {
         {
           beginTime: removeDays(Date.now(), 20),
           item: item._id,
-          itemsCount: 30,
+          itemsCount: 3,
           itemsLeft: 0,
           open: false
         },
         {
           beginTime: removeDays(Date.now(), 10),
           item: item._id,
-          itemsCount: 35,
+          itemsCount: 1,
           itemsLeft: 0,
           open: false
         },
         {
           beginTime: removeDays(Date.now(), 2),
           item: item._id,
-          itemsCount: 20,
-          itemsLeft: 12,
+          itemsCount: 2,
+          itemsLeft: 1,
           open: true
         }
       ],
@@ -74,29 +74,29 @@ export default {
         {
           beginTime: removeDays(Date.now(), 100),
           item: item._id,
-          itemsCount: 20,
+          itemsCount: 2,
           itemsLeft: 2,
           open: false
         },
         {
           beginTime: removeDays(Date.now(), 20),
           item: item._id,
-          itemsCount: 30,
+          itemsCount: 3,
           itemsLeft: 0,
           open: false
         },
         {
           beginTime: removeDays(Date.now(), 10),
           item: item._id,
-          itemsCount: 35,
+          itemsCount: 3,
           itemsLeft: 0,
           open: false
         },
         {
           beginTime: removeDays(Date.now(), 5),
           item: item._id,
-          itemsCount: 20,
-          itemsLeft: 12,
+          itemsCount: 2,
+          itemsLeft: 1,
           open: true
         }
       ],
@@ -104,8 +104,8 @@ export default {
         {
           beginTime: removeDays(Date.now(), 5),
           item: item._id,
-          itemsCount: 20,
-          itemsLeft: 5,
+          itemsCount: 5,
+          itemsLeft: 3,
           open: true
         }
       ],

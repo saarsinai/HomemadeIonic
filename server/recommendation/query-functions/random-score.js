@@ -8,4 +8,6 @@ export default (userInfo) => {
     },
     "weight": 0.2
   };
+
+  return [];
 }
