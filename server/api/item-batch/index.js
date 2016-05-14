@@ -10,7 +10,7 @@ var updateItemInElastic = batch => {
   return ItemBatchModel.count({beginTime: {$gt: batch.beginTime}, item: batch.item})
     .then((count) => {
       if (count === 0) {
-        return updateItemActiveness(batch.item, batch.open && batch.itemsLeft !== 0);
+        return updateItemActiveness(batch.item, batch.open);
       }
     });
 };
@@ -25,13 +25,6 @@ export default app => {
 
   const ItemBatch = restful.model('itemBatch', ItemBatchModel.schema)
     .methods(['get', 'post', 'put', 'delete']);
-
-  ItemBatch.before('put', (req, res, next) => {
-    var batch = req.body;
-    updateItemInElastic(batch)
-      .catch(console.errorJson);
-    return next();
-  });
 
   ItemBatch.register(app, '/api/itemBatch');
 };
