@@ -5,7 +5,7 @@ var client = new elastic.Client({
   //log: 'trace'
 });
 
-var index = 'homemade';
+var index = process.env.ELASTIC_INDEX;
 var type = 'items';
 var logError = (err) => console.error(JSON.stringify(err));
 

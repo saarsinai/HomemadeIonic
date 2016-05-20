@@ -11,7 +11,7 @@ export default function recommend(userInfo, from) {
       });
 
       return client.search({
-        index: 'homemade',
+        index: process.env.ELASTIC_INDEX,
         type: 'items',
         body: query
       });

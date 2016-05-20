@@ -6,7 +6,7 @@ var client = new elastic.Client({
 });
 
 export default function () {
-  var index = 'homemade';
+  var index = process.env.ELASTIC_INDEX;
 
   return client.indices.exists({index: index})
     .then((exists) => {
