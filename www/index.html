@@ -3,9 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta http-equiv="Content-Security-Policy"
-          content="default-src *; style-src 'self' 'unsafe-inline' http://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:35730 http://maps.google.com http://maps.googleapis.com ; img-src 'self' http://maps.googleapis.com http://csi.gstatic.com http://maps.gstatic.com data:; media-src *">
-    <allow-navigation href="*"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src &apos;self&apos; &apos;unsafe-inline&apos; http://fonts.googleapis.com; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos; http://localhost:35730 http://maps.google.com http://maps.googleapis.com ; img-src &apos;self&apos; http://maps.googleapis.com http://csi.gstatic.com http://maps.gstatic.com data:; media-src *">
+    <allow-navigation href="*">
     <title>Hememade.</title>
     <!--<link href='https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic' rel='stylesheet' type='text/css'>-->
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -13,6 +12,7 @@
     <link href="lib/ionic-material/dist/ionic.material.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+<script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
     <script src="lib/angular-resource/angular-resource.min.js"></script>
     <script src="lib/ionic-material/dist/ionic.material.min.js"></script>
     <script src="lib/ion-md-input/js/ion-md-input.min.js"></script>
@@ -23,11 +23,12 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="lib/ionic-wizard/dist/ion-wizard.js"></script>
-    <script src="cordova.js"></script>
+    <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+<!-- <script src="cordova.js"></script> -->
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
-  </head>
+  </allow-navigation></head>
   <body ng-app="homemade">
     <ion-nav-view></ion-nav-view>
 
@@ -54,15 +55,15 @@
     <script src="app/directives/review-display/review-display.controller.js"></script>
     <script src="app/directives/review-header/review-header.controller.js"></script>
     <script src="app/directives/seller-item-purchase/seller-item-purchase.controller.js"></script>
-    <script src="app/directives/store-item/store-item.controller.js"></script>
     <script src="app/directives/star-rating/star-rating.controller.js"></script>
+    <script src="app/directives/store-item/store-item.controller.js"></script>
     <script src="app/directives/user-item-purchase/user-item-purchase.controller.js"></script>
     <script src="app/item/item-edit/item-edit.controller.js"></script>
     <script src="app/item/order-item/order-item.controller.js"></script>
     <script src="app/services/save-overlay/save-overlay.service.js"></script>
+    <script src="app/store/add-review/add-review.controller.js"></script>
     <script src="app/store/purchases/purchases.controller.js"></script>
     <script src="app/store/reviews/reviews.controller.js"></script>
-    <script src="app/store/add-review/add-review.controller.js"></script>
     <script src="app/store/store-edit/store-edit.controller.js"></script>
     <script src="app/store/purchases/purchases-tab/purchases-tab.controller.js"></script>
     <!-- endinjector -->
