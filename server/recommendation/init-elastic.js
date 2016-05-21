@@ -21,6 +21,9 @@ export default function () {
         type: 'items',
         body: {
           "properties": {
+            "name": {
+              type: "string"
+            },
             "location": {
               "type": "geo_point",
               "lat_lon": true

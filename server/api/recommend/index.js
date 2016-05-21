@@ -18,8 +18,9 @@ var recommend = function(req, res){
   var userId = req.params.userId;
   var location = {
     lat: Number(req.param('lat')),
-    lon: Number(req.param('lon')),
+    lon: Number(req.param('lon'))
   };
+  var searchName = req.param('searchName');
 
   PurchaseModel.find({buyer: userId}).populate('item').then(purchases => {
     var userInfo = {
@@ -27,7 +28,7 @@ var recommend = function(req, res){
       location: location,
       tags: _.flatten(purchases.map(p => p.item.tags))
     };
-    return recommendation.recommend(userInfo, from);
+    return recommendation.recommend(userInfo, from, searchName);
   }).then(recommendations => {
     ItemModel.find({'_id': { $in: recommendations.map(r => r._id)}}).populate('seller').populate('img').then(items => {
       var itemsWithDistance = recommendations.map(recommendation => {

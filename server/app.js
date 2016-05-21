@@ -9,8 +9,8 @@ import babelRegister from 'babel-register';
 const mongoose = restful.mongoose;
 const app = express();
 
-console.logJson = (obj) => console.log(JSON.stringify(obj));
-console.errorJson = (obj) => console.error(JSON.stringify(obj));
+console.logJson = (obj) => console.log(JSON.stringify(obj, null, '  '));
+console.errorJson = (obj) => console.error(JSON.stringify(obj, null, '  '));
 
 babelRegister();
 expressConfig(app);

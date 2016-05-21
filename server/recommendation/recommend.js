@@ -2,9 +2,9 @@ import elastic from 'elasticSearch';
 import fs from 'fs';
 import _ from 'lodash'
 
-export default function recommend(userInfo, from) {
+export default function recommend(userInfo, from, searchName) {
   return new Promise(function (resolve, reject) {
-    buildQuery(userInfo, from).then((query) => {
+    buildQuery(userInfo, from, searchName).then((query) => {
       var client = new elastic.Client({
         host: process.env.ELASTIC_URI,
         //log: 'trace'
@@ -24,7 +24,7 @@ export default function recommend(userInfo, from) {
   });
 };
 
-var buildQuery = (userInfo, from) => {
+var buildQuery = (userInfo, from, searchName) => {
   return new Promise(function (resolve, reject) {
 
 
@@ -37,6 +37,21 @@ var buildQuery = (userInfo, from) => {
         files.filter(filename => filename.match(/\.js$/i))
           .map(filename => require(__dirname + '/query-functions/' + filename).default(userInfo)));
 
+      var functionScore = {
+        "function_score": {
+          "functions": functions,
+          "boost_mode": "multiply"
+        }
+      };
+
+      var matchSearch = {
+        match_phrase_prefix: {
+          name: searchName
+        }
+      };
+
+      var hasSearch = searchName && searchName.length > 0;
+
       var query = {
         "from": from, "size": 10,
         "query": {
@@ -44,14 +59,9 @@ var buildQuery = (userInfo, from) => {
             "filter": [
               {"term": {"active": true}}
             ],
-            "must": [{
-              "function_score": {
-                "functions": functions,
-                "boost_mode": "replace"
-              }
-            }
-            ]
-          },
+            // add the search query only if a search phrase is provided
+            "must": hasSearch ? [functionScore, matchSearch] : [functionScore]
+          }
         },
         "script_fields": {
           "distance": {

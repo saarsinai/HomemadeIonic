@@ -16,6 +16,8 @@ angular.module('homemade')
   })
   .controller('itemWallCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView, Authorization) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
+
+
     const Recommend = Resource.new("recommended", {'toUser': {method: 'GET', isArray: true}});
 
     var user = Authorization.getUser();
@@ -46,7 +48,7 @@ angular.module('homemade')
     };
 
     $scope.loadMoreData = function () {
-      Recommend.toUser({id: user._id, lat: position.coords.latitude, lon: position.coords.longitude, from: $scope.items.length}).$promise
+      Recommend.toUser({id: user._id, searchName: $scope.search.text, lat: position.coords.latitude, lon: position.coords.longitude, from: $scope.items.length}).$promise
         .then(function (items) {
           $scope.reachedEnd = items.length < 10;
           Array.prototype.push.apply($scope.items, items);
@@ -60,6 +62,18 @@ angular.module('homemade')
           $scope.$broadcast('scroll.refreshComplete');
           $scope.$broadcast('scroll.infiniteScrollComplete');
         });
+    };
+
+    $scope.search = {
+      searching: false,
+      searchRequest: function () {
+        $scope.loadInitialData();
+      },
+      clear: function () {
+        $scope.search.searching = false;
+        $scope.search.text = undefined;
+        $scope.loadInitialData();
+      }
     };
 
     $scope.loadInitialData();

@@ -1,6 +1,21 @@
-<ion-view id="item-wall" view-title="Hot Dishes">
-  <ion-content ng-class="{expanded:isExpanded}">
+<ion-view id="item-wall">
+  <ion-nav-title>
+    <span>
+    <span class="bar bar-header item-input-inset">
+      <span class="item-input-wrapper textbox-search">
+        <input ng-model="search.text" type="search" placeholder="Search" ng-focus="search.searching = true">
+        <i id="clear-button" class="icon ion-android-cancel placeholder-icon" ng-show="search.searching" ng-click="search.clear()"></i>
+      </span>
+      <span>
+        <a id="search-button" class="button button-icon icon ion-android-search positive" ng-show="search.searching"
+           ng-click="search.searchRequest()"></a>
+      </span>
+    </span>
 
+
+      </span>
+  </ion-nav-title>
+  <ion-content ng-class="{expanded:isExpanded}">
     <ion-refresher
       pulling-text="Pull to refresh..."
       on-refresh="refreshData()">
