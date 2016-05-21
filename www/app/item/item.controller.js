@@ -73,7 +73,9 @@ angular.module('homemade')
           params: {populate: 'seller img'}
         }
       });
+      const ItemBatch = Resource.new("itembatch");
       const userId = Authorization.getUser()._id;
+      $scope.batchOpen = false;
 
       $scope.loadData = function () {
         Item.ofSeller({id: $stateParams.itemId})
@@ -86,6 +88,22 @@ angular.module('homemade')
             } else {
               $scope.LikeTitle = "like";
             }
+          }, function (err) {
+            console.error('Response error', err);
+          })
+          .finally(function () {
+            $scope.$broadcast('scroll.refreshComplete');
+          });
+
+        ItemBatch.query({item: $stateParams.itemId, open: true})
+          .$promise.then(function (itemBatches) {
+            var batches = itemBatches;
+
+            if (batches.length != 0) {
+              $scope.batch = batches[0];
+              $scope.batchOpen = true;
+            }
+
           }, function (err) {
             console.error('Response error', err);
           })

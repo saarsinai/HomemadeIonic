@@ -27,6 +27,15 @@
       </span>
     </div>
 
+    <div class="batch row" ng-show="batchOpen">
+      <span class="batch-number"> {{batch.itemsLeft}} </span>
+      <span class="batch-text">&nbsp;dishes left!</span>
+    </div>
+
+    <div class="batch row" ng-show="!batchOpen">
+      <span class="batch-text">No dishes left...</span>
+    </div>
+
     <div class="likes row">
       <span class="liked-number"> {{item.likes.length}} </span>
       <span class="liked">&nbsp;people liked this dish!</span>
@@ -35,6 +44,7 @@
     <div class="item-info row">
       <span class="details col col-100">{{item.details}}</span>
     </div>
+
     <button class="button button-small button-clear button-calm like-button center" ng-click="likeItem()">
       {{ LikeTitle }}
     </button>
