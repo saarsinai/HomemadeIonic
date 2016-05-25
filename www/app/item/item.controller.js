@@ -59,7 +59,7 @@ angular.module('homemade')
               })
               .then(function (res) {
                 $scope.purchase = res;
-                $state.go('app.orderItem', {purchaseId: $scope.purchase._id});
+                $state.go('app.itemOrdered', {purchaseId: $scope.purchase._id});
               });
 
           }

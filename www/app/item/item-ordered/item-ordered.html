@@ -1,0 +1,39 @@
+<ion-view id="item-ordered" view-title="Order Complete!">
+  <ion-content ng-class="{expanded:isExpanded}">
+    <div class="card">
+      <img class="fun-image" src="./assets/pooh.gif">
+    </div>
+    <div class="card">
+      <div class="item item-divider">Order Details</div>
+      <div class="item">
+        <div class="row">
+          <span class="detail-title col col-25">Item name</span> <span class="col col-75">{{purchase.item.name}}</span>
+        </div>
+        <div class="row">
+          <span class="detail-title col col-25">Seller</span> <span class="col col-75">{{purchase.seller.store.name}}</span>
+        </div>
+        <div class="row">
+          <span class="detail-title col col-25">Quantity</span> <span class="col col-75">{{purchase.numOfItems}}</span>
+        </div>
+        <div class="row">
+          <span class="detail-title col col-25">Price</span> <span class="col col-75">{{purchase.price}}</span>
+        </div>
+        <div class="row">
+          <span class="detail-title col col-25">Address</span> <span class="col col-75">{{purchase.seller.store.address}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="item other-actions">
+      <div class="row">
+        <button class="button icon-left ion-map button-block button-calm" ng-click="navigateToSeller()">
+          Navigate to seller
+        </button>
+      </div>
+      <a class="row" ui-sref="app.addReview({sellerId: purchase.seller._id})">
+        <button class="button icon-left ion-android-star button-block button-calm">
+          Review the seller
+        </button>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>
