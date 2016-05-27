@@ -13,6 +13,8 @@ angular.module('homemade')
   .controller('StoreEditCtrl', function ($scope, Resource, ionicMaterialInk, ionicMaterialMotion, initIonicView, $ionicPopup, Authorization, saveOverlay) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
 
+    const SellerRecommends = Resource.new("sellerRecommend", {'toUser': {method: 'GET', isArray: true}});
+
     const User = Resource.new("user", {
       'items': {method: 'GET', relativeUrl: 'items', detail: true, isArray: true},
       'locate': {method: 'GET', relativeUrl: 'locate', detail: false, isArray: false}
@@ -32,6 +34,7 @@ angular.module('homemade')
     $scope.title = $scope.isNew ? 'Create Your Store' : 'Edit Your Store';
     $scope.saveButtonText = $scope.isNew ? 'Create Store' : 'Save Changes';
 
+    // Seller has store
     if (!$scope.isNew) {
       User.items({id: $scope.user._id}).$promise
         .then(function (items) {
@@ -44,6 +47,15 @@ angular.module('homemade')
           $scope.reviews = reviews;
         })
         .catch(console.errorJson);
+
+      SellerRecommends.toUser({id: $scope.user._id}).$promise
+        .then(function (topTags) {
+          $scope.topTags = topTags;
+        })
+        .catch(function (err) {
+          // TODO: show error message
+          console.log(JSON.stringify(err));
+        });
     }
 
     $scope.addressChanged = function () {
