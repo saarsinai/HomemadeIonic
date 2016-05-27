@@ -1,12 +1,6 @@
-<ion-view id="item-edit" class="view-container" view-title="{{item.name}}">
+<ion-view id="item-edit" class="view-container" view-title="Edit {{item.name}}">
   <ion-content ng-class="{expanded:isExpanded}">
-    <ion-refresher
-      pulling-text="Pull to refresh..."
-      on-refresh="loadData()">
-    </ion-refresher>
-    <div class="main-item-image">
-      <img ng-src="{{item.img.data | trusted}}">
-    </div>
+    <hmd-item-image image="item.img" ></hmd-item-image>
 
     <div class="card">
       <div class="item item-divider">Item Details</div>

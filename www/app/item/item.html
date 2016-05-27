@@ -4,9 +4,7 @@
       pulling-text="Pull to refresh..."
       on-refresh="loadData()">
     </ion-refresher>
-    <div class="main-item-image">
-      <img ng-src="{{item.img.data | trusted}}">
-    </div>
+    <hmd-item-image image="item.img" readonly="true" ></hmd-item-image>
     <div class="item-background row">
       <span class="col col-80">
           <div class="dish-header">

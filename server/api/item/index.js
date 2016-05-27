@@ -13,6 +13,20 @@ var logError = err => console.errorJson(err);
 
 export default app => {
 
+  const saveImage = (item, next) => {
+    let imageData = item.img;
+    let imgModel = new ImgModel(imageData);
+    imgModel.isNew = imgModel._id === undefined;
+    imgModel.save()
+      .then(function (img) {
+        item.img = img._id;
+        return next();
+      }, function (err) {
+        console.log('err: ' + err);
+        return next(err);
+      });
+  };
+
   // it's connected to the schema because seed requests also pass here
   ItemModel.schema.pre('save', function (next) {
     let item = this;
@@ -27,21 +41,15 @@ export default app => {
   const Item = restful.model('item', ItemModel.schema)
     .methods(['get', 'post', 'put', 'delete'])
     .before('post', function (req, res, next) {
-      let imageData = req.body.img;
-      let imgModel = new ImgModel(imageData);
-      imgModel.save()
-        .then(function (img) {
-          req.body.img = img._id;
-          next();
-        }, function (err) {
-          console.log('err: ' + err);
-          next(err);
-        });
+      saveImage(req.body, next);
     })
     .before('put', function (req, res, next) {
       let item = req.body;
       updateItemDetails(item._id, item.name, item.tags, item.likes).catch(next);
       next();
+    })
+    .before('put', function (req, res, next) {
+      saveImage(req.body, next);
     })
     .before('delete', function (req, res, next) {
       let itemId = req.params.id;
