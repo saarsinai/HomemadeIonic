@@ -40,6 +40,25 @@ export default function () {
           }
         }
       });
+    }).then(() => {
+      return client.indices.putMapping({
+        index: index,
+        type: 'purchases',
+        body: {
+          "properties": {
+            "location": {
+              "type": "geo_point",
+              "lat_lon": true
+            },
+            tags: {
+              type: "string"
+            },
+            date: {
+              type: "date"
+            }
+          }
+        }
+      });
     })
     .then(() => {
       // do another mapping

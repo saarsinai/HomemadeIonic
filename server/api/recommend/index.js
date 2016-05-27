@@ -5,7 +5,6 @@ import PurchaseModel from '../purchase/purchase.model';
 import recommendation from '../../recommendation';
 import _ from 'lodash';
 var mongoose = require('mongoose');
-var id = mongoose.Types.ObjectId('4edd40c86762e0fb12000003');
 
 var logAndReturn = err => {
   console.logJson(err);
@@ -46,3 +45,5 @@ var recommend = function(req, res){
 export default app => {
   app.get('/api/recommended/:userId', recommend);
 };
+
+

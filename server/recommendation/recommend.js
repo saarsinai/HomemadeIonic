@@ -53,7 +53,8 @@ var buildQuery = (userInfo, from, searchName) => {
       var hasSearch = searchName && searchName.length > 0;
 
       var query = {
-        "from": from, "size": 10,
+        "from": from,
+        "size": 10,
         "query": {
           "bool": {
             "filter": [
