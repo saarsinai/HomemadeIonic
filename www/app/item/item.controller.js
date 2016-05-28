@@ -22,9 +22,9 @@ angular.module('homemade')
           title: 'Enter order amount',
           scope: $scope,
           buttons: [
-            {text: 'Cancel'},
+            {text: '<div style="font-size: 8px">Cancel</div>'},
             {
-              text: '<b>Finish</b>',
+              text: '<div style="font-size: 8px">Finish</div>',
               type: 'button-positive',
               onTap: function (e) {
                 if (!$scope.purchase.amount) {
@@ -61,7 +61,6 @@ angular.module('homemade')
                 $scope.purchase = res;
                 $state.go('app.itemOrdered', {purchaseId: $scope.purchase._id});
               });
-
           }
         });
 
