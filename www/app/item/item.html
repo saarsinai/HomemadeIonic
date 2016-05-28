@@ -25,6 +25,10 @@
       </span>
     </div>
 
+    <div class="item-info row">
+      <span class="details col col-100">{{item.details}}</span>
+    </div>
+
     <div class="batch row" ng-show="batchOpen">
       <span class="batch-number"> {{batch.itemsLeft}} </span>
       <span class="batch-text">&nbsp;dishes left!</span>
@@ -34,20 +38,34 @@
       <span class="batch-text">No dishes left...</span>
     </div>
 
+    <div>
+      <div class="batch" ng-show="!isReady && batchOpen">
+        <span class="row">Dishes ready in:</span>
+        <span class="row"><timer end-time=endTime>{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer></span>
+      </div>
+    </div>
+
+    <div>
+      <div class="batch" ng-show="isReady && batchOpen">
+        <span class="row">Dishes Ready!!!</span>
+      </div>
+    </div>
+
     <div class="likes row">
-      <span class="liked-number"> {{item.likes.length}} </span>
-      <span class="liked">&nbsp;people liked this dish!</span>
+      <span class="col-70">
+        <span class="liked-number"> {{item.likes.length}} </span>
+        <span class="liked">&nbsp;people liked this dish!</span>
+      </span>
+      <span class="col-30">
+        <button class="button button-small button-clear button-calm like-button center" ng-click="likeItem()">
+          {{ LikeTitle }}
+        </button>
+      </span>
     </div>
 
-    <div class="item-info row">
-      <span class="details col col-100">{{item.details}}</span>
-    </div>
-
-    <button class="button button-small button-clear button-calm like-button center" ng-click="likeItem()">
-      {{ LikeTitle }}
-    </button>
     <button class="button button-block button-calm order-button" ng-click="showPopup()">
       ORDER
     </button>
+
   </ion-content>
 </ion-view>

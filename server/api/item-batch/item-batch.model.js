@@ -12,6 +12,7 @@ const ItemBatchSchema = new Schema({
   item: {type: Schema.Types.ObjectId, ref: 'Item'},
   itemsCount: { type: Number, min: 1},
   itemsLeft: { type: Number, min: 0},
+  timeReady: Date,
   open: Boolean,
 });
 

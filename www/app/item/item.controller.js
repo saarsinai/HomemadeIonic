@@ -10,7 +10,7 @@ angular.module('homemade')
       }
     })
   })
-  .controller('itemController', ['$scope', '$stateParams', 'Resource', 'Authorization', '$ionicPopup', '$state', 'Authorization',
+  .controller('itemController', ['$scope', '$stateParams', 'Resource', 'Authorization', '$ionicPopup', '$state',
     function ($scope, $stateParams, Resource, Authorization, $ionicPopup, $state) {
 
       $scope.showPopup = function () {
@@ -76,6 +76,7 @@ angular.module('homemade')
       const ItemBatch = Resource.new("itembatch");
       const userId = Authorization.getUser()._id;
       $scope.batchOpen = false;
+      $scope.isReady = false;
 
       $scope.loadData = function () {
         Item.ofSeller({id: $stateParams.itemId})
@@ -102,6 +103,12 @@ angular.module('homemade')
             if (batches.length != 0) {
               $scope.batch = batches[0];
               $scope.batchOpen = true;
+
+              $scope.endTime = $scope.batch.timeReady;
+              if(Date.parse($scope.batch.timeReady)-Date.parse(new Date())<0)
+              {
+                $scope.isReady = true;
+              }
             }
 
           }, function (err) {
@@ -111,6 +118,10 @@ angular.module('homemade')
             $scope.$broadcast('scroll.refreshComplete');
           });
       };
+
+      var add_minutes =  function (dt, minutes) {
+        return new Date(dt.getTime() + minutes*60000);
+      }
 
 
       $scope.likeItem = function () {

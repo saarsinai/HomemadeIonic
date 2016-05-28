@@ -16,6 +16,11 @@ export function removeDays(date, days) {
   return d.getTime();
 };
 
+export function add_minutes(dt, minutes) {
+
+  return new Date(dt + minutes*60000);
+}
+
 export function setResponse(res, statusCode, data){
   res.locals.status_code = statusCode;
   res.locals.bundle = data;

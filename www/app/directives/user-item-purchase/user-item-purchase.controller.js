@@ -15,7 +15,13 @@ angular.module('homemade')
           selector: '.push-down'
         });
 
-
+        // Get batch end time
+        $scope.isReady = false;
+        $scope.endTime = $scope.purchase.batch.timeReady;
+        if(Date.parse($scope.purchase.batch.timeReady)-Date.parse(new Date())<0)
+        {
+          $scope.isReady = true;
+        }
       }
     };
 

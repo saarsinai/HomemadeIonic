@@ -58,41 +58,47 @@ angular.module('homemade')
 
       // An elaborate, custom popup
       var myPopup = $ionicPopup.show({
-        template: '<input type="text" ng-model="batch.amount">',
-        title: 'Enter batch amount',
+        template: 'Amount: <input type="text" ng-model="batch.amount">' +
+                  'Time: <input type="time" ng-model="batch.time">',
+        title: 'Enter batch amount and time till it\'s ready (in minutes)',
         scope: $scope,
         buttons: [
-          {text: 'Cancel'},
+          {text: '<div style="font-size: 8px">Cancel</div>'},
           {
-            text: '<b>Finish</b>',
+            text: '<div style="font-size: 8px">Finish</div>',
             type: 'button-positive',
             onTap: function (e) {
-              if (!$scope.batch.amount) {
-                //don't allow the user to close unless he enters wifi password
+              if (!$scope.batch.amount || !$scope.batch.time) {
+                //don't allow the user to close unless he enters the details
                 e.preventDefault();
               } else {
-                return $scope.batch.amount;
+                return [];
               }
             }
           },
         ]
-      });
-      myPopup.then(function (res) {
-        if (res && res > 0) {
+      }).then(function () {
+
+          var now = new Date();
+          var timeReady = add_minutes(now, $scope.batch.time);
 
           var batch = {
-            beginTime: Date.now(),
+            beginTime: now,
             item: $scope.item._id,
             itemsCount: $scope.batch.amount,
             itemsLeft: $scope.batch.amount,
+            timeReady: timeReady,
             open: true
           }
 
-          ItemBatch.save(batch).$promise.then(function (res) {
-            $scope.batch = res;
-            $scope.batchOpen = true;
-          });
-        }
+          ItemBatch.save(batch).$promise
+            .then(function (res) {
+              $scope.batch = res;
+              $scope.batchOpen = true;
+            })
+            .catch(function (err) {
+              console.log(err);
+            });
       });
     };
 
@@ -107,6 +113,15 @@ angular.module('homemade')
         console.error('Response error', err);
       });
     };
+
+    var add_minutes =  function (dt, dt_minutes) {
+
+      var hours = dt_minutes.getHours()*60;
+      var minutes = dt_minutes.getMinutes();
+      var allMinutes = hours + minutes;
+
+      return new Date(dt.getTime() + allMinutes*60000);
+    }
 
     var validateItem = function (item) {
 

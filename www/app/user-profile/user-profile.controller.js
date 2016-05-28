@@ -18,7 +18,7 @@ angular.module('homemade')
       'ofUser': {
         method: 'GET',
         isArray: true,
-        params: {sort: '-time', populate: 'item'}
+        params: {sort: '-time', populate: 'item batch'}
       }
     });
 
