@@ -1,0 +1,31 @@
+{
+  "name": "timer",
+  "main": "timer.js",
+  "version": "0.0.1",
+  "authors": [
+    "Kim Joar Bekkelund <kjbekkelund@gmail.com>"
+  ],
+  "description": "Simple timer utility",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "sinonjs": "~1.7.3"
+  },
+  "homepage": "https://github.com/kjbekkelund/timer",
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.1",
+    "commit": "8a605ed387695dda513a0f77afea9725bf32fa5f"
+  },
+  "_source": "https://github.com/kjbekkelund/timer.git",
+  "_target": "^0.0.1",
+  "_originalSource": "timer",
+  "_direct": true
+}
