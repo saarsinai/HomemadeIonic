@@ -40,7 +40,30 @@ angular.module('homemade')
       };
 
       var locationOptions = {maximumAge: 3000, timeout: 5000, enableHighAccuracy: true};
-      navigator.geolocation.getCurrentPosition(onSuccess, onError, locationOptions);
+
+      if (typeof cordova !== 'undefined') {
+        cordova.plugins.diagnostic.requestRuntimePermission(function (status) {
+          switch (status) {
+            case cordova.plugins.diagnostic.permissionStatus.GRANTED:
+              console.log("Permission granted to use the location");
+              navigator.geolocation.getCurrentPosition(onSuccess, onError, locationOptions);
+              break;
+            case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
+              console.log("Permission to use the location has not been requested yet");
+              break;
+            case cordova.plugins.diagnostic.permissionStatus.DENIED:
+              console.log("Permission denied to use the location - ask again?");
+              break;
+            case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
+              console.log("Permission permanently denied to use the location - guess we won't be using it then!");
+              break;
+          }
+        }, function (error) {
+          console.error("The following error occurred: " + error);
+        }, cordova.plugins.diagnostic.permission.ACCESS_FINE_LOCATION);
+      } else {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, locationOptions);
+      }
     };
 
     $scope.refreshData = function () {
