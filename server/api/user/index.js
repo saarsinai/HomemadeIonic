@@ -29,6 +29,7 @@ export default app => {
       return next();
     })
     .after('put', (req, res, next) => {
+      let user = req.body;
       res.locals.bundle = {token: jwt.sign(user, 'homemade-secret', {expiresIn: 60 * 60 * 5})};
       next();
     })

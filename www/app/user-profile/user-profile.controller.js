@@ -10,7 +10,7 @@ angular.module('homemade')
       }
     })
   })
-  .controller('UserProfileCtrl', function ($scope, $stateParams, Resource, image, $timeout, $ionicPopup, ionicMaterialInk, ionicMaterialMotion, Authorization, initIonicView, saveOverlay) {
+  .controller('UserProfileCtrl', function ($scope, $stateParams, Resource, image, $timeout, $ionicPopup, ionicMaterialInk, ionicMaterialMotion, Authorization, initIonicView, saveOverlay, $q, loadingBackdrop) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
 
     const User = Resource.new("user");
@@ -24,26 +24,31 @@ angular.module('homemade')
 
     $scope.profile = Authorization.getUser();
 
-    Purchase.ofUser({buyer: $scope.profile._id}).$promise
-      .then(function (purchases) {
-        const Img = Resource.new("img");
+    var loadDataFromServer = function () {
+      return Purchase.ofUser({buyer: $scope.profile._id}).$promise
+        .then(function (purchases) {
+          $scope.purchases = purchases;
+          const Img = Resource.new("img");
 
-        // TODO 1: fix this horrible query
-        // make better query on the server side that populate purchase.item.img
-        // using one query and not many query per img
-        angular.forEach(purchases, function (purchase, key) {
-          Img.get({id: purchase.item.img}).$promise.then(function (image, err) {
-            if (err) {
-              console.log(JSON.stringify(err))
-            }
-            purchase.item.img = image;
-          })
-        })
-        $scope.purchases = purchases;
+          // TODO 1: fix this horrible query
+          // make better query on the server side that populate purchase.item.img
+          // using one query and not many query per img
+          var promises = purchases.map(function (purchase) {
+            return Img.get({id: purchase.item.img}).$promise;
+          });
+
+          return $q.all(promises);
+        });
+    };
+
+    loadingBackdrop(loadDataFromServer)
+      .then(function (images) {
+        angular.forEach($scope.purchases, function (purchase, key) {
+          purchase.item.img = images[key];
+        });
       });
 
     var validateUser = function (profile) {
-
       if (!profile.name || profile.name.length === 0) {
         $ionicPopup.alert({
           title: 'Cannot save user',

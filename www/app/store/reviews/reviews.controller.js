@@ -10,7 +10,7 @@ angular.module('homemade')
       }
     })
   })
-  .controller('ReviewsCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView) {
+  .controller('ReviewsCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView, loadingBackdrop) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
     const Review = Resource.new("review", {
       'ofSeller': {
@@ -19,16 +19,19 @@ angular.module('homemade')
         isArray: true
       }
     });
+
+    $scope.loadDataFromServer = function () {
+      return Review.ofSeller({reviewed: $stateParams.sellerId}).$promise
+    };
+
     $scope.loadData = function () {
-      Review.ofSeller({reviewed: $stateParams.sellerId}).$promise
-        .then(function (reviews) {
-          $scope.reviews = reviews;
-        }, function (err) {
-          console.error(JSON.stringify(err));
-        })
-        .finally(function () {
-          $scope.$broadcast('scroll.refreshComplete');
-        });
+      $scope.$broadcast('scroll.refreshComplete');
+        loadingBackdrop($scope.loadDataFromServer)
+          .then(function (reviews) {
+            $scope.reviews = reviews;
+          }, function (err) {
+            console.error(JSON.stringify(err));
+          });
     };
 
     $scope.loadData();

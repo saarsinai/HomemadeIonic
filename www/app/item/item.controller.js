@@ -10,8 +10,57 @@ angular.module('homemade')
       }
     })
   })
-  .controller('itemController', ['$scope', '$stateParams', 'Resource', 'Authorization', '$ionicPopup', '$state',
-    function ($scope, $stateParams, Resource, Authorization, $ionicPopup, $state) {
+  .controller('itemController', ['$scope', '$stateParams', 'Resource', 'Authorization', '$ionicPopup', '$state', '$q', 'loadingBackdrop',
+    function ($scope, $stateParams, Resource, Authorization, $ionicPopup, $state, $q, loadingBackdrop) {
+
+      const Item = Resource.new("item", {
+        'ofSeller': {
+          method: 'GET',
+          params: {populate: 'seller img'}
+        }
+      });
+      const ItemBatch = Resource.new("itembatch");
+      const userId = Authorization.getUser()._id;
+
+      $scope.batchOpen = false;
+      $scope.isReady = false;
+
+      $scope.loadDataFromServer = function () {
+        var itemPromise = Item.ofSeller({id: $stateParams.itemId}).$promise;
+        var batchPromise = ItemBatch.query({item: $stateParams.itemId, open: true}).$promise;
+        return $q.all([itemPromise, batchPromise]);
+      };
+
+      $scope.loadData = function () {
+        $scope.$broadcast('scroll.refreshComplete');
+        loadingBackdrop($scope.loadDataFromServer)
+          .then(function (data) {
+            $scope.item = data[0];
+            if ($scope.item.likes.filter(function (currUser) {
+                return currUser === userId;
+              }).length) {
+              $scope.LikeTitle = "dislike";
+            } else {
+              $scope.LikeTitle = "like";
+            }
+
+            var batches = data[1];
+            if (batches.length != 0) {
+              $scope.batch = batches[0];
+              $scope.batchOpen = true;
+
+              $scope.endTime = $scope.batch.timeReady;
+              if(Date.parse($scope.batch.timeReady)-Date.parse(new Date())<0) {
+                $scope.isReady = true;
+              }
+            }
+          })
+          .catch(function (err) {
+            console.error('Response error', err);
+          });
+      };
+
+      $scope.loadData();
 
       $scope.showPopup = function () {
         $scope.purchase = {}
@@ -63,68 +112,13 @@ angular.module('homemade')
               });
           }
         });
-
-      };
-
-      const Item = Resource.new("item", {
-        'ofSeller': {
-          method: 'GET',
-          params: {populate: 'seller img'}
-        }
-      });
-      const ItemBatch = Resource.new("itembatch");
-      const userId = Authorization.getUser()._id;
-      $scope.batchOpen = false;
-      $scope.isReady = false;
-
-      $scope.loadData = function () {
-        Item.ofSeller({id: $stateParams.itemId})
-          .$promise.then(function (item) {
-            $scope.item = item;
-            if ($scope.item.likes.filter(function (currUser) {
-                return currUser === userId;
-              }).length) {
-              $scope.LikeTitle = "dislike";
-            } else {
-              $scope.LikeTitle = "like";
-            }
-          }, function (err) {
-            console.error('Response error', err);
-          })
-          .finally(function () {
-            $scope.$broadcast('scroll.refreshComplete');
-          });
-
-        ItemBatch.query({item: $stateParams.itemId, open: true})
-          .$promise.then(function (itemBatches) {
-            var batches = itemBatches;
-
-            if (batches.length != 0) {
-              $scope.batch = batches[0];
-              $scope.batchOpen = true;
-
-              $scope.endTime = $scope.batch.timeReady;
-              if(Date.parse($scope.batch.timeReady)-Date.parse(new Date())<0)
-              {
-                $scope.isReady = true;
-              }
-            }
-
-          }, function (err) {
-            console.error('Response error', err);
-          })
-          .finally(function () {
-            $scope.$broadcast('scroll.refreshComplete');
-          });
       };
 
       var add_minutes =  function (dt, minutes) {
         return new Date(dt.getTime() + minutes*60000);
-      }
-
+      };
 
       $scope.likeItem = function () {
-
         var UserLikedItem = $scope.item.likes.filter(function (currUser) {
           return currUser === userId;
         });
@@ -144,8 +138,4 @@ angular.module('homemade')
             console.error(JSON.stringify(err));
           });
       };
-
-
-      $scope.loadData();
-
     }]);

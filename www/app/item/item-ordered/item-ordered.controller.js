@@ -10,7 +10,7 @@ angular.module('homemade')
       }
     })
   })
-  .controller('ItemOrderedCtrl', function ($scope, $stateParams, Resource, image, $timeout, $ionicHistory, ionicMaterialInk, ionicMaterialMotion, initIonicView) {
+  .controller('ItemOrderedCtrl', function ($scope, $stateParams, Resource, image, $timeout, $ionicHistory, ionicMaterialInk, ionicMaterialMotion, initIonicView, loadingBackdrop) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
     const Purchase = Resource.new('purchase', {
       'withPopulate': {
@@ -19,11 +19,15 @@ angular.module('homemade')
       }
     });
 
-    Purchase.withPopulate({id: $stateParams.purchaseId}).$promise
+    var loadDataFromServer = function () {
+      return Purchase.withPopulate({id: $stateParams.purchaseId}).$promise;
+    };
+
+    loadingBackdrop(loadDataFromServer)
       .then(function (purchase) {
         $scope.purchase = purchase;
       });
-    
+
     $scope.navigateToSeller = function () {
       var location = $scope.purchase.seller.store.location;
       if (launchnavigator) {

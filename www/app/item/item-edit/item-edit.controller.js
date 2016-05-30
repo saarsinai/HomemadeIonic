@@ -1,5 +1,5 @@
 angular.module('homemade')
-  .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $stateProvider.state('app.itemEdit', {
       url: '/itemEdit/:itemId',
       views: {
@@ -10,7 +10,7 @@ angular.module('homemade')
       }
     })
   })
-  .controller('ItemEditCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView, saveOverlay, $ionicPopup) {
+  .controller('ItemEditCtrl', function ($scope, $stateParams, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView, saveOverlay, $ionicPopup, $q, loadingBackdrop) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
 
     $scope.batchOpen = false;
@@ -24,42 +24,37 @@ angular.module('homemade')
     });
     const ItemBatch = Resource.new("itembatch");
 
+    $scope.loadDataFromServer = function () {
+      var itemPromise = Item.ofSeller({id: $stateParams.itemId}).$promise;
+      var batchPromise = ItemBatch.query({item: $stateParams.itemId, open: true}).$promise;
+      return $q.all([itemPromise, batchPromise]);
+    };
+
     $scope.loadData = function () {
-      Item.ofSeller({id: $stateParams.itemId})
-        .$promise.then(function (item) {
-          $scope.item = item;
+      loadingBackdrop($scope.loadDataFromServer)
+        .then(function (data) {
+          $scope.item = data[0];
 
-        }, function (err) {
-          console.error('Response error', err);
-        })
-        .finally(function () {
-          $scope.$broadcast('scroll.refreshComplete');
-        });
-
-      ItemBatch.query({item: $stateParams.itemId, open: true})
-        .$promise.then(function (itemBatches) {
-          var batches = itemBatches;
-
+          var batches = data[1];
           if (batches.length != 0) {
             $scope.batch = batches[0];
             $scope.batchOpen = true;
           }
-
-        }, function (err) {
-          console.error('Response error', err);
         })
-        .finally(function () {
-          $scope.$broadcast('scroll.refreshComplete');
+        .catch(function (err) {
+          console.error('Response error', err);
         });
     };
+
+    $scope.loadData();
 
     $scope.createNewBatch = function () {
       $scope.batch = {}
 
       // An elaborate, custom popup
-      var myPopup = $ionicPopup.show({
+      $ionicPopup.show({
         template: 'Amount: <input type="text" ng-model="batch.amount">' +
-                  'Time: <input type="time" ng-model="batch.time">',
+        'Time: <input type="time" ng-model="batch.time">',
         title: 'Enter batch amount and time till it\'s ready (in minutes)',
         scope: $scope,
         buttons: [
@@ -78,27 +73,26 @@ angular.module('homemade')
           },
         ]
       }).then(function () {
+        var now = new Date();
+        var timeReady = add_minutes(now, $scope.batch.time);
 
-          var now = new Date();
-          var timeReady = add_minutes(now, $scope.batch.time);
+        var batch = {
+          beginTime: now,
+          item: $scope.item._id,
+          itemsCount: $scope.batch.amount,
+          itemsLeft: $scope.batch.amount,
+          timeReady: timeReady,
+          open: true
+        }
 
-          var batch = {
-            beginTime: now,
-            item: $scope.item._id,
-            itemsCount: $scope.batch.amount,
-            itemsLeft: $scope.batch.amount,
-            timeReady: timeReady,
-            open: true
-          }
-
-          ItemBatch.save(batch).$promise
-            .then(function (res) {
-              $scope.batch = res;
-              $scope.batchOpen = true;
-            })
-            .catch(function (err) {
-              console.log(err);
-            });
+        ItemBatch.save(batch).$promise
+          .then(function (res) {
+            $scope.batch = res;
+            $scope.batchOpen = true;
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
       });
     };
 
@@ -106,21 +100,21 @@ angular.module('homemade')
       $scope.batch.open = false;
 
       ItemBatch.update($scope.batch).$promise.then(function (res) {
-        $scope.batch = {};
-        $scope.batchOpen = false;
-      }
-      ,function (err) {
-        console.error('Response error', err);
-      });
+          $scope.batch = {};
+          $scope.batchOpen = false;
+        }
+        , function (err) {
+          console.error('Response error', err);
+        });
     };
 
-    var add_minutes =  function (dt, dt_minutes) {
+    var add_minutes = function (dt, dt_minutes) {
 
-      var hours = dt_minutes.getHours()*60;
+      var hours = dt_minutes.getHours() * 60;
       var minutes = dt_minutes.getMinutes();
       var allMinutes = hours + minutes;
 
-      return new Date(dt.getTime() + allMinutes*60000);
+      return new Date(dt.getTime() + allMinutes * 60000);
     }
 
     var validateItem = function (item) {
@@ -158,15 +152,12 @@ angular.module('homemade')
 
         Item.update($scope.item).$promise
           .then(function (res) {
-              return saveOverlay.success();
-            },
-            function (err) {
-              console.error(JSON.stringify(err));
-              return saveOverlay.error();
-            });
+            return saveOverlay.success();
+          },
+          function (err) {
+            console.error(JSON.stringify(err));
+            return saveOverlay.error();
+          });
       }
     };
-
-    $scope.loadData();
-
   });
