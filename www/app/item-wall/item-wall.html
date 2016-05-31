@@ -18,6 +18,7 @@
   <ion-content ng-class="{expanded:isExpanded}">
     <ion-refresher
       pulling-text="Pull to refresh..."
+      spinner="lines"
       on-refresh="refreshData()">
     </ion-refresher>
 
@@ -38,6 +39,7 @@
     <ion-infinite-scroll
       ng-if="!reachedEnd"
       on-infinite="loadMoreData()"
+      spinner="lines"
       immediate-check="false"
       distance="20%">
     </ion-infinite-scroll>

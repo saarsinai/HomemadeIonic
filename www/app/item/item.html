@@ -3,6 +3,7 @@
   <ion-content ng-class="{expanded:isExpanded}">
     <ion-refresher
       pulling-text="Pull to refresh..."
+      spinner="lines"
       on-refresh="loadData()">
     </ion-refresher>
     <hmd-item-image image="item.img" readonly="true" ></hmd-item-image>
@@ -41,7 +42,7 @@
 
     <div>
       <div class="batch" ng-show="!isReady && batchOpen">
-        <span class="row">Dishes ready in:</span>
+        <span class="row">Dishes will be ready in:</span>
         <span class="row"><timer end-time=endTime>{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer></span>
       </div>
     </div>

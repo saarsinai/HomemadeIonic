@@ -2,6 +2,7 @@
   <ion-content ng-class="{expanded:isExpanded}">
     <ion-refresher
       pulling-text="Pull to refresh..."
+      spinner="lines"
       on-refresh="loadData()">
     </ion-refresher>
     <div ng-repeat="review in reviews">
