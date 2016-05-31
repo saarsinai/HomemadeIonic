@@ -1,10 +1,11 @@
-<div class="user-item-purchase row">
+<div class="user-item-purchase">
+  <a ui-sref="app.item({itemId: purchase.item._id})">
+    <div class="row">
   <span class="item item-avatar-left col-90">
     <img ng-src="{{purchase.item.img.data | trusted}}">
 
     <span>
-      <h2>{{ purchase.numOfItems }} x
-        <a ui-sref="app.item({itemId: purchase.item._id})">{{purchase.item.name}}</a>
+      <h2>{{ purchase.numOfItems }} x {{purchase.item.name}}
       </h2>
     </span>
 
@@ -24,5 +25,7 @@
   <span class="col-10 col-center">
     <h5>{{purchase.price}}$</h5>
   </span>
+    </div>
+  </a>
 </div>
 
