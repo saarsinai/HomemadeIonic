@@ -1,31 +1,29 @@
 <ion-view view-title="Login" align-title="left">
-    <ion-content class="login-page">
-        <div class="hero no-header flat">
-            <div class="content">
-                <h1 class="login-title">Homemade.</h1>
-                <h4 class="login-subtitle">Where anyone is a chef.</h4>
-            </div>
-        </div>
-        <div class="list input-texts">
-            <ion-md-input ng-model="user.email" placeholder="Email" highlight-color="calm" type="email"></ion-md-input>
-            <ion-md-input ng-model="user.password" placeholder="Password" highlight-color="calm" type="password"></ion-md-input>
-          <div ng-show="signUpMode">
-            <ion-md-input ng-model="user.name" placeholder="Name" highlight-color="calm" type="text"></ion-md-input>
-            <ion-md-input ng-model="user.age" placeholder="Age" highlight-color="calm" type="number"></ion-md-input>
-          </div>
-        </div>
-      <div class="row">
-        <div class="col padding-right" ng-hide="signUpMode">
-          <button ng-click="login()" class="button button-block button-calm">Log in</button>
-        </div>
-        <div class="col">
-          <button ng-click="signUp()" class="col button button-block button-royal">Sign up</button>
-        </div>
+  <ion-content class="login-page">
+    <div class="hero no-header flat">
+      <div class="content">
+        <h1 class="login-title">Homemade.</h1>
+        <h4 class="login-subtitle">Where anyone is a chef.</h4>
       </div>
-<!--        <div class="button-bar social-login">
-            <button class="button button-small button-border icon-left ion-social-google button-assertive-900">Google+</button>
-            <button class="button button-small button-border icon-left ion-social-twitter button-calm-900">Twitter</button>
-            <button class="button button-small button-border icon-left ion-social-facebook button-positive-900">Facebook</button>
-        </div>-->
-    </ion-content>
+    </div>
+    <div class="list input-texts">
+      <form ng-submit="login()">
+        <ion-md-input ng-model="user.email" placeholder="Email" highlight-color="calm" type="email"></ion-md-input>
+        <ion-md-input ng-model="user.password" placeholder="Password" highlight-color="calm"
+                      type="password"></ion-md-input>
+        <div ng-show="signUpMode">
+          <ion-md-input ng-model="user.name" placeholder="Name" highlight-color="calm" type="text"></ion-md-input>
+          <ion-md-input ng-model="user.age" placeholder="Age" highlight-color="calm" type="number"></ion-md-input>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col padding-right" ng-hide="signUpMode">
+        <button ng-click="login()" class="button button-block button-calm">Log in</button>
+      </div>
+      <div class="col">
+        <button ng-click="signUp()" class="col button button-block button-royal">Sign up</button>
+      </div>
+    </div>
+  </ion-content>
 </ion-view>
