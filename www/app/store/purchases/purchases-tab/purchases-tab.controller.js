@@ -44,6 +44,10 @@ angular.module('homemade')
   .controller('PurchasesTabCtrl', function ($scope, $stateParams, $state, Resource, image, $timeout, ionicMaterialInk, ionicMaterialMotion, initIonicView) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
 
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+      viewData.enableBack = true;
+    });
+
     const Purchase = Resource.new("purchase", {
       'getWithItem': {
         method: 'GET',

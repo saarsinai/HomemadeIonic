@@ -23,6 +23,16 @@
         </button>
       </div>
     </div>
+    <div class="card list" ng-hide="isNew">
+        <div class="item item-divider">Purchases</div>
+        <a ui-sref="app.purchases.allPurchases({sellerId: user._id})">
+          <div class="row">
+            <button class="col col-center button button-small button-clear button-calm">
+              ALL PURCHASES
+            </button>
+          </div>
+        </a>
+    </div>
     <div class="list card" ng-hide="isNew">
       <div class="item item-divider">Tip To Increase Your Sells</div>
       <div class="item item-text-wrap">
@@ -56,16 +66,6 @@
         <div class="row">
           <button class="col col-center button button-small button-clear button-calm">
             ALL REVIEWS
-          </button>
-        </div>
-      </a>
-    </div>
-    <div class="card list" ng-hide="isNew">
-      <div class="item item-divider">Purchases</div>
-      <a ui-sref="app.purchases.allPurchases({sellerId: user._id})">
-        <div class="row">
-          <button class="col col-center button button-small button-clear button-calm">
-            ALL PURCHASES
           </button>
         </div>
       </a>
