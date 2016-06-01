@@ -1,22 +1,21 @@
 <ion-view id="add-item" view-title="Publish dish">
   <ion-content ng-class="{expanded:isExpanded}">
-    <ion-slide-box>
+    <div class="dish-avatar">
+      <div class="main-item-image">
+        <img ng-src="{{item.img.data | trusted}}">
+      </div>
+
+      <div class="avatar-fade">
+      </div>
+    </div>
+    <ion-slide-box show-pager="true">
       <ion-slide>
         <div class="slide-form">
-          <div class="dish-avatar">
-            <img ng-show="item.img.data !== undefined" ng-src="{{item.img.data | trusted}}">
-
-            <div class="picture-button" ng-click="takePicture()">
-              <i class="icon ion-ios-camera">
-                <span></br>TAKE PICTURE</span>
-              </i>
-            </div>
-            <div class="dish-title">
-              <label class="item item-input">
-                <input type="text" placeholder="Enter your price" ng-model="item.pricePerItem">
-              </label>
-            </div>
-        </div>
+          <div class="dish-title">
+            <label class="item item-input">
+              <input type="text" placeholder="Enter dish name" ng-model="item.name">
+            </label>
+          </div>
           <div class="item item-text-wrap">
             <label class="item item-input item-floating-label">
               <span class="input-label">Description</span>
@@ -28,19 +27,18 @@
       <ion-slide>
         <div class="box red">
           <label class="item item-input">
-            <input type="text" placeholder="Enter dish name" ng-model="item.name">
+            <input type="text" placeholder="Enter your price" ng-model="item.pricePerItem">
           </label>
         </div>
       </ion-slide>
       <ion-slide>
-        <div class="box red">
-          <h2>Tags slide, for Tamir!</h2>
-        </div>
-        <button ng-click="saveItem()">save</button>
+          <hmd-tag-chip-list class="list" tags="tags"></hmd-tag-chip-list>
+          <button class="save-button" ng-click="saveItem()">save</button>
       </ion-slide>
     </ion-slide-box>
-
-    <button ng-click="previousSlide()">Previous slide!</button>
-    <button ng-click="nextSlide()">Next slide!</button>
   </ion-content>
+  <div class="nav-buttons">
+    <button class="button button-clear icon ion-arrow-right-c next" ng-click="nextSlide()"></button>
+    <button class="button button-clear icon ion-arrow-left-c prev" ng-click="previousSlide()"></button>
+  </div>
 </ion-view>

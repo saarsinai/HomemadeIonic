@@ -1,41 +1,68 @@
 #add-item
 {
-  .slide-form{
-    padding: 0;
 
-    .dish-avatar{
-      background-color: @gray-emphasis;
+  .slider{
+    position: inherit;
+  }
+  background: #faf1e2;
 
-      .picture-button{
-        padding: 10% 0 5% 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        cursor: hand;
-        i{
-          font-size: 3rem;
-          color: rgba(0,0,0,0.25);
+  .main-item-image {
+    position: relative;
 
-          span{
-            margin-top: -20px;
-            font-size: 1rem;
-          }
-        }
-      }
+    img {
+      width: 100%;
+      height: 40%;
+      border-bottom: 3px solid @border;
+    }
 
-      .dish-title{
-        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%);
-        padding: 4% 0 2% 0;
-        .item-input{
-          border: 0;
-          input{
-            color: white;
-            font-size: 1.1rem;
-          }
+    span {
+      letter-spacing: -1px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2%;
+    }
+  }
+
+  .dish-avatar{
+    background-color: @gray-emphasis;
+
+    .picture-button{
+      padding: 10% 0 5% 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      cursor: hand;
+      i{
+        font-size: 3rem;
+        color: rgba(0,0,0,0.25);
+
+        span{
+          margin-top: -20px;
+          font-size: 1rem;
         }
       }
     }
+
+    .avatar-fade{
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(250,241,226,1) 55%);
+      height: 50px;
+    }
+
+    .dish-title{
+      .item-input{
+        border: 0;
+        input{
+          color: white;
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+
+  .slide-form{
+    padding: 0;
+
+
   }
 
   .item{
@@ -50,5 +77,17 @@
     .review-description {
       resize: none;
     }
+  }
+
+    .prev{
+      position: absolute;
+      bottom: 5%;
+      left: 5%;
+    }
+
+    .next{
+      position: absolute;
+      bottom: 5%;
+      right: 5%;
   }
 }

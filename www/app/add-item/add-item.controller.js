@@ -10,7 +10,7 @@ angular.module('homemade')
       }
     })
   })
-  .controller('AddItemCtrl', function ($scope, $stateParams, Resource, image, $timeout, $ionicHistory, ionicMaterialInk, ionicMaterialMotion, initIonicView, Authorization) {
+  .controller('AddItemCtrl', function ($scope, $stateParams, Resource, image, $timeout, $ionicHistory, $ionicSlideBoxDelegate, ionicMaterialInk, ionicMaterialMotion, initIonicView, Authorization) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
 
     $scope.item = {
@@ -21,6 +21,10 @@ angular.module('homemade')
       "likes": [],
       "tags": [],
     };
+
+
+    $scope.tags = ["shit","kaka","pipi", "shit","kaka","pipi","shit","kaka","pipi","shit","kaka","pipi"];
+
 
     const Item = Resource.new("item");
 
@@ -55,7 +59,6 @@ angular.module('homemade')
       })
     };
 
-
     $scope.nextSlide = function () {
       $ionicSlideBoxDelegate.next(true)
     }
@@ -63,6 +66,7 @@ angular.module('homemade')
     $scope.previousSlide = function () {
       $ionicSlideBoxDelegate.previous(true)
     }
+
     $scope.takePicture = function () {
 
       navigator.camera.getPicture(onSuccess, onFail, {
@@ -87,4 +91,6 @@ angular.module('homemade')
         console.log('taking picture failed: ' + message);
       }
     };
+
+    //$scope.takePicture();
   });
