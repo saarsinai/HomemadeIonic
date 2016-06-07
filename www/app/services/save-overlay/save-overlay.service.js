@@ -5,7 +5,7 @@ angular.module('homemade')
     this.show = function ($scope, text) {
       text = text || 'Saving';
       data.$scope = $scope;
-      $scope.popupStatus = 'saving';
+      $scope.popup = {status: 'saving'};
       data.popup = $ionicPopup.show({
         templateUrl: 'app/services/save-overlay/save-overlay.html',
         title: text,
@@ -14,21 +14,25 @@ angular.module('homemade')
       });
     };
 
-    var showIcon = function (status) {
+    var showIcon = function (status, message) {
 
-      data.$scope.popupStatus = status;
+      data.$scope.popup.message = message;
+      data.$scope.popup.status = status;
+
       return new Promise(function (resolve) {
         $timeout(function() {
           data.popup.close();
-          data.$scope.popupStatus = undefined;
+          $timeout(function () {
+            data.$scope.popup = undefined;
+          }, 1000);
           resolve();
         }, 2000);
       });
 
     };
 
-    this.error = function () {
-      return showIcon('error');
+    this.error = function (message) {
+      return showIcon('error', message);
     };
 
     this.success = function () {

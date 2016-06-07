@@ -7,6 +7,9 @@
       on-refresh="loadData()">
     </ion-refresher>
     <hmd-item-image image="item.img" readonly="true" ></hmd-item-image>
+    <div ng-show="item.deleted" class="item deleted-message no-borders">
+      The item has been deleted
+    </div>
     <div class="item-background row">
       <span class="col col-80">
           <div class="dish-header">

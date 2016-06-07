@@ -1,81 +1,96 @@
-#item{
+#item {
   background-color: @item-background;
   background-image: none;
 
-.popup {
-  width: 90% !important;
-}
+  .popup {
+    width: 90% !important;
+  }
 
-.item-background {
-  width: 100%;
-
-  .dish-header{
+  .deleted-message {
+    color: red;
     font-style: italic;
-    color: #bca788;
-    a { color: #bca788; font-weight: bold; opacity: 0.9; }
+    font-weight: bold;
+    text-align: center;
+  }
 
-    .dish-title{
-      color: @orange;
-      font-size: 1.3em;
-      font-weight: bold;
+  .no-borders {
+    border: none;
+  }
+
+  .item-background {
+    width: 100%;
+
+    .dish-header {
+      font-style: italic;
+      color: #bca788;
+      a {
+        color: #bca788;
+        font-weight: bold;
+        opacity: 0.9;
+      }
+
+      .dish-title {
+        color: @orange;
+        font-size: 1.3em;
+        font-weight: bold;
+      }
+    }
+
+    .distance {
+      color: #bca788;
+      letter-spacing: 0.05em;
+      font-size: 0.9em;
     }
   }
 
-  .distance{
-    color: #bca788;
-    letter-spacing: 0.05em;
-    font-size: 0.9em;
-  }
-}
+  .item-info {
+    padding-top: 1%;
 
-.item-info {
-  padding-top: 1%;
-
-  span {
-    color: #56462d;
-    text-wrap: normal;
-    width: 100%;
-  }
-}
-
-.order-button{
-  position: absolute;
-  bottom: 0;
-  margin: 0;
-}
-
-.likes{
-  padding-top: 3%;
-
-  .liked{
-    font-size: 0.95em;
-    color: #2196F3;
+    span {
+      color: #56462d;
+      text-wrap: normal;
+      width: 100%;
+    }
   }
 
-  .liked-number{
-    font-weight: bold;
-    color: #2196F3;
-
-  }
-}
-
-.batch{
-  padding-top: 3%;
-
-  .batch-text{
-    font-size: 0.95em;
-    color: @orange;
+  .order-button {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
   }
 
-  .batch-number{
-    font-weight: bold;
-    color: @orange;
+  .likes {
+    padding-top: 3%;
 
+    .liked {
+      font-size: 0.95em;
+      color: #2196F3;
+    }
+
+    .liked-number {
+      font-weight: bold;
+      color: #2196F3;
+
+    }
   }
-}
 
-.like-button{
-  position: absolute;
-  bottom: 10%;
-}
+  .batch {
+    padding-top: 3%;
+
+    .batch-text {
+      font-size: 0.95em;
+      color: @orange;
+    }
+
+    .batch-number {
+      font-weight: bold;
+      color: @orange;
+
+    }
+  }
+
+  .like-button {
+    position: absolute;
+    bottom: 10%;
+  }
 }

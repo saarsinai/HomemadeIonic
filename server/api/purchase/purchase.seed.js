@@ -31,7 +31,7 @@ export default {
           time: removeDays(Date.now(), Math.floor(Math.random() * 5)),
           numOfItems: numToBuy,
           price: numToBuy * item.pricePerItem,
-          isActive: true
+          isActive: false
       });
     }
 

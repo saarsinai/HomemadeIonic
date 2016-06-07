@@ -160,4 +160,17 @@ angular.module('homemade')
           });
       }
     };
+
+    $scope.removeItem = function () {
+      saveOverlay.show($scope);
+
+      Item.remove({id: $scope.item._id}).$promise
+        .then(function () {
+          saveOverlay.success();
+          $scope.item.deleted = true;
+        }, function (err) {
+          console.error(JSON.stringify(err));
+          return saveOverlay.error(err.data.message);
+        });
+    }
   });

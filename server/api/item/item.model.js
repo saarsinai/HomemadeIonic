@@ -9,6 +9,7 @@ const Schema = mongoose.Schema;
 
 const ItemSchema = new Schema({
   name: String,
+  deleted: {type: Boolean, default: false},
   pricePerItem: { type: Number, min: 0},
   tags: [String],
   seller: {type: Schema.Types.ObjectId, ref: 'User'},

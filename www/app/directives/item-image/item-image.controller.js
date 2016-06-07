@@ -6,7 +6,7 @@ angular.module('homemade')
       templateUrl: 'app/directives/item-image/item-image.html',
       scope: {
         image: '=',
-        readonly: '@'
+        readonly: '='
       },
       controller: function ($scope, $ionicBackdrop, $timeout) {
         $scope.retakeImage = function () {

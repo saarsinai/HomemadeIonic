@@ -1,27 +1,30 @@
 <ion-view id="item-edit" class="view-container">
   <ion-nav-title>Edit {{item.name}}</ion-nav-title>
   <ion-content ng-class="{expanded:isExpanded}">
-    <hmd-item-image image="item.img" ></hmd-item-image>
+    <hmd-item-image image="item.img" readonly="item.deleted"></hmd-item-image>
+    <div ng-show="item.deleted" class="item deleted-message no-borders">
+      The item has been deleted
+    </div>
     <div class="card">
       <div class="item item-divider">Item Details</div>
       <label class="item item-input item-floating-label">
         <span class="input-label">Name</span>
-        <input type="text" placeholder="Title" ng-model="item.name">
+        <input type="text" placeholder="Title" ng-model="item.name" ng-disabled="item.deleted">
       </label>
 
       <label class="item item-input item-floating-label padding">
         <span class="input-label">Price</span>
-        <input type="text" placeholder="Price" ng-model="item.pricePerItem">
+        <input type="text" placeholder="Price" ng-model="item.pricePerItem" ng-disabled="item.deleted">
       </label>
 
       <label class="item item-input item-floating-label padding">
         <span class="input-label">Details</span>
-        <textarea class="item-description" msd-elastic hmd-hard-maxlength="500" placeholder="Description"
+        <textarea class="item-description" msd-elastic hmd-hard-maxlength="500" placeholder="Description" ng-disabled="item.deleted"
                   ng-model="item.details"></textarea>
       </label>
 
       <div class="padding">
-        <button class="button button-block button-calm" ng-click="saveItem()">
+        <button class="button button-block button-calm" ng-click="saveItem()" ng-disabled="item.deleted">
           SAVE CHANGES
         </button>
       </div>
@@ -33,31 +36,40 @@
         <div class="item-background row">
           <span class="col col-100">
             <label class="item item-input item-stacked-label">
-                <span class="input-label">Begin Date</span>
-                <div class="indent-right-5">{{ batch.beginTime | date:'dd-MM-yyyy HH:mm'}}</div>
+              <span class="input-label">Begin Date</span>
+
+              <div class="indent-right-5">{{ batch.beginTime | date:'dd-MM-yyyy HH:mm'}}</div>
             </label>
             <label class="item item-input item-stacked-label">
-                <span class="input-label">Full Amount</span>
-                <div class="indent-right-5">{{ batch.itemsCount }}</div>
+              <span class="input-label">Full Amount</span>
+
+              <div class="indent-right-5">{{ batch.itemsCount }}</div>
             </label>
             <label class="item item-input item-stacked-label">
-                <span class="input-label">Amount Left</span>
-                <div class="indent-right-5">{{ batch.itemsLeft }}</div>
+              <span class="input-label">Amount Left</span>
+
+              <div class="indent-right-5">{{ batch.itemsLeft }}</div>
             </label>
           </span>
         </div>
 
-        <button class="col col-center button button-small button-clear button-calm" ng-click="closeBatch()">
+        <button class="col col-center button button-small button-clear button-calm" ng-click="closeBatch()" ng-disabled="item.deleted">
           CLOSE BATCH
         </button>
       </div>
 
       <div class="item item-divider" ng-hide="batchOpen">New Batch</div>
       <div ng-hide="batchOpen">
-        <button class="col col-center button button-small button-clear button-calm" ng-click="createNewBatch()">
+        <button class="col col-center button button-small button-clear button-calm" ng-click="createNewBatch()" ng-disabled="item.deleted">
           CREATE NEW BATCH
         </button>
       </div>
+    </div>
+
+    <div class="item no-borders">
+      <button class="button icon-left ion-android-remove-circle button-block button-assertive" ng-click="removeItem()" ng-disabled="item.deleted">
+        Remove Item
+      </button>
     </div>
 
   </ion-content>

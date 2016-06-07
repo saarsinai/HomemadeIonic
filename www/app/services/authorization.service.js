@@ -45,7 +45,7 @@ angular.module('homemade')
         stateService.go('login');
       }
 
-      return response || $q.when(response);
+      return $q.reject(response);
     }
 
     return {

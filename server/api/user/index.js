@@ -37,7 +37,8 @@ export default app => {
       detail: true,
       methods: ['get'],
       handler: (req, res, next) => {
-        ItemModel.find({seller: req.params.id})
+        ItemModel.find({seller: req.params.id, deleted: false})
+          .sort("name")
           .then(list => {
             setResponse(res, 200, list);
             next();
