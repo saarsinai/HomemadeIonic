@@ -27,14 +27,14 @@ export default {
     password: "Aa12345678",
     age: 23,
     store: {
-      name: "Gal's salads",
+      name: "Gal's soups",
       address: "Ifyun, Makmr, Tzrifin",
       location: {
-        lat: 31.9752604,
-        lon: 34.7694045
+        lat: 31.970359,
+        lon: 34.773171
       },
-      description: "Over the years I've became a master of salads, I can make you a salad from just about anything.",
-      tags: ["Salad", "Healthy", "Perfect"],
+      description: "Over the years I've became a master of soups, I can make you a soup from just about anything.",
+      tags: ["Soup", "Warm", "Winter", "Comfort food", "Perfect"],
       createdAt: Date.now(),
       active: true,
     }
@@ -58,7 +58,19 @@ export default {
     name: "Tamir Lavi",
     email: "tired@work.home",
     age: 23,
-    password: '@a12345678'
+    password: '@a12345678',
+    store: {
+      name: "World of veggies",
+      address: "Rival 4, Rishon Lezion",
+      location: {
+        lat: 31.974809,
+        lon: 34.771714
+      },
+      description: "You will not find replicas of meat but dished that glorify the vegetarian world",
+      tags: ["vegetarian", "vegan", "vegetables", "Healthy"],
+      createdAt: Date.now(),
+      active: true,
+    }
   },
   {
     "_id": "5737418c411a61783c5ebf09",
