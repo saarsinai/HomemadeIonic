@@ -15,7 +15,6 @@ export default {
         lon: 34.8014911
       },
       description: "Like mushrooms? like rice? like frying thing?, then Arancini is the stuff for you! *does not contain mushrooms/rice",
-      tags: ["Italian", "Oriental", "Hituv"],
       createdAt: Date.now(),
       active: true,
       phone: "0546664447"
@@ -35,7 +34,6 @@ export default {
         lon: 34.773171
       },
       description: "Over the years I've became a master of soups, I can make you a soup from just about anything.",
-      tags: ["Soup", "Warm", "Winter", "Comfort food", "Perfect"],
       createdAt: Date.now(),
       active: true,
       phone: "0522264447"
@@ -69,7 +67,6 @@ export default {
         lon: 34.771714
       },
       description: "You will not find replicas of meat but dished that glorify the vegetarian world",
-      tags: ["vegetarian", "vegan", "vegetables", "Healthy"],
       createdAt: Date.now(),
       active: true,
       phone: "0501234567"
@@ -89,7 +86,6 @@ export default {
         lon: 34.804459
       },
       description: "Cheap pizzas for everyone! except lactose intolerance people",
-      tags: ["Pizza", "Cheap", "Plastic", "Kosher"],
       createdAt: Date.now(),
       active: true,
       phone: "0533333333"
