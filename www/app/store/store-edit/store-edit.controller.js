@@ -22,8 +22,15 @@ angular.module('homemade')
     const Review = Resource.new("review", {
       'ofSeller': {
         method: 'GET',
-        params: {sort: '-time', populate: 'reviewer', limit: 4},
+        params: {sort: '-time', populate: 'reviewer', limit: 3},
         isArray: true
+      }
+    });
+
+    const Purchase = Resource.new("purchase", {
+      'getWithItem': {
+        method: 'GET',
+        params: {sort: '-time', populate: 'item buyer', limit: 3}, isArray: true
       }
     });
 
@@ -39,7 +46,8 @@ angular.module('homemade')
       var userPromise = User.items({id: $scope.user._id}).$promise;
       var reviewsPromise = Review.ofSeller({reviewed: $scope.user._id}).$promise;
       var topTagsPromise = SellerRecommends.toUser({id: $scope.user._id}).$promise;
-      return $q.all([userPromise, reviewsPromise, topTagsPromise]);
+      var purchasesPromise = Purchase.getWithItem({seller: $scope.user._id}).$promise;
+      return $q.all([userPromise, reviewsPromise, topTagsPromise, purchasesPromise]);
     };
 
     if (!$scope.isNew) {
@@ -48,10 +56,11 @@ angular.module('homemade')
           $scope.items = data[0];
           $scope.reviews = data[1];
           $scope.topTags = data[2];
+          $scope.purchases = data[3];
         })
         .catch(console.errorJson);
     }
-    
+
     $scope.addressChanged = function () {
       var address = $scope.user.store.address;
       if (!address || address.length === 0) return;

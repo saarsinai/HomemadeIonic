@@ -7,14 +7,12 @@
       on-refresh="loadData()">
     </ion-refresher>
     <div class="card">
-      <div class="item item-divider">Location</div>
+      <div class="item item-divider">Details</div>
       <div class="item item-icon-right">
         <a class="button-icon icon ion-location assertive" ng-click="openMapModal()"></a>
         {{seller.store.address}}
       </div>
-    </div>
-    <div class="card">
-      <div class="item item-divider">Description</div>
+      <div class="item item-text-wrap">{{seller.store.phone | tel}}</div>
       <div class="item item-text-wrap">{{seller.store.description}}</div>
     </div>
     <div class="card list">

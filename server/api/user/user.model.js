@@ -32,7 +32,8 @@ const UserSchema = new Schema({
     tags: [String],
     createdAt: Date,
     rating: { type: Number, min: 0.5, max: 5},
-    active: { type: Boolean, default: false }
+    active: { type: Boolean, default: false },
+    phone: String
   }
 }, schemaOptions);
 

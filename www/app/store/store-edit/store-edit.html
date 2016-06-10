@@ -11,6 +11,10 @@
         <span class="input-label">Address</span>
         <input type="text" placeholder="Address" ng-model="user.store.address" ng-blur="addressChanged()">
       </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Phone Number</span>
+        <input type="text" placeholder="Phone Number" ng-model="user.store.phone">
+      </label>
       <label class="item item-input item-floating-label padding">
         <span class="input-label">Description</span>
         <textarea class="store-description" msd-elastic hmd-hard-maxlength="500" placeholder="Description"
@@ -26,6 +30,7 @@
     <div class="card list" ng-hide="isNew">
         <div class="item item-divider">Purchases</div>
         <a ui-sref="app.purchases.allPurchases({sellerId: user._id})">
+          <hmd-seller-item-purchase purchase="purchase" ng-repeat="purchase in purchases"></hmd-seller-item-purchase>
           <div class="row">
             <button class="col col-center button button-small button-clear button-calm">
               ALL PURCHASES

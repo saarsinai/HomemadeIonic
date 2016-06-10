@@ -18,6 +18,7 @@ export default {
       tags: ["Italian", "Oriental", "Hituv"],
       createdAt: Date.now(),
       active: true,
+      phone: "0546664447"
     }
   },
   {
@@ -37,6 +38,7 @@ export default {
       tags: ["Soup", "Warm", "Winter", "Comfort food", "Perfect"],
       createdAt: Date.now(),
       active: true,
+      phone: "0522264447"
     }
   },
   {
@@ -70,6 +72,7 @@ export default {
       tags: ["vegetarian", "vegan", "vegetables", "Healthy"],
       createdAt: Date.now(),
       active: true,
+      phone: "0501234567"
     }
   },
   {
@@ -88,7 +91,8 @@ export default {
       description: "Cheap pizzas for everyone! except lactose intolerance people",
       tags: ["Pizza", "Cheap", "Plastic", "Kosher"],
       createdAt: Date.now(),
-      active: true
+      active: true,
+      phone: "0533333333"
     }
   }]
 }
