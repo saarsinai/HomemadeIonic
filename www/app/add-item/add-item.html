@@ -2,17 +2,16 @@
   <ion-content ng-class="{expanded:isExpanded}">
     <div class="dish-avatar">
       <div class="main-item-image">
-        <img ng-src="{{item.img.data | trusted}}">
-      </div>
-
-      <div class="avatar-fade">
+        <!--<img ng-src="{{item.img.data | trusted}}">-->
+        <hmd-item-image image="item.img"></hmd-item-image>
       </div>
     </div>
     <ion-slide-box show-pager="true">
       <ion-slide>
-        <div class="slide-form">
+        <div class="card">
           <div class="dish-title">
-            <label class="item item-input">
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Name</span>
               <input type="text" placeholder="Enter dish name" ng-model="item.name">
             </label>
           </div>
@@ -22,18 +21,25 @@
               <textarea class="review-description" hmd-hard-maxlength="450" placeholder="Add a description" ng-model="item.details"></textarea>
             </label>
           </div>
+          <div class="box red">
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Price</span>
+              <input type="text" placeholder="Enter dish price" ng-model="item.pricePerItem">
+            </label>
+          </div>
         </div>
       </ion-slide>
       <ion-slide>
-        <div class="box red">
-          <label class="item item-input">
-            <input type="text" placeholder="Enter your price" ng-model="item.pricePerItem">
-          </label>
+        <div class="card">
+          <hmd-add-tags item="item"></hmd-add-tags>
         </div>
       </ion-slide>
       <ion-slide>
-          <hmd-tag-chip-list class="list" tags="tags"></hmd-tag-chip-list>
-          <button class="save-button" ng-click="saveItem()">save</button>
+        <div class="padding">
+          <button class="button button-block button-calm" ng-click="saveItem()">
+            SAVE ITEM
+          </button>
+        </div>
       </ion-slide>
     </ion-slide-box>
   </ion-content>

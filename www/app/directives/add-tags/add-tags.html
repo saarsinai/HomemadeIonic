@@ -1,0 +1,12 @@
+<div>
+  <div class="row">
+    <label class="item item-input">
+      <span class="input-label">Tag</span>
+      <input type="text" placeholder="Tag" ng-model="newTag">
+    </label>
+    <div class="item item-icon-right">
+      <a class="button-icon icon ion-plus-circled calm small" ng-click="addTag()"></a>
+    </div>
+  </div>
+  <hmd-tag-chip-list class="list" tags="item.tags"></hmd-tag-chip-list>
+</div>
