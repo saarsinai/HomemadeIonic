@@ -17,30 +17,35 @@
     border: none;
   }
 
-  .item-background {
-    width: 100%;
-
-    .dish-header {
+  .dish-seller {
+    .dish-seller-name {
       font-style: italic;
-      color: #bca788;
-      a {
-        color: #bca788;
-        font-weight: bold;
-        opacity: 0.9;
-      }
-
-      .dish-title {
-        color: @orange;
-        font-size: 1.3em;
-        font-weight: bold;
-      }
+      font-size: 18px;
     }
 
     .distance {
       color: #bca788;
-      letter-spacing: 0.05em;
-      font-size: 0.9em;
     }
+  }
+
+  .dish-name {
+    line-height: normal;
+    text-align: center;
+    color: @orange;
+    font-size: 1.3em;
+    font-weight: bold;
+    font-style: italic;
+    text-transform: capitalize;
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .distance {
+    color: #bca788;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
   }
 
   .item-info {
@@ -53,44 +58,51 @@
     }
   }
 
+  .item-details {
+    font-style: italic;
+  }
+
   .order-button {
-    position: absolute;
-    bottom: 0;
-    margin: 0;
+    border: none;
+    margin-top: 0;
   }
 
   .likes {
-    padding-top: 3%;
+    padding-bottom: 5px;
+    padding-top: 0;
 
-    .liked {
-      font-size: 0.95em;
-      color: #2196F3;
+    .vert-center-text {
+      align-items: center;
     }
-
     .liked-number {
       font-weight: bold;
-      color: #2196F3;
+    }
 
+    .like-button {
+      padding: 0;
     }
   }
 
-  .batch {
-    padding-top: 3%;
-
-    .batch-text {
-      font-size: 0.95em;
-      color: @orange;
+  .batch-info {
+    .batch-items-left {
+      margin-bottom: 15px;
     }
-
     .batch-number {
       font-weight: bold;
-      color: @orange;
 
     }
-  }
 
-  .like-button {
-    position: absolute;
-    bottom: 10%;
+    .batch-time {
+      display: inline-block;
+    }
+
+    i {
+      font-size: 20px;
+      vertical-align: text-bottom;
+    }
+
+    span {
+      vertical-align: text-top;
+    }
   }
 }

@@ -6,71 +6,97 @@
       spinner="lines"
       on-refresh="loadData()">
     </ion-refresher>
-    <hmd-item-image image="item.img" readonly="true" ></hmd-item-image>
+    <hmd-item-image image="item.img" readonly="true"></hmd-item-image>
     <div ng-show="item.deleted" class="item deleted-message no-borders">
       The item has been deleted
     </div>
-    <div class="item-background row">
-      <span class="col col-80">
-          <div class="dish-header">
-            <span class="dish-title">{{item.name | uppercase}}</span>
-            <span> by </span>
-            <a ui-sref="app.store({sellerId: item.seller._id})">
-              {{item.seller.store.name}}
-            </a>
+    <div>
+      <div fittext=".9" fittext-load-delay="100" fittext-max="66em" class="dish-name">{{item.name}}</div>
+    </div>
+    <div class="card">
+      <a ui-sref="app.store({sellerId: item.seller._id})">
+        <div class="item">
+          <div class="row">
+            <span class="dish-seller col col-67">
+              <div class="dish-seller-name">
+                by {{item.seller.store.name}}
+              </div>
+              <div class="distance"><i class="icon ion-location"></i>&nbsp;{{item.seller.store.address}}</div>
+            </span>
+            <span class="col col-33">
+              <hmd-star-rating rating="item.seller.store.rating" size="small" readonly="true"></hmd-star-rating>
+            </span>
           </div>
-        <div>
-          <span class="distance"><i class="icon ion-location"></i>&nbsp;{{item.seller.store.address}}</span>
         </div>
-      </span>
-      <span class="col col-20">
-        <div class="dish-header">
-          <span class="dish-title">{{item.pricePerItem}}$</span>
+      </a>
+    </div>
+    <div class="card">
+      <div class="item item-divider">Details</div>
+      <div class="item item-text-wrap">
+        <span class="item-details">"{{item.details}}"</span>
+      </div>
+      <div class="item likes">
+        <div class="row vert-center-text">
+          <span class="liked col col-67">
+            <span class="liked-number"> {{item.likes.length}} </span>
+            <span>
+              &nbsp;people liked this dish!
+            </span>
+          </span>
+          <span class="col col-33">
+              <button class="button like-button button-small button-clear button-assertive icon-left ion-heart" ng-click="likeItem()">
+              {{ LikeTitle }}
+            </button>
+          </span>
         </div>
-      </span>
+      </div>
     </div>
-
-    <div class="item-info row">
-      <span class="details col col-100">{{item.details}}</span>
-    </div>
-
-    <div class="batch row" ng-show="batchOpen">
-      <span class="batch-number"> {{batch.itemsLeft}} </span>
-      <span class="batch-text">&nbsp;dishes left!</span>
-    </div>
-
-    <div class="batch row" ng-show="!batchOpen">
-      <span class="batch-text">No dishes left...</span>
-    </div>
-
-    <div>
-      <div class="batch" ng-show="!isReady && batchOpen">
-        <span class="row">Dishes will be ready in:</span>
-        <span class="row"><timer end-time=endTime>{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer></span>
+    <div class="card">
+      <div class="item item-divider">Can I buy it?</div>
+      <div class="item batch-info">
+        <div class="batch-items-left balanced" ng-show="batchOpen">
+          <i class="icon ion-android-happy balanced"></i>
+          <span ng-show="batch.itemsLeft === 1">
+            There is only
+          </span>
+          <span ng-hide="batch.itemsLeft === 1">
+            There are
+          </span>
+          <span class="batch-number">{{batch.itemsLeft}} </span>
+          <span ng-show="batch.itemsLeft === 1">
+            dish left
+          </span>
+          <span ng-hide="batch.itemsLeft === 1">
+            dishes left
+          </span>
+        </div>
+        <div class="assertive" ng-show="!batchOpen">
+          <i class="icon ion-android-sad"></i>
+          <span class="batch-text">There are no dishes left</span>
+        </div>
+        <div class="energized" ng-show="!isReady && batchOpen">
+          <i class="icon ion-android-time"></i>
+          <span class="batch-time">Dishes will be ready in:
+            <div>
+              <timer end-time=endTime>
+                {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.
+              </timer>
+            </div>
+          </span>
+        </div>
+        <div class="balanced" ng-show="isReady && batchOpen">
+          <i class="icon ion-android-time"></i>
+          <span>The dish is ready to be served</span>
+        </div>
       </div>
     </div>
 
-    <div>
-      <div class="batch" ng-show="isReady && batchOpen">
-        <span class="row">Dishes Ready!!!</span>
-      </div>
-    </div>
 
-    <div class="likes row">
-      <span class="col-70">
-        <span class="liked-number"> {{item.likes.length}} </span>
-        <span class="liked">&nbsp;people liked this dish!</span>
-      </span>
-      <span class="col-30">
-        <button class="button button-small button-clear button-calm like-button center" ng-click="likeItem()">
-          {{ LikeTitle }}
-        </button>
-      </span>
+    <div class="item order-button">
+      <button ng-disabled="!batchOpen" class="button button-block button-calm order-button" ng-click="showPopup()">
+        ORDER
+      </button>
     </div>
-
-    <button class="button button-block button-calm order-button" ng-click="showPopup()">
-      ORDER
-    </button>
 
   </ion-content>
 </ion-view>
