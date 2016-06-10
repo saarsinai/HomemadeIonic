@@ -22,7 +22,7 @@ angular.module('homemade')
     const Review = Resource.new("review", {
       'ofSeller': {
         method: 'GET',
-        params: { sort: '-time', populate: 'reviewer', limit: 4},
+        params: {sort: '-time', populate: 'reviewer', limit: 4},
         isArray: true
       }
     });
@@ -34,24 +34,24 @@ angular.module('homemade')
     $scope.title = $scope.isNew ? 'Create Your Store' : 'Edit Your Store';
     $scope.saveButtonText = $scope.isNew ? 'Create Store' : 'Save Changes';
 
-    var loadDataFromServer = function() {
+    var loadDataFromServer = function () {
       // Seller has store
-      if (!$scope.isNew) {
-        var userPromise = User.items({id: $scope.user._id}).$promise;
-        var reviewsPromise = Review.ofSeller({reviewed: $scope.user._id}).$promise;
-        var topTagsPromise = SellerRecommends.toUser({id: $scope.user._id}).$promise;
-        return $q.all([userPromise, reviewsPromise, topTagsPromise]);
-      }
+      var userPromise = User.items({id: $scope.user._id}).$promise;
+      var reviewsPromise = Review.ofSeller({reviewed: $scope.user._id}).$promise;
+      var topTagsPromise = SellerRecommends.toUser({id: $scope.user._id}).$promise;
+      return $q.all([userPromise, reviewsPromise, topTagsPromise]);
     };
 
-    loadingBackdrop(loadDataFromServer)
-      .then(function (data) {
-        $scope.items = data[0];
-        $scope.reviews = data[1];
-        $scope.topTags = data[2];
-      })
-      .catch(console.errorJson);
-
+    if (!$scope.isNew) {
+      loadingBackdrop(loadDataFromServer)
+        .then(function (data) {
+          $scope.items = data[0];
+          $scope.reviews = data[1];
+          $scope.topTags = data[2];
+        })
+        .catch(console.errorJson);
+    }
+    
     $scope.addressChanged = function () {
       var address = $scope.user.store.address;
       if (!address || address.length === 0) return;
