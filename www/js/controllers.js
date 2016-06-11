@@ -9,6 +9,9 @@ angular.module('homemade.controllers', [])
       $state.go('login');
     };
 
+    if (Authorization.isAuthorized()){
+      $scope.username = Authorization.getUser().name;
+    }
     // Form data for the login modal
     $scope.loginData = {};
     $scope.isExpanded = false;

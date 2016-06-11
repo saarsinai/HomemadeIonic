@@ -6,7 +6,7 @@
       <ion-nav-back-button class="no-text">
       </ion-nav-back-button>
       <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-android-more-vertical" menu-toggle="right">
+        <button class="button button-icon button-clear ion-android-menu" menu-toggle="right">
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
@@ -14,22 +14,46 @@
     <ion-nav-view name="menuContent" ng-class="{expanded: isExpanded}"></ion-nav-view>
   </ion-side-menu-content>
   <ion-side-menu side="right">
-    <ion-header-bar class="dark-bg expanded">
-      <h2>Homemade</h2>
+    <ion-header-bar class="menu-header expanded">
+      <h2 class="menu-username">{{username}}</h2>
     </ion-header-bar>
     <ion-content class="stable-bg has-expanded-header">
-      <ion-list>
+      <ion-list class="menu-list">
         <ion-item nav-clear menu-close ui-sref="app.itemWall">
-          Dishes
+          <div class="row row-center">
+            <span class="icons col col-10">
+              <i class="icon ion-fork"></i>
+              <i class="icon ion-knife"></i>
+            </span>
+            <!--<i class="col col-10 icon ion-pizza"></i>-->
+            <span class="col col-90">
+              Dishes
+            </span>
+          </div>
         </ion-item>
         <ion-item nav-clear menu-close ui-sref="app.storeEdit">
+          <div class="row row-center">
+          <i class="col col-10 icon ion-briefcase"></i>
+            <span class="col col-90">
           My Store
+              </span>
+          </div>
         </ion-item>
         <ion-item nav-clear menu-close ui-sref="app.userProfile">
+          <div class="row row-center">
+          <i class="col col-10 icon ion-person"></i>
+            <span class="col col-90">
           Profile
+              </span>
+          </div>
         </ion-item>
         <ion-item nav-clear menu-close ng-click="logout()">
+          <div class="row row-center">
+          <i class="col col-10 icon ion-log-out"></i>
+            <span class="col col-90">
           Logout
+              </span>
+          </div>
         </ion-item>
       </ion-list>
     </ion-content>
