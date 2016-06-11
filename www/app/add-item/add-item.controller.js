@@ -10,7 +10,7 @@ angular.module('homemade')
       }
     })
   })
-  .controller('AddItemCtrl', function ($scope, $stateParams, Resource, image, $timeout, $ionicHistory, $ionicSlideBoxDelegate, ionicMaterialInk, ionicMaterialMotion, initIonicView, Authorization) {
+  .controller('AddItemCtrl', function ($scope, $stateParams, Resource, image, $timeout, $ionicHistory, $ionicSlideBoxDelegate, ionicMaterialInk, ionicMaterialMotion, initIonicView, Authorization, saveOverlay) {
     initIonicView($scope, ionicMaterialInk, ionicMaterialMotion);
 
     $scope.item = {
@@ -22,24 +22,22 @@ angular.module('homemade')
       "tags": [],
     };
 
-    $scope.tags = ["shit","kaka","pipi", "shit","kaka","pipi","shit","kaka","pipi","shit","kaka","pipi"];
+    // $scope.tags = ["shit","kaka","pipi", "shit","kaka","pipi","shit","kaka","pipi","shit","kaka","pipi"];
 
     const Item = Resource.new("item");
 
     $scope.saveItem = function () {
       $scope.status = 'saving';
       $scope.item.seller = Authorization.getUser()._id;
+      saveOverlay.show($scope);
 
       Item.save($scope.item).$promise.then(function (item, err) {
         if (err) {
           $scope.status = 'error';
-          $ionicPopup.alert({
-            title: 'Cannot add item',
-            template: 'An error occur while saving new item'
-          });
           console.error(JSON.stringify(err));
-        } else {
-
+          return saveOverlay.error();
+        }
+        else {
           const Batch = Resource.new("itemBatch");
           Batch.save({
             "beginTime": Date.now(),
@@ -53,6 +51,8 @@ angular.module('homemade')
                 $ionicHistory.goBack();
               }, 800);
             });
+
+          return saveOverlay.success();
         }
       })
     };

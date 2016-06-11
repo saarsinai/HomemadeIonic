@@ -23,6 +23,9 @@
                   ng-model="item.details"></textarea>
       </label>
 
+      <span class="input-label padding">Tags</span>
+      <hmd-add-tags item="item"></hmd-add-tags>
+
       <div class="padding">
         <button class="button button-block button-calm" ng-click="saveItem()" ng-disabled="item.deleted">
           SAVE CHANGES

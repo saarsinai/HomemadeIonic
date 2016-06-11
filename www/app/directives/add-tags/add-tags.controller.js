@@ -9,7 +9,6 @@ angular.module('homemade')
       },
       controller: function ($scope) {
 
-        $scope.item.tags = [];
         $scope.newTag = "";
 
         $scope.addTag = function() {
