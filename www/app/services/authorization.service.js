@@ -1,5 +1,5 @@
 angular.module('homemade')
-  .factory('Authorization', function ($window, $q, $injector) {
+  .factory('Authorization', function ($window, $q, $injector, $rootScope) {
 
     function isAuthorized() {
       // TODO: change if you want to get better authorization or compartmentalization system.
@@ -12,6 +12,7 @@ angular.module('homemade')
     function setUser(user, token) {
       $window.localStorage.token = token;
       $window.localStorage.currentUser = JSON.stringify(user);
+      $rootScope.username = user.name;
     }
 
     function getUser() {

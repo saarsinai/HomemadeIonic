@@ -91,7 +91,7 @@ p {
 }
 .menu h2 {
   bottom: 0;
-  font-size: 18px;
+  font-size: 22px;
   left: 16px;
   position: absolute;
 }
@@ -109,6 +109,40 @@ p {
 }
 .menu-open .ion-navicon:before {
   content: "\f2ca";
+}
+
+.menu-header {
+  //background-size: contain;
+  background: url("../assets/menu-header.jpg") no-repeat;
+
+  .menu-username {
+    color: white;
+    text-shadow: black 2px 2px 5px;
+  }
+}
+
+.menu-list {
+  .row {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+
+    span {
+      text-indent: 20px;
+    }
+
+    span.icons {
+      text-indent: 1px;
+    }
+
+    i {
+      font-size: 26px;
+    }
+  }
+
+  .item-content {
+    padding-bottom: 5px;
+  }
 }
 
 /* Item

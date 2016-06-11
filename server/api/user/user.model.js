@@ -25,11 +25,10 @@ const UserSchema = new Schema({
     address: String,
     location: {
       lat: Number,
-      lon: Number,
+      lon: Number
     },
     name: String,
     description: String,
-    tags: [String],
     createdAt: Date,
     rating: { type: Number, min: 0.5, max: 5},
     active: { type: Boolean, default: false },

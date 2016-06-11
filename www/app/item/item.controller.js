@@ -53,6 +53,9 @@ angular.module('homemade')
               if(Date.parse($scope.batch.timeReady)-Date.parse(new Date())<0) {
                 $scope.isReady = true;
               }
+            } else {
+              $scope.batch = null;
+              $scope.batchOpen = false;
             }
           })
           .catch(function (err) {
