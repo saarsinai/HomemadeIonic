@@ -7,7 +7,7 @@ import _ from 'lodash';
 var mongoose = require('mongoose');
 
 var logAndReturn = err => {
-  console.logJson(err);
+  console.errorJson(err);
   res.status(500).json(err);
 };
 

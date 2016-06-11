@@ -33,10 +33,6 @@ export default app => {
         }
 
         if (batch.itemsLeft < purchase.numOfItems) {
-
-          console.log('batch', batch._id);
-          console.log('itemsLeft', batch.itemsLeft);
-          console.log('numOfItems', purchase.numOfItems);
           return next("cannot buy more items than in batch");
         }
 

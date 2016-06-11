@@ -40,13 +40,14 @@
     <icon density="xxxhdpi" src="resources\android\icon\drawable-xxxhdpi-icon.png" />
     <name>Homemade</name>
     <description>
-        An Ionic Framework and Cordova project.
-    </description>
-    <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
-    </author>
+    A location to share your desire for cooking as well as a place to buy healthy homemade food
+  </description>
+    <author>
+    Tamir Lavi, Kobi Mizrahi, Gal Revach and Saar Sinai
+  </author>
     <content src="index.html" />
     <access origin="*" />
+    <access launch-external="yes" origin="tel:*" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />

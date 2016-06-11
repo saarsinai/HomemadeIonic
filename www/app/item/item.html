@@ -15,16 +15,19 @@
     </div>
     <div class="card">
       <a ui-sref="app.store({sellerId: item.seller._id})">
-        <div class="item">
-          <div class="row">
-            <span class="dish-seller col col-67">
+        <div class="item dish-seller">
+          <div class="row row-center">
+            <span class="col col-50">
               <div class="dish-seller-name">
                 by {{item.seller.store.name}}
               </div>
               <div class="distance"><i class="icon ion-location"></i>&nbsp;{{item.seller.store.address}}</div>
             </span>
-            <span class="col col-33">
+            <span class="col col-33 col-offset-10">
               <hmd-star-rating rating="item.seller.store.rating" size="small" readonly="true"></hmd-star-rating>
+            </span>
+            <span class="col col-10">
+              <i class="arrow icon ion-chevron-right calm"></i>
             </span>
           </div>
         </div>

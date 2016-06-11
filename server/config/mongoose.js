@@ -15,7 +15,7 @@ export default mongoose => {
         console.log('Finished populating database.')
       })
       .catch(err => {
-        console.log('Unable to populate database: ' + JSON.stringify(err));
+        console.error('Unable to populate database:', JSON.stringify(err));
       });
   }
 };

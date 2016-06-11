@@ -1,7 +1,6 @@
 import elastic from 'elasticSearch';
 
 export default function purchasesData(itemId) {
-  console.logJson(itemId);
   return new Promise(function (resolve, reject) {
     buildQuery(itemId).then((query) => {
       var client = new elastic.Client({

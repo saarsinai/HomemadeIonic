@@ -16,10 +16,13 @@
           <span class="detail-title col col-25">Quantity</span> <span class="col col-75">{{purchase.numOfItems}}</span>
         </div>
         <div class="row">
-          <span class="detail-title col col-25">Price</span> <span class="col col-75">{{purchase.price}}</span>
+          <span class="detail-title col col-25">Price</span> <span class="col col-75">{{purchase.price | currency}}</span>
         </div>
         <div class="row">
           <span class="detail-title col col-25">Address</span> <span class="col col-75">{{purchase.seller.store.address}}</span>
+        </div>
+        <div class="row">
+          <span class="detail-title col col-25">Number</span> <span class="col col-75">{{purchase.seller.store.phone | tel}}</span>
         </div>
       </div>
     </div>

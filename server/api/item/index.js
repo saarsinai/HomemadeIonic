@@ -25,7 +25,7 @@ export default app => {
         item.img = img._id;
         return next();
       }, function (err) {
-        console.log('err: ' + err);
+        console.errorJson(err);
         return next(err);
       });
   };

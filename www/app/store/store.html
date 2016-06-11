@@ -6,14 +6,22 @@
       spinner="lines"
       on-refresh="loadData()">
     </ion-refresher>
+    <div>
+      <div fittext=".9" fittext-load-delay="150" fittext-max="66em" fittext-min="1em" class="store-name calm">{{seller.store.name}}</div>
+    </div>
     <div class="card">
       <div class="item item-divider">Details</div>
-      <div class="item item-icon-right">
-        <a class="button-icon icon ion-location assertive" ng-click="openMapModal()"></a>
-        {{seller.store.address}}
+
+
+      <div class="item item-text-wrap description">"{{seller.store.description}}"</div>
+      <div class="item seller-info" ng-click="openMapModal()">
+        <i class="button-icon icon ion-location assertive"></i>
+        <span>{{seller.store.address}}</span>
       </div>
-      <div class="item item-text-wrap">{{seller.store.phone | tel}}</div>
-      <div class="item item-text-wrap">{{seller.store.description}}</div>
+      <a ng-href="tel:{{seller.store.phone}}" class="item seller-info">
+        <i class="button-icon icon ion-android-call calm"></i>
+        <span>{{seller.store.phone | tel}}</span>
+      </a>
     </div>
     <div class="card list">
       <div class="item item-divider">Rating</div>
