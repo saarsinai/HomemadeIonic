@@ -159,11 +159,17 @@ h1, h2, h3, h4, h5, h6 {
   font-family:RobotoDraft,Roboto,"Helvetica Neue","Segoe UI",sans-serif
 }
 
-#search-button {
-  padding: 5px;
-  padding-left: 10px;
-  padding-right: 0;
-  box-shadow: none;
+.nav-bar-block {
+  .title {
+    #search-button, #location-button{
+      padding: 5px 0 5px 10px;
+      box-shadow: none;
+    }
+
+    .other-location {
+      color: black;
+    }
+  }
 }
 
 .bar.bar-header .button+.title {

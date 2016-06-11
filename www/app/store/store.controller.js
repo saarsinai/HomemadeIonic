@@ -55,11 +55,11 @@ var app = angular.module("homemade")
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function (modal) {
-      $scope.mapModal = modal;
+      $scope.locationModal = modal;
     });
 
     $scope.openMapModal = function () {
-      $scope.mapModal.show()
+      $scope.locationModal.show()
         .then(function () {
           return NgMap.getMap();
         })
@@ -69,10 +69,10 @@ var app = angular.module("homemade")
     };
 
     $scope.closeMapModal = function () {
-      $scope.mapModal.hide();
+      $scope.locationModal.hide();
     };
     // Cleanup the modal when we're done with it!
     $scope.$on('$destroy', function () {
-      $scope.mapModal.remove();
+      $scope.locationModal.remove();
     });
   });

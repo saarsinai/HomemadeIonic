@@ -10,6 +10,10 @@
         <a id="search-button" class="button button-icon icon ion-android-search positive" ng-show="search.searching"
            ng-click="search.searchRequest()"></a>
       </span>
+      <span>
+        <a id="location-button" class="button button-icon icon ion-android-locate" ng-class="{'other-location': positioning.otherLocation}"
+           ng-click="openLocationModal()"></a>
+      </span>
     </span>
 
 
