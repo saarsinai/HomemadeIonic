@@ -9,12 +9,13 @@ var index = process.env.ELASTIC_INDEX;
 var type = 'purchases';
 var logError = (err) => console.error(JSON.stringify(err));
 
-export function addPurchase(id, tags, location, date){
+export function addPurchase(id, item, tags, location, date){
   return client.index({
     index: index,
     type: type,
     id: id.toString(),
     body: {
+      item: item.toString(),
       tags: tags,
       location: location,
       date: date

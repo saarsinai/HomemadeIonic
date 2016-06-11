@@ -7,6 +7,7 @@ import BatchModel from '../item-batch/item-batch.model';
 import PurchaseModel from '../purchase/purchase.model';
 import ImgModel from '../img/img.model';
 import {setResponse} from '../../utils';
+import recommendation from '../../recommendation'
 import {addItem, removeItem, updateItemDetails} from '../../recommendation/models/item.elastic-model.js';
 
 const mongoose = restful.mongoose;
@@ -41,50 +42,69 @@ export default app => {
   });
 
   const Item = restful.model('item', ItemModel.schema)
-    .methods(['get', 'post', 'put'])
-    .before('post', function (req, res, next) {
-      saveImage(req.body, next);
-    })
-    .before('put', function (req, res, next) {
-      let item = req.body;
-      updateItemDetails(item._id, item.name, item.tags, item.likes).catch(next);
-      next();
-    })
-    .before('put', function (req, res, next) {
-      saveImage(req.body, next);
-    })
-    .route('', {
-      detail: true,
-      methods: ['delete'],
-      handler: (req, res, next) => {
-        let itemId = req.params.id;
+      .methods(['get', 'post', 'put'])
+      .before('post', function (req, res, next) {
+        saveImage(req.body, next);
+      })
+      .before('put', function (req, res, next) {
+        let item = req.body;
+        updateItemDetails(item._id, item.name, item.tags, item.likes).catch(next);
+        next();
+      })
+      .before('put', function (req, res, next) {
+        saveImage(req.body, next);
+      })
+      .route('', {
+        detail: true,
+        methods: ['delete'],
+        handler: (req, res, next) => {
+          let itemId = req.params.id;
 
-        PurchaseModel.count({item: itemId, isActive: true})
-          .then(numOfActive => {
-            if (numOfActive > 0) {
-              return Promise.reject({code: 400, data: { message: 'Cannot delete a item with active orders'}})
-            }
+          PurchaseModel.count({item: itemId, isActive: true})
+            .then(numOfActive => {
+              if (numOfActive > 0) {
+                return Promise.reject({code: 400, data: {message: 'Cannot delete a item with active orders'}})
+              }
 
-            var itemPromise = ItemModel.findByIdAndUpdate(itemId, {$set: {deleted: true}});
-            var batchPromise = BatchModel.update({item: itemId}, {open: false}, {multi: true});
-            var elasticPromise = removeItem(itemId);
-            return Promise.all([itemPromise, batchPromise, elasticPromise])
-              .then(() => {
-                setResponse(res, 200);
-                return next();
-              }, (err) => {
-                return Promise.reject({code: 500, data: err});
-              });
-          }, (err) => {
-            return Promise.reject({code: 500, data: err});
-          })
-          .catch(err => {
-            setResponse(res, err.code, err.data);
-            logError(err);
-            return next();
-          });
-      }
-    });
+              var itemPromise = ItemModel.findByIdAndUpdate(itemId, {$set: {deleted: true}});
+              var batchPromise = BatchModel.update({item: itemId}, {open: false}, {multi: true});
+              var elasticPromise = removeItem(itemId);
+              return Promise.all([itemPromise, batchPromise, elasticPromise])
+                .then(() => {
+                  setResponse(res, 200);
+                  return next();
+                }, (err) => {
+                  return Promise.reject({code: 500, data: err});
+                });
+            }, (err) => {
+              return Promise.reject({code: 500, data: err});
+            })
+            .catch(err => {
+              setResponse(res, err.code, err.data);
+              logError(err);
+              return next();
+            });
+        }
+      })
+      .route('stats', {
+        detail: true,
+        methods: ['get'],
+        handler: (req, res, next) => {
+          let itemId = req.params.id;
+
+          recommendation.purchasesData(itemId)
+            .then(result => {
+              setResponse(res, 200, result);
+              return next();
+            })
+            .catch(err => {
+              setResponse(res, 500, err);
+              logError(err);
+              return next();
+            });
+        }
+      })
+    ;
 
   Item.register(app, '/api/item');
 };

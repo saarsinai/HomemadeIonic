@@ -46,6 +46,10 @@ export default function () {
         type: 'purchases',
         body: {
           "properties": {
+            item: {
+              type: "string",
+              index: "not_analyzed"
+            },
             "location": {
               "type": "geo_point",
               "lat_lon": true
@@ -59,8 +63,5 @@ export default function () {
           }
         }
       });
-    })
-    .then(() => {
-      // do another mapping
     });
 };

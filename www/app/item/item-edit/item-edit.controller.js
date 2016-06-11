@@ -17,17 +17,27 @@ angular.module('homemade')
     $scope.batch = {};
 
     const Item = Resource.new("item", {
-      'ofSeller': {
+      'withInfo': {
         method: 'GET',
         params: {populate: 'seller img'}
+      },
+      'purchasesData': {
+        method: 'GET',
+        relativeUrl: 'stats',
+        detail: true,
+        isArray: true
       }
     });
     const ItemBatch = Resource.new("itembatch");
 
     $scope.loadDataFromServer = function () {
-      var itemPromise = Item.ofSeller({id: $stateParams.itemId}).$promise;
+      $scope.chartOptions = {scaleShowVerticalLines: false};
+
+      var itemPromise = Item.withInfo({id: $stateParams.itemId}).$promise;
       var batchPromise = ItemBatch.query({item: $stateParams.itemId, open: true}).$promise;
-      return $q.all([itemPromise, batchPromise]);
+      var purchasesDataPromise = Item.purchasesData({id: $stateParams.itemId}).$promise;
+
+      return $q.all([itemPromise, batchPromise, purchasesDataPromise]);
     };
 
     $scope.loadData = function () {
@@ -40,6 +50,10 @@ angular.module('homemade')
             $scope.batch = batches[0];
             $scope.batchOpen = true;
           }
+
+          $scope.labels = data[2].map(week => week.weekStart);
+          $scope.data = [data[2].map(week => week.purchases)];
+          $scope.chartOptions = {scaleShowVerticalLines: true};
         })
         .catch(function (err) {
           console.error('Response error', err);

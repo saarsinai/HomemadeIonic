@@ -17,7 +17,7 @@ export default app => {
     let purchase = this;
     ItemModel.findById(purchase.item).populate('seller')
       .then(item => {
-        return addPurchase(purchase._id, item.tags, item.seller.store.location, purchase.time);
+        return addPurchase(purchase._id, item._id, item.tags, item.seller.store.location, purchase.time);
       })
       .then(() => next())
       .catch(logError);

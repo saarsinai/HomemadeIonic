@@ -28,7 +28,7 @@ export default {
           batch: batch._id,
           buyer: user._id,
           seller: item.seller,
-          time: removeDays(Date.now(), Math.floor(Math.random() * 5)),
+          time: removeDays(batch.beginTime, -Math.floor(Math.random() * 5)),
           numOfItems: numToBuy,
           price: numToBuy * item.pricePerItem,
           isActive: false
