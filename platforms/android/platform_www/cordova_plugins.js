@@ -62,6 +62,13 @@ module.exports = [
         "merges": [
             "launchnavigator"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-datepicker/www/android/DatePicker.js",
+        "id": "cordova-plugin-datepicker.DatePicker",
+        "clobbers": [
+            "datePicker"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -72,7 +79,8 @@ module.exports.metadata =
     "cordova-plugin-device": "1.1.2",
     "cordova-plugin-whitelist": "1.2.2",
     "cordova.plugins.diagnostic": "3.0.2",
-    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.1.1"
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.1.1",
+    "cordova-plugin-datepicker": "0.9.2"
 };
 // BOTTOM OF METADATA
 });

@@ -1,0 +1,8 @@
+"C:\Program Files\Java\jdk1.8.0_11\bin\keytool" -genkey -v -keystore HomemadeTwo.keystore -alias Homemade -keyalg RSA -keysize 2048 -validity 10000
+
+
+
+"C:\Program Files\Java\jdk1.8.0_11\bin\jarsigner" -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore HomemadeTwo.keystore Homemade-release.apk Homemade
+
+
+"C:\Program Files (x86)\Android\android-sdk\build-tools\23.0.1\zipalign.exe" -v 4 Homemade-release.apk Homemade.apk
