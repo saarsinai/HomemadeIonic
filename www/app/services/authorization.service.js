@@ -35,7 +35,7 @@ angular.module('homemade')
     function putTokenOnRequest(config) {
       config.headers = config.headers || {};
       if ($window.localStorage.token) {
-        config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+        config.headers.Authorization = 'Bearer ' + $window.localStorage.token;
       }
       return config;
     }

@@ -19,7 +19,7 @@ export default app => {
   const saveImage = (item, next) => {
     let imageData = item.img;
     let imgModel = new ImgModel(imageData);
-    imgModel.isNew = imgModel._id === undefined;
+    imgModel.isNew = imageData._id === undefined;
     imgModel.save()
       .then(function (img) {
         item.img = img._id;

@@ -47,7 +47,7 @@
             </span>
           </span>
           <span class="col col-33">
-              <button class="button like-button button-small button-clear button-assertive icon-left ion-heart" ng-click="likeItem()">
+              <button ng-disabled="item.deleted" class="button like-button button-small button-clear button-assertive icon-left ion-heart" ng-click="likeItem()">
               {{ LikeTitle }}
             </button>
           </span>
