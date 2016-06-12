@@ -1,23 +1,33 @@
 <ion-view id="user-profile" view-title="User Profile">
   <ion-content ng-class="{expanded:isExpanded}">
     <div class="card list">
-
       <div class="item item-divider">
         User Info
       </div>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Full Name</span>
-        <input type="text" ng-model="profile.name">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Email</span>
-        <input type="text" ng-model="profile.email">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Age</span>
-        <input type="text" ng-model="profile.age">
-      </label>
-
+      <form name="profileForm">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Full Name</span>
+          <input name="fullName" ng-pattern="/^[a-zA-Z ]+$/" type="text" ng-model="profile.name">
+          <div ng-messages="profileForm.fullName.$error" class="form-errors">
+            <div class="form-error" ng-message="pattern">name can hold only characters</div>
+          </div>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Email</span>
+          <input name="email" ng-pattern="/(.+)@(.+){2,}\.(.+){2,}/"
+                 type="text" ng-model="profile.email">
+        </label>
+        <div ng-messages="profileForm.email.$error" class="form-errors">
+          <div class="form-error" ng-message="pattern">email is not in the right format</div>
+        </div>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Age</span>
+          <input name="age" ng-pattern="/^\d+$/" type="text" ng-model="profile.age">
+          <div ng-messages="profileForm.age.$error" class="form-errors">
+            <div class="form-error" ng-message="pattern">age can hold only number</div>
+          </div>
+        </label>
+      </form>
       <div class="padding">
         <button class="button button-block button-calm" ng-click="saveUser()">
           SAVE CHANGES

@@ -3,24 +3,33 @@
   <ion-content ng-class="{expanded:isExpanded}">
     <div class="card">
       <div class="item item-divider">Details</div>
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Name</span>
-        <input type="text" placeholder="Title" ng-model="user.store.name">
-      </label>
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Address</span>
-        <input type="text" placeholder="Address" ng-model="user.store.address" ng-blur="addressChanged()">
-      </label>
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Phone Number</span>
-        <input type="text" placeholder="Phone Number" ng-model="user.store.phone">
-      </label>
-      <label class="item item-input item-floating-label padding">
-        <span class="input-label">Description</span>
+      <form id="storeDetails" name="storeDetails">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Name</span>
+          <input name="storeName" ng-pattern="/^([^0-9]*)$/" type="text"
+                 placeholder="Title" ng-model="user.store.name">
+          <div ng-messages="storeDetails.storeName.$error" class="form-errors">
+            <div class="form-error" ng-message="pattern">store name can't hold numbers</div>
+          </div>
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Address</span>
+          <input type="text" placeholder="Address" ng-model="user.store.address" ng-blur="addressChanged()">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Phone Number</span>
+          <input name="phone" ng-pattern="/^\d+$/" type="text"
+                 placeholder="Phone Number" ng-model="user.store.phone">
+          <div ng-messages="storeDetails.phone.$error" class="form-errors">
+            <div class="form-error" ng-message="pattern">phone number is illegal format</div>
+          </div>
+        </label>
+        <label class="item item-input item-floating-label padding">
+          <span class="input-label">Description</span>
         <textarea class="store-description" msd-elastic hmd-hard-maxlength="500" placeholder="Description"
                   ng-model="user.store.description"></textarea>
-      </label>
-
+        </label>
+      </form>
       <div class="padding">
         <button class="button button-block button-calm" ng-click="saveStore()">
           {{saveButtonText}}
@@ -28,20 +37,20 @@
       </div>
     </div>
     <div class="card list" ng-hide="isNew">
-        <div class="item item-divider">Purchases</div>
-        <a ui-sref="app.purchases.allPurchases({sellerId: user._id})">
-          <hmd-seller-item-purchase purchase="purchase" ng-repeat="purchase in purchases"></hmd-seller-item-purchase>
-          <div class="row">
-            <button class="col col-center button button-small button-clear button-calm">
-              ALL PURCHASES
-            </button>
-          </div>
-        </a>
+      <div class="item item-divider">Purchases</div>
+      <a ui-sref="app.purchases.allPurchases({sellerId: user._id})">
+        <hmd-seller-item-purchase purchase="purchase" ng-repeat="purchase in purchases"></hmd-seller-item-purchase>
+        <div class="row">
+          <button class="col col-center button button-small button-clear button-calm">
+            ALL PURCHASES
+          </button>
+        </div>
+      </a>
     </div>
     <div class="list card" ng-hide="isNew">
       <div class="item item-divider">Tip To Increase Your Sells</div>
       <div class="item item-text-wrap">
-          Here you can see popular tags of dishes that were sold around you lately.
+        Here you can see popular tags of dishes that were sold around you lately.
       </div>
       <div class="item row">
         <div class="col tag" ng-repeat="tag in topTags" style="margin: 5px;">
