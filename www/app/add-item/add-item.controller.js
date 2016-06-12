@@ -28,6 +28,15 @@ angular.module('homemade')
 
     const Item = Resource.new("item");
 
+    var add_minutes = function (dt, dt_minutes) {
+
+      var hours = dt_minutes.getHours() * 60;
+      var minutes = dt_minutes.getMinutes();
+      var allMinutes = hours + minutes;
+
+      return new Date(dt.getTime() + allMinutes * 60000);
+    };
+
     $scope.saveItem = function () {
       $scope.status = 'saving';
       $scope.item.seller = Authorization.getUser()._id;
@@ -41,13 +50,14 @@ angular.module('homemade')
         }
         else {
           const Batch = Resource.new("itemBatch");
+          var timeReady = add_minutes(new Date(), $scope.batch.time);
           Batch.save({
             "beginTime": Date.now(),
             "item": item._id,
             "itemsCount": $scope.batch.amount,
             "itemsLeft": $scope.batch.amount,
             "open": true,
-            "timeReady": Date.now()
+            "timeReady": timeReady
           }).$promise.then(function(batch) {
               $scope.status = 'success';
               $timeout(function () {

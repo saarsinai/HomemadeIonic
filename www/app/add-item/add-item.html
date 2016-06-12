@@ -38,9 +38,13 @@
       <ion-slide>
         <div class="card">
           <div class="item item-text-wrap">
-            <label class="item item-input item-floating-label">
+            <label class="item item-input item-stacked-label">
               <span class="input-label">Batch Amount</span>
-              <input type="text" placeholder="Enter the number of pieces you have" ng-model="batch.amount">
+              <input type="text" placeholder="Enter the number of pieces you cooking" ng-model="batch.amount">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Will be ready in</span>
+              <input type="time" placeholder="Dishes will be ready in..." ng-model="batch.time">
             </label>
           </div>
         </div>
