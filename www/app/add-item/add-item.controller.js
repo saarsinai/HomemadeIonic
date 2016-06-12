@@ -22,7 +22,9 @@ angular.module('homemade')
       "tags": [],
     };
 
-    // $scope.tags = ["shit","kaka","pipi", "shit","kaka","pipi","shit","kaka","pipi","shit","kaka","pipi"];
+    $scope.batch = {
+      "amount": ''
+    };
 
     const Item = Resource.new("item");
 
@@ -42,9 +44,10 @@ angular.module('homemade')
           Batch.save({
             "beginTime": Date.now(),
             "item": item._id,
-            "itemsCount": 10,
-            "itemsLeft": 10,
-            "open": true
+            "itemsCount": $scope.batch.amount,
+            "itemsLeft": $scope.batch.amount,
+            "open": true,
+            "timeReady": Date.now()
           }).$promise.then(function(batch) {
               $scope.status = 'success';
               $timeout(function () {

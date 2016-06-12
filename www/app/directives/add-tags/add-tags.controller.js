@@ -12,8 +12,12 @@ angular.module('homemade')
         $scope.newTag = "";
 
         $scope.addTag = function() {
-          $scope.item.tags.push($scope.newTag);
-          $scope.newTag = "";
+          var tagExists = window._.includes($scope.item.tags, $scope.newTag);
+
+          if ($scope.newTag != "" && !tagExists) {
+            $scope.item.tags.push($scope.newTag);
+            $scope.newTag = "";
+          }
         };
       }
     };

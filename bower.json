@@ -21,6 +21,7 @@
     "humanize-duration": "^3.8.0",
     "moment": "momentjs#^2.13.0",
     "ngFitText": "^4.2.0",
-    "angular-chart.js": "^0.10.2"
+    "angular-chart.js": "^0.10.2",
+    "lodash": "^4.13.1"
   }
 }

@@ -2,17 +2,22 @@
   <ion-content ng-class="{expanded:isExpanded}">
     <div class="dish-avatar">
       <div class="main-item-image">
-        <!--<img ng-src="{{item.img.data | trusted}}">-->
         <hmd-item-image image="item.img"></hmd-item-image>
       </div>
     </div>
     <ion-slide-box show-pager="true">
       <ion-slide>
         <div class="card">
-          <div class="dish-title">
+          <div class="item item-text-wrap dish-title">
             <label class="item item-input item-floating-label">
               <span class="input-label">Name</span>
               <input type="text" placeholder="Enter dish name" ng-model="item.name">
+            </label>
+          </div>
+          <div class="item item-text-wrap">
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Price</span>
+              <input type="text" placeholder="Enter dish price" ng-model="item.pricePerItem">
             </label>
           </div>
           <div class="item item-text-wrap">
@@ -21,20 +26,24 @@
               <textarea class="review-description" hmd-hard-maxlength="450" placeholder="Add a description" ng-model="item.details"></textarea>
             </label>
           </div>
-          <div class="box red">
-            <label class="item item-input item-floating-label">
-              <span class="input-label">Price</span>
-              <input type="text" placeholder="Enter dish price" ng-model="item.pricePerItem">
-            </label>
-          </div>
         </div>
       </ion-slide>
+
       <ion-slide>
         <div class="card">
           <hmd-add-tags item="item"></hmd-add-tags>
         </div>
       </ion-slide>
+
       <ion-slide>
+        <div class="card">
+          <div class="item item-text-wrap">
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Batch Amount</span>
+              <input type="text" placeholder="Enter the number of pieces you have" ng-model="batch.amount">
+            </label>
+          </div>
+        </div>
         <div class="padding">
           <button class="button button-block button-calm" ng-click="saveItem()">
             SAVE ITEM
@@ -42,6 +51,7 @@
         </div>
       </ion-slide>
     </ion-slide-box>
+
   </ion-content>
   <div class="nav-buttons">
     <button class="button button-clear icon ion-arrow-right-c next" ng-click="nextSlide()"></button>

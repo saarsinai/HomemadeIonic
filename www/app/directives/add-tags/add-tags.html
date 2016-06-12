@@ -1,11 +1,13 @@
-<div>
+<div class="add-tags">
   <div class="row">
-    <label class="item item-input">
-      <input type="text" placeholder="Tag" ng-model="newTag">
+    <label class="item item-input no-border col-80">
+      <input type="text" placeholder="Write a Tag" ng-model="newTag">
     </label>
-    <div class="item item-icon-right">
+    <span class="item item-icon-right no-border col-20">
       <a class="button-icon icon ion-plus-circled calm small" ng-click="addTag()"></a>
-    </div>
+    </span>
   </div>
-  <hmd-tag-chip-list class="list" tags="item.tags"></hmd-tag-chip-list>
+  <div class="margin-left">
+    <hmd-tag-chip-list class="list" tags="item.tags"></hmd-tag-chip-list>
+  </div>
 </div>
