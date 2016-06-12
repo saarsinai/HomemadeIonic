@@ -77,7 +77,7 @@ export default {
     name: "Omer Shemesh",
     email: "cheap@stomach.com",
     password: "Aa12345678",
-    age: 53,
+    age: 34,
     store: {
       name: "Pizza Shemesh",
       address: "Waitzman, Rishon Lezion",
@@ -96,7 +96,7 @@ export default {
     name: "Ron Cohen",
     email: "ron@gamil.com",
     password: "123456",
-    age: 53,
+    age: 26,
     store: {
       name: "Ron's sweets",
       address: "Hachalutzim, Rishon Lezion",
@@ -109,25 +109,44 @@ export default {
       active: true,
       phone: "0529993337"
     }
-  },
-  {
-    "_id": "5737418c411a61783c5ebf02",
-    name: "Ester Levi",
-    email: "ester@gamil.com",
-    password: "123123",
-    age: 53,
-    store: {
-      name: "Ester's Kitchen",
-      address: "Hasmadar, Rishon Lezion",
-      location: {
-        lat: 31.975757,
-        lon: 34.782169
-      },
-      description: "Famous traditional dishes from best kitchens!",
-      createdAt: Date.now(),
-      active: true,
-      phone: "0547777321"
-    }
+    },
+    {
+      "_id": "5737418c411a61783c5ebf02",
+      name: "Ester Levi",
+      email: "ester@gamil.com",
+      password: "123123",
+      age: 60,
+      store: {
+        name: "Ester's Kitchen",
+        address: "Hasmadar, Rishon Lezion",
+        location: {
+          lat: 31.975757,
+          lon: 34.782169
+        },
+        description: "Famous traditional dishes from best kitchens!",
+        createdAt: Date.now(),
+        active: true,
+        phone: "0547777321"
+      }
+    },
+    {
+      "_id": "5737418c411a61783c5ebf01",
+      name: "Moshe hadad",
+      email: "moshe@walla.com",
+      password: "1111",
+      age: 53,
+      store: {
+        name: "Italian chef",
+        address: "Jerusalem street, Rishon Lezion",
+        location: {
+          lat: 31.962223,
+          lon: 34.811432
+        },
+        description: "The best italian food in town!",
+        createdAt: Date.now(),
+        active: true,
+        phone: "0501111990"
+      }
   }
 ]
 }
