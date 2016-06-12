@@ -1,17 +1,19 @@
 <ion-modal-view id="other-location">
-  <ion-header-bar class="bar bar-header bar-calm">
-    <button  class="button icon-right ion-close button-clear button-dark" ng-click="closeLocationModal()"></button>
+  <ion-header-bar class="bar bar-header bar-calm title-bar">
+    <button  class="button button-clear button-dark close-button" ng-click="closeLocationModal()">
+      <i class="icon ion-close"></i>
+    </button>
   </ion-header-bar>
   <ion-content>
     <div class="card">
-      <div class="item">
+      <div class="item center">
         Please insert the address of the desired location
       </div>
       <div class="item item-input-inset">
         <label class="item-input-wrapper">
           <input type="text" placeholder="Address" ng-model="positioning.address">
         </label>
-        <button class="button button-small button-calm" ng-click="checkLocation()">
+        <button class="button button-small button-calm search-button" ng-click="checkLocation()">
           Show
         </button>
       </div>
