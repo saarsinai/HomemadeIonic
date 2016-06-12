@@ -97,7 +97,7 @@ angular.module('homemade')
           itemsLeft: $scope.batch.amount,
           timeReady: timeReady,
           open: true
-        }
+        };
 
         ItemBatch.save(batch).$promise
           .then(function (res) {
@@ -129,7 +129,7 @@ angular.module('homemade')
       var allMinutes = hours + minutes;
 
       return new Date(dt.getTime() + allMinutes * 60000);
-    }
+    };
 
     var validateItem = function (item) {
 
