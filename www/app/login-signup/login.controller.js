@@ -18,7 +18,6 @@ angular.module('homemade')
     $scope.signUpMode = false;
 
     var loginError = function (res, status) {
-      // TODO: nice message of "bad email or password"
       $ionicPopup.alert({
         title: 'Bad email or password!',
         template: 'please check your details and try again.'

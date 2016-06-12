@@ -79,11 +79,16 @@ angular.module('homemade')
               text: '<div style="font-size: 8px">Finish</div>',
               type: 'button-positive',
               onTap: function (e) {
-                if (!$scope.purchase.amount) {
-                  //don't allow the user to close unless he enters wifi password
-                  e.preventDefault();
-                } else {
+                var amountAsInt = Number.parseInt($scope.purchase.amount);
+                if (Number.isInteger(amountAsInt)) {
                   return $scope.purchase.amount;
+                } else {
+                  //don't allow the user to close unless he enters amount
+                  $ionicPopup.alert({
+                    title: 'Incorrect amount!',
+                    template: 'please check you entered numbers only.'
+                  });
+                  e.preventDefault();
                 }
               }
             },

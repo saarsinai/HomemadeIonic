@@ -7,14 +7,21 @@
       </div>
     </div>
     <div class="list input-texts">
-      <form ng-submit="login()">
-        <ion-md-input ng-model="user.email" placeholder="Email" highlight-color="calm" type="email"
-                      ng-pattern="/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i"></ion-md-input>
+      <form name="loginForm" ng-submit="login()">
+        <ion-md-input class="has-error" name="emailAddress" ng-model="user.email" placeholder="Email" highlight-color="calm" type="email"
+                      ng-pattern="/(.+)@(.+){2,}\.(.+){2,}/" ng-required></ion-md-input>
+        <div ng-messages="loginForm.emailAddress.$error" class="form-errors">
+          <div class="form-error" ng-message="pattern">email is not in the right format</div>
+        </div>
         <ion-md-input ng-model="user.password" placeholder="Password" highlight-color="calm"
-                      type="password"></ion-md-input>
+                      type="password" ng-required></ion-md-input>
         <div ng-show="signUpMode">
-          <ion-md-input ng-model="user.name" placeholder="Name" highlight-color="calm" type="text"></ion-md-input>
-          <ion-md-input ng-model="user.age" placeholder="Age" highlight-color="calm" type="number"></ion-md-input>
+          <ion-md-input name="fullName" ng-model="user.name" placeholder="Name" highlight-color="calm" type="text"
+                        ng-pattern="/^[a-zA-Z ]+$/"></ion-md-input>
+            <div ng-messages="loginForm.fullName.$error" class="form-errors">
+              <div class="form-error" ng-message="pattern">name field allowed only characters</div>
+            </div>
+          <ion-md-input name="age" ng-model="user.age" placeholder="Age" highlight-color="calm" type="number"></ion-md-input>
         </div>
       </form>
     </div>
