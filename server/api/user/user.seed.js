@@ -8,13 +8,13 @@ export default {
     password: "1234",
     age: 24,
     store: {
-      name: "Kobi's Arancinies",
+      name: "Kobi's Kitchen",
       address: "Acre street 1, Rishon Lezion",
       location: {
         lat: 31.9699442,
         lon: 34.8014911
       },
-      description: "Like mushrooms? like rice? like frying thing?, then Arancini is the stuff for you! *does not contain mushrooms/rice",
+      description: "The best homemade dishes, made with love!",
       createdAt: Date.now(),
       active: true,
       phone: "0546664447"
@@ -90,5 +90,44 @@ export default {
       active: true,
       phone: "0533333333"
     }
-  }]
+  },
+  {
+    "_id": "5737418c411a61783c5ebf03",
+    name: "Ron Cohen",
+    email: "ron@gamil.com",
+    password: "123456",
+    age: 53,
+    store: {
+      name: "Ron's sweets",
+      address: "Hachalutzim, Rishon Lezion",
+      location: {
+        lat: 31.985088,
+        lon: 34.761441
+      },
+      description: "Sweets, Desserts and Cakes <3",
+      createdAt: Date.now(),
+      active: true,
+      phone: "0529993337"
+    }
+  },
+  {
+    "_id": "5737418c411a61783c5ebf02",
+    name: "Ester Levi",
+    email: "ester@gamil.com",
+    password: "123123",
+    age: 53,
+    store: {
+      name: "Ester's Kitchen",
+      address: "Hasmadar, Rishon Lezion",
+      location: {
+        lat: 31.975757,
+        lon: 34.782169
+      },
+      description: "Famous traditional dishes from best kitchens!",
+      createdAt: Date.now(),
+      active: true,
+      phone: "0547777321"
+    }
+  }
+]
 }
